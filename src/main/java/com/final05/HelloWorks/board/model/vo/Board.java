@@ -19,6 +19,10 @@ public class Board implements java.io.Serializable {
 	private Date b_timestamp;
 	private int b_view;
 
+	public Board() {
+
+	}
+
 	public Board(int b_n, String b_pwd) {
 		super();
 		this.b_n = b_n;

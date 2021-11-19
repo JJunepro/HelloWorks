@@ -3,14 +3,13 @@
 <configuration>
 	<!-- 입력 값이 Null일 경우 “”이 아닌 Null로 처리 -->
 	<settings>
-		<setting name="jdbcTypeForNull" value="Null" />
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	
 	<!-- 사용하고자 하는 클래스의 별칭을 선언 --> 
 	<typeAliases>
 		<typeAlias
 			type="com.final05.HelloWorks.member.model.vo.Member" alias="Member" />
-
 		<typeAlias
 			type="com.final05.HelloWorks.board.model.vo.Board" alias="Board" />
 			<typeAlias
@@ -20,7 +19,7 @@
 	<!-- 사용하고자 하는 쿼리를 정의한 mapper.xml을 등록 -->
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml" />
-		<mapper resource="mappers/member-board.xml" />
-		<mapper resource="mappers/member-comment.xml" />
+		<mapper resource="mappers/board-mapper.xml" />
+		<mapper resource="mappers/comment-mapper.xml" />
 	</mappers>
 </configuration>
