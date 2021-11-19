@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Board">
+	<resultMap type="Board" id="resultBoard">
+	</resultMap>
+
+	<!-- 게시글 전체 개수 조회 -->
+	<select id="listCount" resultType="int">
+		SELECT count(*) FROM BOARD
+	</select>
+
+	<!-- 페이지당 게시글 조회 -->
+	<select id="selectList" resultType="arraylist"
+		resultMap="resultBoard">
+		SELECT * FROM BOARD
+	</select>
+
+	<!-- 게시글 단일 조회 -->
+	<select id="selectOne" parameterType="string" resultType="Board">
+		SELECT
+		* FROM BOARD
+		WHERE B_N = # {b_n}
+	</select>
+
+	<!-- 검색한 게시글 조회 -->
+	<select id="searchList" parameterType="string"
+		resultType="arraylist" resultMap="resultBoard">
+		SELECT * FROM BOARD
+		WHERE B_TITLE
+		LIKE
+		'%'|| #{keyword} ||'%'
+		OR B_CONTENT LIKE '%'|| #{keyword}
+		||'%'
+		ORDER BY REGDATE DESC
+	</select>
+
+	<!-- 게시글 삽입 -->
+	<insert id="insertBoard" parameterType="string"
+		flushCache="true" statementType="PREPARED">
+		INSERT INTO BOARD VALUES(
+		'BO'||TO_CHAR(SYSDATE,'RRMMDD')||LPAD(BOARD_SEQ.NEXTVAL,2,'0'),
+		#{b_writer}, #{b_title}, 0,
+		SYSDATE, #{b_content},
+		#{b_file},
+		#{b_pwd})
+	</insert>
+
+	<!-- 게시글 조회 수 증가 -->
+	<update id="addReadCount" parameterType="string"
+		flushCache="true" statementType="PREPARED">
+		UPDATE BOARD SET B_VIEW = B_VIEW+1
+		WHERE B_N = #{b_n}
+	</update>
+
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="Board" flushCache="true"
+		statementType="PREPARED">
+		UPDATE BOARD SET BOARD_TITLE = #{board_title},
+		BOARD_CONTENT = #{board_content}, BOARD_FILE = #{board_file}
+		WHERE B_N
+		= #{b_n} AND BOARD_PWD = #{board_pwd}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="string"
+		flushCache="true" statementType="PREPARED">
+		DELETE FROM BOARD WHERE B_N = #{b_n}
+	</delete>
+</mapper>
