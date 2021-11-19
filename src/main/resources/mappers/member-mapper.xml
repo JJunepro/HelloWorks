@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Member">
-	<select id="listMember" resultType="Member">
-		select * from member order by id
-	</select>
+<resultMap type="Member" id="MemberMap">
+		<id property="uid" column="U_ID" />
+		<result property="oCode" column="O_CODE" />
+		<result property="pwd" column="PWD" />
+		<result property="dept" column="DEPT" />
+		<result property="name" column="NAME" />
+		<result property="birth" column="BIRTH" />
+		<result property="resident" column="RESIDENT" />
+		<result property="address" column="ADDRESS" />
+		<result property="mail" column="MAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="gender" column="GENDER" />
+		<result property="cPhone" column="C_PHONE" />
+		<result property="salary" column="SALARY" />
+		<result property="salaryDate" column="SALARYDATE" />
+		<result property="entry" column="ENTRY" />
+		<result property="last" column="LAST" />
+	</resultMap>
+	
+ <select id="login" resultMap="MemberMap" parameterType="Member">
+        SELECT U_ID, PWD FROM MEMBER
+        WHERE U_ID = #{uid} AND PWD = #{pwd}
+    </select>
+    
 </mapper>

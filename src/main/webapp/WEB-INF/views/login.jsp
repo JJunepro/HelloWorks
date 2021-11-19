@@ -1,5 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
   <!-- Required meta tags -->
@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Regal Admin</title>
   <!-- base:css -->
-  <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="resources/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="resources/vendors/feather/feather.css">
+  <link rel="stylesheet" href="resources/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="resources/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="shortcut icon" href="resources/images/favicon.png" />
 </head>
 
 <body>
@@ -29,36 +29,41 @@
               <div class="brand-logo">
                 <img src="../../images/logo-dark.svg" alt="logo">
               </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <h4>HelloWorks 입니다.</h4>
+              <h6 class="font-weight-light">로그인 해주세요.</h6>
+              <br><br>
+              
+             <form class="pt-3" method="POST" action="login">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="아이디" name="uid">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" name="pwd">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" href="../../home">SIGN IN</a>
+                   <input type="submit" id="log-btn" value="로그인" class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" >
                 </div>
+              </form>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
+                     <!--  <input type="checkbox" class="form-check-input">
+                      Keep me signed in -->
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  <a href="#" class="auth-link text-black">아이디 찾기</a>
+                 
+                  <a href="#" class="auth-link text-black">비밀번호 찾기</a>
                 </div>
-                <div class="mb-2">
+            <!--     <div class="mb-2">
                   <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                     <i class="mdi mdi-facebook mr-2"></i> Connect using facebook
                   </button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                </div>
-              </form>
+                </div> -->
+             
             </div>
           </div>
         </div>
@@ -69,12 +74,12 @@
   </div>
   <!-- container-scroller -->
   <!-- base:js -->
-  <script src="../../vendors/base/vendor.bundle.base.js"></script>
+  <script src="resources/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
+  <script src="resources/js/off-canvas.js"></script>
+  <script src="resources/js/hoverable-collapse.js"></script>
+  <script src="resources/js/template.js"></script>
   <!-- endinject -->
 </body>
 

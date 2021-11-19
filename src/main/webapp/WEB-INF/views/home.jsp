@@ -105,7 +105,7 @@
               <a class="dropdown-item preview-item">               
                   <i class="icon-head"></i> Profile
               </a>
-              <a class="dropdown-item preview-item">
+              <a class="dropdown-item preview-item" href="logout">
                   <i class="icon-inbox"></i> Logout
               </a>
             </div>
@@ -188,7 +188,7 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="login"> Login </a></li>
                 <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/login-2.html"> Login 2 </a></li>
                 <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/register.html"> Register </a></li>
                 <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/register-2.html"> Register 2 </a></li>
