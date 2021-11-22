@@ -18,7 +18,7 @@ http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="scott" />
+		<property name="username" value="HelloWorks" />
 		<property name="password" value="1234" />
 	</bean>
 	<bean id="transactionManager"

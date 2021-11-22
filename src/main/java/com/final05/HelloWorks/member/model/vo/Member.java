@@ -23,8 +23,28 @@ public class Member {
 	private Date entry;	// 입사일
 	private Date last;	//퇴사일
 	
+	public Member() {}
 	
-	
+	public Member(String uid, int oCode, String pwd, int dept, String name, int birth, int resident, String address,
+			String mail, int phone, String gender, int cPhone, int salary, Date salaryDate, Date entry, Date last) {
+		super();
+		this.uid = uid;
+		this.oCode = oCode;
+		this.pwd = pwd;
+		this.dept = dept;
+		this.name = name;
+		this.birth = birth;
+		this.resident = resident;
+		this.address = address;
+		this.mail = mail;
+		this.phone = phone;
+		this.gender = gender;
+		this.cPhone = cPhone;
+		this.salary = salary;
+		this.salaryDate = salaryDate;
+		this.entry = entry;
+		this.last = last;
+	}
 	@Override
 	public String toString() {
 		return "Member [uid=" + uid + ", oCode=" + oCode + ", pwd=" + pwd + ", dept=" + dept + ", name=" + name

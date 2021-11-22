@@ -1,6 +1,8 @@
 package com.final05.HelloWorks.member.model.dao;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,5 +23,15 @@ public class MemberDao {
   }
   public void logout(HttpSession sessin) {
   }
+  public Member idSearch(Member vo) {
+	 return sqlSession.selectOne("Member.idSearch", vo);
+ }
+  public Member pwdSearch(Member vo) {
+	 return sqlSession.selectOne("Member.pwdSearch", vo);
+ }
+  public List<Member> profile(String uid) {
+	  System.out.println("id"+uid);
+		 return sqlSession.selectList("Member.profile", uid);
+	 }
 }
 

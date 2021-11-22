@@ -1,8 +1,6 @@
 package com.final05.HelloWorks.member.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -63,5 +61,82 @@ public class MemberController {
         return mav;
     }
  
+    @RequestMapping(value = "idSearch", method = RequestMethod.GET)
+ 	public ModelAndView idSearch(ModelAndView mv) {
+ 		mv.setViewName("idSearch");
+ 		return mv;
+ 	}
+
+    @RequestMapping(value = "pwdSearch", method = RequestMethod.GET)
+   	public ModelAndView pwdSearch(ModelAndView mv) {
+   		mv.setViewName("pwdSearch");
+   		return mv;
+   	}
     
+     @RequestMapping(value = "idSearch", method = RequestMethod.POST) //포스트 방식 매핑
+        public String idSearch(Member vo, Model model) {
+    	  String viewName = "";
+          logger.info("idSearch");	
+          Member member = memberService.idSearch(vo);
+ 
+          try {
+    		if(member == null) { 
+    			
+    			model.addAttribute("check", 1);
+    			model.addAttribute("msg","존재하지 않는 회원 정보입니다.");
+    		} else { 
+    			model.addAttribute("check", 0);
+    			model.addAttribute("msg", member.getName()+"님의  아이디는"+member.getUid()+"입니다.");
+    			model.addAttribute("uid", member.getUid());
+    		}
+          }catch(Exception e){
+        	  return "idSearch";
+          }
+    		System.out.println(member.getUid());
+    		System.out.println(member.getName());
+    		return "idSearch";
+    	}
+     
+     @RequestMapping(value="pwdSearch", method=RequestMethod.POST)
+ 	public String pwdSearch(Member vo, Model model) {
+    	 Member member = memberService.pwdSearch(vo);
+ 		
+ 		if(member == null) { 
+ 			model.addAttribute("check", 1);
+ 			model.addAttribute("msg","존재하지 않는 회원 정보입니다.");
+ 		} else { 
+ 			model.addAttribute("check", 0);
+ 			model.addAttribute("msg", member.getName()+"님의  비밀번호는"+member.getPwd()+"입니다.");
+ 			model.addAttribute("pwd", member.getPwd());
+ 		}
+ 		System.out.println(member.getPwd());
+ 		
+ 		return "pwdSearch";
+ 	}
+//     
+//     @RequestMapping(value = "profile", method = RequestMethod.GET)
+// 	public ModelAndView profile(ModelAndView mv) {
+// 		mv.setViewName("profile");
+// 		return mv;
+// 	}
+     
+     @RequestMapping(value="profile", method=RequestMethod.GET)
+  	public ModelAndView profile(ModelAndView mv, HttpSession session) {
+    	 String uid = (String) session.getAttribute("uid");
+    	 Member vo = new Member();
+    	 List<Member> list = null;  
+    	 try {
+    		 list = memberService.profile(uid);
+    		 mv.addObject("list",list);
+    	 }catch(Exception e) {
+    		 e.printStackTrace();
+    	 }
+
+     	System.out.println("dddd"+uid);
+    	System.out.println("d"+vo);
+    	 mv.setViewName("profile");
+
+  		
+  		return mv;
+  	}
 }

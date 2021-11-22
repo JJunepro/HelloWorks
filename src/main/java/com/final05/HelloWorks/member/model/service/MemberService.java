@@ -1,5 +1,7 @@
 package com.final05.HelloWorks.member.model.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,17 @@ public class MemberService {
 	        // 세션 정보를 초기화 시킴
 	        session.invalidate();
 	    }
-
+	   public Member idSearch(Member vo) {
+		      return memberDao.idSearch(vo);
+		   }
+	   
+	   public Member pwdSearch(Member vo) {
+		   return memberDao.pwdSearch(vo);
+	   }
+	   
+	   public List<Member> profile(String uid) {
+			
+			return memberDao.profile(uid);
+	   }
 }
 
