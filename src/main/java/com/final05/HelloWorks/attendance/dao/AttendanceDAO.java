@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AttendanceDAO {
+public class AttendanceDAO {
 
 	/*
 	//직원근태 목록
