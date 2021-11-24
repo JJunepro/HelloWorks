@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -47,11 +47,17 @@
                    <input type="submit" id="log-btn" value="비밀번호 찾기" onclick = "btn_alert()" class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" >
                 </div>
               </form>
-              <script>
-        		function btn_alert(){
-        			 	alert('${msg }');
-        		}
-        	</script>
+           <c:if test="${!empty msg}">
+
+<script>
+
+alert("${msg}");
+
+<c:remove var="msg"/>
+
+</script>
+
+</c:if>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">

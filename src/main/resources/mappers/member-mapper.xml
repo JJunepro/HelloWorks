@@ -36,4 +36,7 @@
         SELECT * FROM MEMBER
        	WHERE U_ID = #{uid}
     </select>
+       <select id="memberAll" resultMap="MemberMap" parameterType="Member">
+        SELECT * FROM MEMBER
+    </select>
 </mapper>

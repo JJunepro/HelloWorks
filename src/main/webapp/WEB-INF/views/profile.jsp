@@ -32,6 +32,14 @@
 <!-- endinject -->
 <link rel="shortcut icon" href="resources/images/favicon.png" />
 </head>
+<style>
+	tr, td{
+		text-align: center;
+		width: 300px;
+		height: 50px;
+	}
+
+</style>
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
@@ -147,7 +155,7 @@
 					<div class="user-image">
 						<img src="resources/images/faces/face1.jpg">
 					</div>
-					<div class="user-name">Edward Spencer</div>
+					<div class="user-name">${memberinfo.name }</div>
 					<div class="user-designation">Developer</div>
 				</div>
 				<ul class="nav">
@@ -222,33 +230,32 @@
 									<h2>직원 정보</h2>
 									<div class="row">
 										<div class="user-image">
-											<img src="resources/images/faces/face1.jpg">
+											<img src="resources/images/faces/face1.jpg" width="150px" height= "150px">
 										</div>
-										<c:forEach var = "vo" items = "${list }">
-										
+										&ensp;&ensp;&ensp;&ensp;
 										<div>
-											<table border="1">
+											<table border="0" width="1150px;">
 												<tr>
 													<td>직원 구분 </td>
 													<td></td>
 													<td>부서</td>
 													<td></td>
 													<td>이름</td>
-													<td>${vo.name }</td>
+													<td>${memberinfo.name }</td>
 												</tr>
 												<tr>
 													<td>입사 일자 </td>
-													<td></td>
+													<td>${memberinfo.entry }</td>
 													<td>사번</td>
-													<td></td>
+													<td>${memberinfo.dept }</td>
 													<td>직급</td>
 													<td></td>
 												</tr>
 												<tr>
 													<td>ID</td>
-													<td>${vo.uid }</td>
+													<td>${memberinfo.uid }</td>
 													<td>회사 번호</td>
-													<td></td>
+													<td>${memberinfo.cPhone }</td>
 													<td>직책</td>
 													<td></td>
 												</tr>
@@ -256,15 +263,15 @@
 													<td>PWD</td>
 													<td></td>
 													<td>휴대 전화</td>
-													<td></td>
+													<td>${memberinfo.phone }</td>
 													<td>메일</td>
-													<td></td>
+													<td>${memberinfo.mail }</td>
 												</tr>
 												
 											</table>
 										</div>
 
-									</c:forEach>
+									
 									</div>
 								</div>
 							</div>

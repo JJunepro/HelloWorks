@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -45,15 +45,14 @@
                 </div>
               </form>
               
+               <c:if test="${!empty msg}">
         		<script>
-        		function btn_alert(){
-        			if('${check}' == 1)
-        			 	alert("존재하지 않는 회원 정보입니다.");
-        			else if('${check}' == 0)
-        			 	alert('${msg }');
-        		}
+        			alert("${msg}");
+        			 	<c:remove var="msg"/>
         		</script>
-        		
+        		</c:if>
+        	
+				
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
