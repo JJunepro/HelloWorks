@@ -117,7 +117,23 @@ public class BoardController {
 //		}
 //		return mv;
 //	}
-
+//	@RequestMapping(value = "bDelete.do", method = RequestMethod.GET)
+//	public ModelAndView boardDelete(@RequestParam(name = "board_num") String board_num,
+//			@RequestParam(name = "page", defaultValue = "1") int page, HttpServletRequest request, ModelAndView mv) {
+//		try {
+//			Board b = bService.selectBoard(1, board_num);
+//			removeFile(b.getBoard_file(), request);
+//
+//			bService.deleteBoard(board_num);
+//			mv.addObject("currentPage", page);
+//			mv.setViewName("redirect:blist.do");
+//		} catch (Exception e) {
+//			mv.addObject("msg", e.getMessage());
+//			mv.setViewName("errorPage");
+//		}
+//		return mv;
+//	}
+	
 	private void saveFile(MultipartFile report, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\uploadFiles";
@@ -137,6 +153,25 @@ public class BoardController {
 			System.out.println("파일 전송이 완료되었습니다.");
 		} catch (Exception e) {
 			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+	}
+
+	private void removeFile(String board_file, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+
+		String filePath = savePath + "\\" + board_file;
+		try {
+			// 파일 저장
+			System.out.println(board_file + "을 삭제합니다.");
+			System.out.println("기존 저장 경로 : " + savePath);
+
+			File delFile = new File(filePath);
+			delFile.delete();
+
+			System.out.println("파일 삭제가 완료되었습니다.");
+		} catch (Exception e) {
+			System.out.println("파일 삭제 에러 : " + e.getMessage());
 		}
 	}
 }
