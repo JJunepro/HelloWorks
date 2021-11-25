@@ -3,30 +3,29 @@ package com.final05.HelloWorks.schedule.model.vo;
 import java.util.Date;
 
 public class Schedule {
-//	SCHEDULE_NUM	NUMBER	NOT NULL,
-//	USER_ID VARCHAR2(20) NOT NULL,
+//	SCHEDULE_NUM NUMBER	NOT NULL,
+//	U_ID VARCHAR2(20) NOT NULL,
 //	SCHEDULE_TITLE	VARCHAR2(200)	NOT NULL,
-//	SCHEDULE_MEMO	VARCHAR2(500)	,
-//	SCHEDULE_START_DATE	VARCHAR2(50) NOT NULL,
-//	SCHEDULE_END_DATE	VARCHAR2(50) NOT NULL,
-//	SCHEDULE_TXTCOLOR VARCHAR2(50) NOT NULL
+//	SCHEDULE_MEMO	VARCHAR2(500),
+//	SCHEDULE_START VARCHAR2(50) NOT NULL,
+//	SCHEDULE_END	VARCHAR2(50) NOT NULL,
+//	SCHEDULE_TXTCOLOR VARCHAR2(50) NOT NULL,
+//	SCHEDULE_ALLDAY VARCHAR2(1),
 	private static final long serialVersionUID = 1111L;
 	private int scheduleNum;
-	private String userId;
+	private String uid;
 	private String scheduleTitle;
 	private String scheduleMemo;
-	private Date scheduleStartDate;
-	private Date scheduleEndDate;
-	private String scheduleColor;
+	private String scheduleStart;
+	private String scheduleEnd;
 	private String scheduleTxtcolor;
 	private boolean scheduleAllDay = false;
 	
 	@Override
 	public String toString() {
-		return "Schedule [scheduleNum=" + scheduleNum + ", userId=" + userId + ", scheduleTitle=" + scheduleTitle
-				+ ", scheduleMemo=" + scheduleMemo + ", scheduleStartDate=" + scheduleStartDate + ", scheduleEndDate="
-				+ scheduleEndDate + ", scheduleColor=" + scheduleColor + ", scheduleTxtcolor=" + scheduleTxtcolor
-				+ ", scheduleAllDay=" + scheduleAllDay + "]";
+		return "Schedule [scheduleNum=" + scheduleNum + ", uid=" + uid + ", scheduleTitle=" + scheduleTitle
+				+ ", scheduleMemo=" + scheduleMemo + ", scheduleStart=" + scheduleStart + ", scheduleEnd=" + scheduleEnd
+				+ ", scheduleTxtcolor=" + scheduleTxtcolor + ", scheduleAllDay=" + scheduleAllDay + "]";
 	}
 
 	public int getScheduleNum() {
@@ -37,12 +36,12 @@ public class Schedule {
 		this.scheduleNum = scheduleNum;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public String getScheduleTitle() {
@@ -61,28 +60,20 @@ public class Schedule {
 		this.scheduleMemo = scheduleMemo;
 	}
 
-	public Date getScheduleStartDate() {
-		return scheduleStartDate;
+	public String getScheduleStart() {
+		return scheduleStart;
 	}
 
-	public void setScheduleStartDate(Date scheduleStartDate) {
-		this.scheduleStartDate = scheduleStartDate;
+	public void setScheduleStart(String scheduleStart) {
+		this.scheduleStart = scheduleStart;
 	}
 
-	public Date getScheduleEndDate() {
-		return scheduleEndDate;
+	public String getScheduleEnd() {
+		return scheduleEnd;
 	}
 
-	public void setScheduleEndDate(Date scheduleEndDate) {
-		this.scheduleEndDate = scheduleEndDate;
-	}
-
-	public String getScheduleColor() {
-		return scheduleColor;
-	}
-
-	public void setScheduleColor(String scheduleColor) {
-		this.scheduleColor = scheduleColor;
+	public void setScheduleEnd(String scheduleEnd) {
+		this.scheduleEnd = scheduleEnd;
 	}
 
 	public String getScheduleTxtcolor() {
@@ -100,8 +91,8 @@ public class Schedule {
 	public void setScheduleAllDay(boolean scheduleAllDay) {
 		this.scheduleAllDay = scheduleAllDay;
 	}
-
-
+	
 	
 	
 }
+	

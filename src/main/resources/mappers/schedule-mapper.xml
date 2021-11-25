@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Schedule">
+
+	<resultMap type="Schedule" id="scheduleRM">
+	<!--  	<id property="scheduleNum" column="SCHEDULE_NUM"/>-->
+		<result property="scheduleNum" column="SCHEDULE_NUM" />
+		<result property="uid" column="U_ID" />
+		<result property="scheduleTitle" column="SCHEDULE_TITLE" />
+		<result property="scheduleMemo" column="SCHEDULE_MEMO" />
+		<result property="scheduleStart" column="SCHEDULE_START" />
+		<result property="scheduleEnd" column="SCHEDULE_END" />
+		<result property="scheduleTxtcolor" column="SCHEDULE_TXTCOLOR" />
+		<result property="scheduleAllDay" column="SCHEDULE_ALLDAY" />
+	</resultMap>
+	
+	<select id="getEventList" resultType="arrayList" resultMap="scheduleRM">
+		SELECT *
+		FROM SCHEDULE
+		WHERE SCHEDULE_START_DATE >= #{scheduleStart}
+		AND SCHEDULE_END_DATE <![CDATA[ < ]]> TO_DATE(#{scheduleEnd},'YYYY-MM-DD')+1
+	</select>
+	
+	<select id="showSchedule" resultMap="scheduleRM" parameterType="Schedule">
+		SELECT * FROM SCHEDULE
+	</select>
+	
+	<insert id="addSchedule" parameterType="Schedule">
+		INSERT INTO SCHEDULE (SCHEDULE_NUM, USER_ID, SCHEDULE_TITLE, SCHEDULE_MEMO, SCHEDULE_START_DATE,SCHEDULE_END_DATE,SCHEDULE_TXTCOLOR )
+			VALUES (SCHEDULE_NUM_seq.nextval, 'B', #{scheduleTitle}, #{scheduleMemo}, #{scheduleStartDate}, #{scheduleEndDate}, #{scheduleTxtcolor} )
+	</insert>
+	
+	
+	<insert id="addEvent" parameterType="Schedule">
+		INSERT INTO SCHEDULE (SCHEDULE_NUM, USER_ID, SCHEDULE_TITLE, SCHEDULE_MEMO, SCHEDULE_START_DATE,SCHEDULE_END_DATE,SCHEDULE_TXTCOLOR )
+			VALUES (SCHEDULE_NUM_seq.nextval, 'B', #{scheduleTitle}, #{scheduleMemo}, #{scheduleStartDate}, #{scheduleEndDate}, #{scheduleTxtcolor} )
+	</insert>
+</mapper>

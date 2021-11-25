@@ -14,6 +14,7 @@
 			type="com.final05.HelloWorks.board.model.vo.Board" alias="Board" />
 			<typeAlias
 			type="com.final05.HelloWorks.board.model.vo.Comment" alias="Comment" />
+		<typeAlias type="com.final05.HelloWorks.schedule.model.vo.Schedule" alias="Schedule"/>
 	</typeAliases>
 	
 	<!-- 사용하고자 하는 쿼리를 정의한 mapper.xml을 등록 -->
@@ -21,5 +22,6 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/comment-mapper.xml" />
+		<mapper resource="mappers/schedule-mapper.xml" />
 	</mappers>
 </configuration>
