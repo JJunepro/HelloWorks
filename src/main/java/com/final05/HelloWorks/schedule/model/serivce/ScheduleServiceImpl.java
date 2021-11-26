@@ -13,6 +13,12 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Autowired
 	private ScheduleDao scheduleDao;
 	
+
+	@Override
+	public List<Schedule> getEvent(Schedule svo) {
+		return scheduleDao.getEvent(svo);
+	}
+	
 	@Override
 	public List<Schedule> showSchedule(Schedule svo) throws Exception{
 		return scheduleDao.showSchedule(svo);
@@ -23,6 +29,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		scheduleDao.addSchedule(s);
 		
 	}
+
 	
 	
 }

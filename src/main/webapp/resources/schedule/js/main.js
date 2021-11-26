@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', function(){
 	var calendar = $('#calendar').fullCalendar({
 	 /** ******************
 	   *  OPTIONS
@@ -47,13 +46,33 @@ document.addEventListener('DOMContentLoaded', function(){
 			},
 			listWeek : { columnFormat : '' }
 			},
-	events: [
+			
+  /* ****************
+   *  일정 받아옴 
+   * ************** */
+events: function (start, end, timezone, callback) {
+    $.ajax({
+      type: "get",
+      url: "getEvent",
+      dataType: "json",
+      data: {
+        // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
+        //startDate : moment(start).format('YYYY-MM-DD'),
+        //endDate   : moment(end).format('YYYY-MM-DD')
+      },
+      success: function (response) {
+        var fixedDate = response.map(function (array) {
+          if (array.allDay && array.start !== array.end) {
+            array.end = moment(array.end).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
+          }
+          return array;
+        });
+        callback(fixedDate);
+	      }
+	    });
+	 }
+			
+	});
 	
-	  {
-	    title: 'default',
-	    start: "2021-11-11",
-	    end: '2021-11-11'
-	  }
-	]
-	});
-	});
+	
+	

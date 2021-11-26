@@ -13,6 +13,11 @@ public class ScheduleDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//일정 가져오기
+	public List<Schedule> getEvent(Schedule svo){
+		return sqlSession.selectList("Schedule.getEvent", svo);
+	}
+	
 	//리스트
 	public List<Schedule> showSchedule(Schedule svo)  {
 		return sqlSession.selectList("Schedule.showSchedule");

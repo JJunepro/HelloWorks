@@ -30,8 +30,8 @@
 <link rel="stylesheet" href="resources/schedule/vendor/css/select2.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/select2.min.css">
 <link rel="stylesheet" href="resources/schedule/css/main.css">
-  
-  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div class="container-scroller">
@@ -218,19 +218,44 @@
       
       
         <div class="content-wrapper">
-        	안녕
          		<div id="calendar" style="width:1000px; background-color: #fff; padding:10px;">
          			<button class="add-button" type="button" onclick="click_add();">일정추가</button>
          		</div>
         </div>
+
         
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function(){
-	var calendar = $('#calendar').fullCalendar({
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  	
+
+	<script src="resources/schedule/vendor/js/jquery.min.js"></script>
+    <script src="resources/schedule/vendor/js/bootstrap.min.js"></script>
+    <script src="resources/schedule/vendor/js/moment.min.js"></script>
+    <script src="resources/schedule/vendor/js/fullcalendar.min.js"></script>
+    <script src="resources/schedule/vendor/js/ko.js"></script>
+    <script src="resources/schedule/vendor/js/select2.min.js"></script>
+    <script src="resources/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    
+    
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', function() {
+     var calendarEl = document.getElementById('calendar');
+
+     var calendar = new FullCalendar.Calendar(calendarEl, {
+	//var calendar = $('#calendar').fullCalendar({
 	 /** ******************
 	   *  OPTIONS
 	   * *******************/
-	  locale  : 'ko',    
+	  /* locale  : 'ko',    
 	  timezone : "local", 
 	  nextDayThreshold : "09:00:00",
 	  allDaySlot  : true,
@@ -256,12 +281,22 @@ document.addEventListener('DOMContentLoaded', function(){
 	  dayPopoverFormat : 'MM/DD dddd',
 	  longPressDelay : 0,
 	  eventLongPressDelay : 0,
-	  selectLongPressDelay : 0,  
+	  selectLongPressDelay : 0,   */
+	  height:600,
+	  plugins:['interaction', 'dayGrid'],
+	  defaultView:'dayGridMonth',
+	  defaultDate: new Date(),
+	  locale  : 'ko', 
+	  eventLimit: true,
+	  eventLimitClick : 'popover', //popover//week
+	  editable : true,
+	  droppable:true,
 	  header : {
 		  left   : 'today, prevYear, nextYear, viewWeekends',
 		  center : 'prev, title, next',
 		  right  : 'month, agendaWeek, agendaDay, listWeek'
 		  },
+		 /*
 	  views: {
 		  month : {columnFormat : 'dddd'},
 		  agendaWeek : {
@@ -274,40 +309,59 @@ document.addEventListener('DOMContentLoaded', function(){
 			},
 			listWeek : { columnFormat : '' }
 			},
-	events: [
-	
-	  {
-	    title: 'default',
-	    start: "2021-11-11",
-	    end: '2021-11-11'
-	  }
-	]
-	});
-	});
+			*/
+			events:	function (start, end, timezone, callback) {
+				console.log("start:"+ moment(start).format('YYYY-MM-DD'));
+				console.log(moment(end).format('YYYY-MM-DD'));
+			    $.ajax({
+			      type: "get",
+			      url: "${pageContext.request.contextPath}/getEvent",
+			      data: {
+			    	  scheduleStart : moment(start).format('YYYY-MM-DD'),
+			    	  scheduleEnd   : moment(end).format('YYYY-MM-DD')
+			      },
+			      
+			      dataType: "json",
+			      success: function (result) {
+			    	  var events = [];
+                      if(result!=null){
+/*                    	  
+						$.each(result, function(index, element) {
+                           	var enddate=element.enddate;
+                              if(enddate==null){
+                                   enddate=element.startdate;
+                               }
+                               
+                               var startdate=moment(element.startdate).format('YYYY-MM-DD');
+                               var enddate=moment(enddate).format('YYYY-MM-DD');
+                               var realmname = element.realmname;
+                               
+                               // realmname (분야) 분야별로 color 설정
+                               if (realmname == "기타"){
+                                   events.push({
+                                          title: element.title,
+                                          start: startdate,
+                                          end: enddate,
+                                             url: "${pageContext.request.contextPath }/detail.do?seq="+element.seq,
+                                             color:"#6937a1"                                                   
+                                   }); //.push()
+                               } // if 분야 
+                          }); //.each()
+*/
+                          console.log(events);
+                      }//if end
+                      callback(events);     
+			      } //success
+			    });// ajax
+			 } //events : function
+		});  // new FullCalender 
+		calendar.render();
+    });
   	</script>
-        
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-       
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  	
-  	
-
-	<script src="resources/schedule/vendor/js/jquery.min.js"></script>
-    <script src="resources/schedule/vendor/js/bootstrap.min.js"></script>
-    <script src="resources/schedule/vendor/js/moment.min.js"></script>
-    <script src="resources/schedule/vendor/js/fullcalendar.min.js"></script>
-    <script src="resources/schedule/vendor/js/ko.js"></script>
-    <script src="resources/schedule/vendor/js/select2.min.js"></script>
-    <script src="resources/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
-
-
+ 	<!--  <script src="resources/schedule/js/main.js"></script> -->
+	<script src="resources/schedule/js/addSchedule.js"></script>
+	
+	
   <!-- base:js -->
   <script src="resources/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -323,8 +377,10 @@ document.addEventListener('DOMContentLoaded', function(){
   <script src="resources/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
-  <script src="resources/js/dashboard.js"></script>
-  <!-- End custom js for this page-->
+
+ 
+  
+  
 </body>
 
 </html>

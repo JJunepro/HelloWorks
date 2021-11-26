@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.final05.HelloWorks.schedule.model.serivce.ScheduleService;
 import com.final05.HelloWorks.schedule.model.vo.Schedule;
+import com.google.gson.Gson;
 
 @Controller
 public class ScheduleController {
@@ -30,13 +32,13 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
-	@RequestMapping(value = "schedule/addEvent")
-	public String addEvent() {
-		return "schedule/addEvent";
+	@RequestMapping(value = "schedule/addSchedule")
+	public String addSchedule() {
+		return "schedule/addSchedule";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/addSchedule", method = RequestMethod.POST)
+	@RequestMapping(value = "addSchedule", method = RequestMethod.POST)
 	public Map<Object, Object> addSchedule(@RequestBody Schedule s) throws Exception {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		scheduleService.addSchedule(s);
@@ -48,6 +50,20 @@ public class ScheduleController {
 //		model.addAttribute("showSchedule", scheduleService.showSchedule());
 //		return "schedule/schedule";
 //	}
+	@RequestMapping(value = "/getEvent", produces = "application/text; charset=UTF-8")
+	@ResponseBody
+	public String getEvent(
+			Schedule svo
+			) {
+		System.out.println("[[getEvent]]");
+		System.out.println(svo);
+		List<Schedule> volist = scheduleService.getEvent(svo);
+		System.out.println(volist);
+		Gson gson = new Gson();
+		return gson.toJson(volist);
+	}
+	
+
 	
 	@RequestMapping(value = "schedule", method = RequestMethod.GET)
 	public ModelAndView showSchedule(ModelAndView mv) {
@@ -59,9 +75,9 @@ public class ScheduleController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("schdule" + list);
 		mv.setViewName("schedule/schedule");
 		return mv;
 	}
+	
 
 }

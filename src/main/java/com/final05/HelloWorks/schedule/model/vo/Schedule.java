@@ -2,6 +2,9 @@ package com.final05.HelloWorks.schedule.model.vo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Schedule {
 //	SCHEDULE_NUM NUMBER	NOT NULL,
 //	U_ID VARCHAR2(20) NOT NULL,

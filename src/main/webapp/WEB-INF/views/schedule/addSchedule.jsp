@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-	<div class="group" id="addEvent">
+	<div class="group" id="addSchedule">
 		<div class="group-head">
 			<h1 class="zTree-h1">일정 추가</h1>
 		</div>
@@ -41,7 +41,7 @@
 					<h3 class="zTree-h3">메모</h3>
 				</div>
 				<div class="domain">
-					<textarea class="memo" id="memo" type="memo" name="memo" rows="5" cols="20"
+					<textarea class="memo" id="memo" type="memo" name="scheduleMemo" rows="5" cols="20"
 						placeholder="메모를 입력해주세요"></textarea>
 				</div>
 			</form>
@@ -104,6 +104,6 @@
 	};
 	
 	</script>
-	<script src="resources/schedule/js/addEvent.js"></script>
+	<script src="resources/schedule/js/addSchedule.js"></script>
 </body>
 </html>

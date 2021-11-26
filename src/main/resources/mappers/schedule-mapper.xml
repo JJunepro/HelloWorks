@@ -14,11 +14,13 @@
 		<result property="scheduleAllDay" column="SCHEDULE_ALLDAY" />
 	</resultMap>
 	
-	<select id="getEventList" resultType="arrayList" resultMap="scheduleRM">
+	<select id="getEvent" resultMap="scheduleRM" parameterType="Schedule">
+		<![CDATA[
 		SELECT *
 		FROM SCHEDULE
-		WHERE SCHEDULE_START_DATE >= #{scheduleStart}
-		AND SCHEDULE_END_DATE <![CDATA[ < ]]> TO_DATE(#{scheduleEnd},'YYYY-MM-DD')+1
+		WHERE SCHEDULE_START >= TO_DATE(#{scheduleStart},'YYYY-MM-DD')
+		AND SCHEDULE_END < TO_DATE(#{scheduleEnd},'YYYY-MM-DD')+1
+		]]>
 	</select>
 	
 	<select id="showSchedule" resultMap="scheduleRM" parameterType="Schedule">
@@ -30,9 +32,4 @@
 			VALUES (SCHEDULE_NUM_seq.nextval, 'B', #{scheduleTitle}, #{scheduleMemo}, #{scheduleStartDate}, #{scheduleEndDate}, #{scheduleTxtcolor} )
 	</insert>
 	
-	
-	<insert id="addEvent" parameterType="Schedule">
-		INSERT INTO SCHEDULE (SCHEDULE_NUM, USER_ID, SCHEDULE_TITLE, SCHEDULE_MEMO, SCHEDULE_START_DATE,SCHEDULE_END_DATE,SCHEDULE_TXTCOLOR )
-			VALUES (SCHEDULE_NUM_seq.nextval, 'B', #{scheduleTitle}, #{scheduleMemo}, #{scheduleStartDate}, #{scheduleEndDate}, #{scheduleTxtcolor} )
-	</insert>
 </mapper>
