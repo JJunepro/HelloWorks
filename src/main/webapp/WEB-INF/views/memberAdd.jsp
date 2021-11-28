@@ -38,6 +38,10 @@
 		width: 100px;
 		height: 40px;
 	}
+	#div-1{
+		display: flex;
+  		justify-content: center;
+	}
 	
 </style>
 <body>
@@ -230,53 +234,84 @@
             </div>
           </div>
           <div class="row mt-3">
-            <div class="col-xl-3 flex-column d-flex grid-margin stretch-card">
-              <div class="row flex-grow">
-                 <div class="col-sm-12 stretch-card">
-                    <div class="card">
-                      <div class="card-body">
-                          <h3>부서</h3>
-                          <ui class = "nav flex-column sub-menu">
-                          	<li>경영지원실</li>
-                          	<li>기획예산실</li>
-                          	<li>인사총무실</li>
-                          	<li>개발팀</li>
-                          	<li>기획팀</li>
-                          </ui>    
-                      
-                      </div>
-                    </div>
-               </div>
-              </div>
-            </div>
-            <div class="col-xl-9 d-flex grid-margin stretch-card">
+           
+            <div class="col-xl-12 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                      <h3>직원 목록</h3>
+                      <h3>직원 정보 등록</h3>
                       <div class="row">
                         
-                        <div style="width:100%; height:580px; overflow:auto">
-							<table border="1" width="1100px;" >
-								<th>사번</th>
-								<th>직원명</th>
-								<th>부서</th>
-								<th>직책</th>
-								<th>생년월일</th>
-								<th>주소</th>
-								<th>입사일</th>
-								<c:forEach var = "vo" items = "${list }">
-								<tr>					
-									<td >${vo.dept } </td>
-									<td>${vo.name }</td>
-									<td></td>
-									<td></td>
-									<td>${vo.birth }</td>
-									<td>${vo.address }</td>
-									<td>${vo.entry }</td>
+                        <div id = "div-1">
+							<form action="memberAdd" method="post">
+							<table border="1" style = "margin-left: auto; margin-right: auto;" >
+							
+								<tr>
+									<td>이름 :</td>
+									<td><input type="text" name="name"></td>
 								</tr>
-								
-								</c:forEach>			
+								<tr>
+									<td>ID :</td>
+									<td><input type="text" name="uid"></td>
+								</tr>
+								<tr>
+									<td>PWD :</td>
+									<td><input type="text" name="pwd"></td>
+								</tr>
+								<tr>
+									<td>부서코드 :</td>
+									<td><input type="text" name="oCode"></td>
+								</tr>
+								<tr>
+									<td>사번 :</td>
+									<td><input type="text" name="dept"></td>
+								</tr>
+								<tr>
+									<td>생년월일 :</td>
+									<td><input type="text" name="birth"></td>
+								</tr>
+								<tr>
+									<td>주민번호 :</td>
+									<td><input type="text" name="resident"></td>
+								</tr>
+								<tr>
+									<td>주소 :</td>
+									<td><input type="text" name="address"></td>
+								</tr>
+								<tr>
+									<td>메일 :</td>
+									<td><input type="email" name="mail"></td>
+								</tr>
+								<tr>
+									<td>성별 :</td>
+									<td>  
+									<input type="radio" name="gender" value="boy" />남성
+  									<input type="radio" name="gender" value="girl" />여성
+  									</td>
+								</tr>
+								<tr>
+									<td>휴대전화 :</td>
+									<td><input type="text" name="phone"></td>
+								</tr>
+								<tr>
+									<td>회사 전화 :</td>
+									<td><input type="text" name="cPhone"></td>
+								</tr>
+								<tr>
+									<td>급여 :</td>
+									<td><input type="text" name="salary"></td>
+								</tr>
+								<tr>
+									<td>급여일 :</td>
+									<td><input type="text" name="salaryDate"></td>
+								</tr>
+								<tr>
+									<td>프로필 :</td>
+									<td><input type="text" name="pImage"></td>
+								</tr>
+							
 							</table>
+							<button>추가</button>
+							</form>
 						</div>
 						
                       </div>
@@ -285,16 +320,7 @@
                   </div>
             </div>
           </div>
-         <div class="col-xl-12 d-flex grid-margin stretch-card"> 
-         	<div class="card-body">
-          		<table width="103%;">
-          			<td style="width:80%;"></td>
-          			<td><button id = "btn" class="#" onclick="location.href='memberAdd'">추가</button></td>
-        			
-        			<td><button id = "btn" class="#">삭제</button></td>
-         		</table>
-			</div>
-		</div>
+        
 
          
         </div>

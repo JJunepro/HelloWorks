@@ -39,6 +39,7 @@
 		height: 50px;
 	}
 
+
 </style>
 <body>
 	<div class="container-scroller">
@@ -226,15 +227,15 @@
 					<div class="row mt-3">
 						<div class="col-xl-12 d-flex grid-margin stretch-card">
 							<div class="card">
-								<div class="card-body">
+								<div class="card-body" style = "width:100%;  overflow:auto">
 									<h2>직원 정보</h2>
 									<div class="row">
 										<div class="user-image">
-											<img src="resources/images/faces/face1.jpg" width="150px" height= "150px">
+											<img src="${memberinfo.pImage }" width="150px" height= "150px">
 										</div>
 										&ensp;&ensp;&ensp;&ensp;
-										<div>
-											<table border="0" width="1150px;">
+										 <div >
+											<table border="0" width="1250px;">
 												<tr>
 													<td>직원 구분 </td>
 													<td></td>
@@ -244,8 +245,8 @@
 													<td>${memberinfo.name }</td>
 												</tr>
 												<tr>
-													<td>입사 일자 </td>
-													<td>${memberinfo.entry }</td>
+													<td>주소 </td>
+													<td>${memberinfo.address }</td>
 													<td>사번</td>
 													<td>${memberinfo.dept }</td>
 													<td>직급</td>
@@ -277,146 +278,61 @@
 							</div>
 						</div>
 
+ 					 <ul class="nav nav-tabs">
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">기본</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu2">인사 발령</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">가족</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu4">인사평가</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu5">학력</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu6">포상</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu8">자격증</a></li>
+   					</ul>
 						<div class="row">
-							<div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
-								<div class="card">
-									<div class="card-body">
-										<h4 class="card-title">Top Sellers</h4>
-										<div class="table-responsive mt-3">
-											<table class="table table-header-bg">
-												<thead>
-													<tr>
-														<th>Country</th>
-														<th>Revenue</th>
-														<th>Vs Last Month</th>
-														<th>Goal Reached</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td><i class="flag-icon flag-icon-us mr-2" title="us"
-															id="us"></i> United States</td>
-														<td>$911,200</td>
-														<td>
-															<div class="text-success">
-																<i class="icon-arrow-up mr-2"></i>+60%
-															</div>
-														</td>
-														<td>
-															<div class="row">
-																<div class="col-sm-10">
-																	<div class="progress">
-																		<div class="progress-bar bg-info" role="progressbar"
-																			style="width: 25%" aria-valuenow="25"
-																			aria-valuemin="0" aria-valuemax="100"></div>
-																	</div>
-																</div>
-																<div class="col-sm-2">25%</div>
-															</div>
-														</td>
-
-													</tr>
-													<tr>
-														<td><i class="flag-icon flag-icon-at mr-2" title="us"
-															id="at"></i> Austria</td>
-														<td>$821,600</td>
-														<td>
-															<div class="text-danger">
-																<i class="icon-arrow-down mr-2"></i>-40%
-															</div>
-														</td>
-														<td>
-															<div class="row">
-																<div class="col-sm-10">
-																	<div class="progress">
-																		<div class="progress-bar bg-info" role="progressbar"
-																			style="width: 50%" aria-valuenow="25"
-																			aria-valuemin="0" aria-valuemax="100"></div>
-																	</div>
-																</div>
-																<div class="col-sm-2">50%</div>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td><i class="flag-icon flag-icon-fr mr-2" title="us"
-															id="fr"></i> France</td>
-														<td>$323,700</td>
-														<td>
-															<div class="text-success">
-																<i class="icon-arrow-up mr-2"></i>+40%
-															</div>
-														</td>
-														<td>
-															<div class="row">
-																<div class="col-sm-10">
-																	<div class="progress">
-																		<div class="progress-bar bg-info" role="progressbar"
-																			style="width: 10%" aria-valuenow="25"
-																			aria-valuemin="0" aria-valuemax="100"></div>
-																	</div>
-																</div>
-																<div class="col-sm-2">10%</div>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td class="py-1"><i
-															class="flag-icon flag-icon-de mr-2" title="us" id="de"></i>
-															Germany</td>
-														<td>$833,205</td>
-														<td>
-															<div class="text-danger">
-																<i class="icon-arrow-down mr-2"></i>-80%
-															</div>
-														</td>
-														<td>
-															<div class="row">
-																<div class="col-sm-10">
-																	<div class="progress">
-																		<div class="progress-bar bg-info" role="progressbar"
-																			style="width: 70%" aria-valuenow="25"
-																			aria-valuemin="0" aria-valuemax="100"></div>
-																	</div>
-																</div>
-																<div class="col-sm-2">70%</div>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td class="pb-0"><i
-															class="flag-icon flag-icon-ae mr-2" title="ae" id="ae"></i>
-															united arab emirates</td>
-														<td class="pb-0">$232,243</td>
-														<td class="pb-0">
-															<div class="text-success">
-																<i class="icon-arrow-up mr-2"></i>+80%
-															</div>
-														</td>
-														<td class="pb-0">
-															<div class="row">
-																<div class="col-sm-10">
-																	<div class="progress">
-																		<div class="progress-bar bg-info" role="progressbar"
-																			style="width: 60%" aria-valuenow="25"
-																			aria-valuemin="0" aria-valuemax="100"></div>
-																	</div>
-																</div>
-																<div class="col-sm-2">0%</div>
-															</div>
-														</td>
-													</tr>
-
-												</tbody>
+						<div class="row mt-3">
+							<div class="col-xl-12 d-flex grid-margin stretch-card">
+							 <div class="tab-content">
+								<div class="card" >
+									<div class="card-body-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">
+									<table border="0" width="1250px;">
+												<tr>
+													<td>주민 번호 </td>
+													<td>${memberinfo.resident }</td>
+													<td>급여</td>
+													<td>${memberinfo.salary }</td>
+													<td>입사일</td>
+													<td>${memberinfo.entry }</td>
+												</tr>
+												<tr>
+													<td>성별</td>
+													<td>${memberinfo.gender }</td>
+													<td>급여일</td>
+													<td>${memberinfo.salaryDate }</td>
+													<td>퇴사일</td>
+													<td>${memberinfo.last }</td>
+												</tr>
+											
+												
 											</table>
-										</div>
+									</div>
+									
+									<div class="card-body-pane container fade" id = "menu2">
+									ddd
+									</div>
+									<div class="card-body-pane container fade" id = "menu3">
+									eee
 									</div>
 								</div>
+								
+								</div>
+							</div>	
 							</div>
-
-
-
-						</div>
+					</div>
+						
+						
+						
+						
+						
 					</div>
 				</div>
 			</div>

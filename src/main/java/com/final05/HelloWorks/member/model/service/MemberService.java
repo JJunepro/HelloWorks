@@ -32,12 +32,17 @@ public class MemberService {
 	   public Member pwdSearch(Member vo) {
 		   return memberDao.pwdSearch(vo);
 	   }
-	   
+	   /*
 	   public Member profile(String uid) {			
 			return memberDao.profile(uid);
 	   }
+	   */
 	   public List<Member> memberAll(Member vo) {			
 			return memberDao.memberAll(vo);
+	   }
+	   
+	   public int memberAdd(Member vo) {
+		   return memberDao.memberAdd(vo);
 	   }
 }
 

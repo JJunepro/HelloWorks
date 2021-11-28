@@ -15,11 +15,16 @@
 		<result property="gender" column="GENDER" />
 		<result property="cPhone" column="C_PHONE" />
 		<result property="salary" column="SALARY" />
+		<result property="pImage" column="P_IMAGE" />
 		<result property="salaryDate" column="SALARYDATE" />
 		<result property="entry" column="ENTRY" />
 		<result property="last" column="LAST" />
 	</resultMap>
-	
+	  <insert id="memberAdd"  parameterType="Member">
+       INSERT INTO MEMBER(NAME,U_ID,PWD,O_CODE,DEPT,BIRTH,RESIDENT,ADDRESS,MAIL,GENDER,PHONE,C_PHONE,SALARY,SALARYDATE,P_IMAGE,ENTRY)
+        VALUES (#{name},#{uid},#{pwd},#{oCode},#{dept},#{birth},#{resident},#{address},#{mail},#{gender},#{phone},#{cPhone},#{salary},#{salaryDate},#{pImage},sysdate)
+    </insert>
+    
  <select id="login" resultMap="MemberMap" parameterType="Member">
         SELECT * FROM MEMBER
         WHERE U_ID = #{uid} AND PWD = #{pwd}
@@ -39,4 +44,6 @@
        <select id="memberAll" resultMap="MemberMap" parameterType="Member">
         SELECT * FROM MEMBER
     </select>
+    
+   
 </mapper>

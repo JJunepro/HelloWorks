@@ -1,8 +1,11 @@
 package com.final05.HelloWorks.member.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,8 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.final05.HelloWorks.member.model.service.MemberService;
 import com.final05.HelloWorks.member.model.vo.Member;
@@ -119,14 +124,14 @@ public class MemberController {
 		}
 		return "pwdSearch";
 	}
-/*
+	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public ModelAndView profile(ModelAndView mv) {
 		mv.setViewName("profile");
 		return mv;
 	}
-	*/
-
+	
+	/*
 	 @RequestMapping("profile")
 	    public String profile(String uid, Model model,HttpSession session){
 	        // 회원 정보를 model에 저장
@@ -136,7 +141,7 @@ public class MemberController {
 	        // member_view.jsp로 포워드
 	        return "profile";
 	    }
-	
+	 */
 	
 	  @RequestMapping(value="memberAll", method=RequestMethod.GET) 
 	  public ModelAndView memberAll(ModelAndView mv) { 
@@ -156,4 +161,61 @@ public class MemberController {
 	 return mv; 
 	 }
 	  
+	  @RequestMapping(value = "memberAdd", method = RequestMethod.GET)
+		public ModelAndView memberAdd(ModelAndView mv) {
+			mv.setViewName("memberAdd");
+			return mv;
+		}
+	  
+	  @RequestMapping(value = "memberAdd", method=RequestMethod.POST)
+	  public ModelAndView memberAdd(Member vo, @RequestParam("uid") String uid,@RequestParam("pwd") String pwd,@RequestParam("name") String name,
+			   @RequestParam("oCode") int oCode,@RequestParam("dept") int dept,@RequestParam("birth") int birth,
+			   @RequestParam("resident") int resident,@RequestParam("address") String address,
+			   @RequestParam("mail") String mail,@RequestParam("phone") int phone,@RequestParam("gender") String gender,
+			   @RequestParam("cPhone") int cPhone,@RequestParam("salary") int salary,
+			   @RequestParam("pImage") String pImage,@RequestParam("salaryDate") String salaryDate,
+	         HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+	      int result=0;
+	      
+	      try {
+	         
+	         System.out.println(result);
+	         
+	         vo.setName(name);
+	         vo.setUid(uid);
+	         vo.setPwd(pwd);
+	         vo.setoCode(oCode);
+	         vo.setDept(dept);
+	         vo.setBirth(birth);
+	         vo.setResident(resident);
+	         vo.setAddress(address); 
+	         vo.setMail(mail);
+	         vo.setGender(gender);
+	         vo.setPhone(phone);
+	         vo.setcPhone(cPhone);
+	         vo.setSalary(salary);
+	         vo.setSalaryDate(salaryDate);
+	         vo.setpImage(pImage);
+	         
+	         result = memberService.memberAdd(vo);
+	         System.out.println(result);
+	         if(result==1) {
+	            String msg = "회원 정보가 등록되었습니다.";
+	            rttr.addFlashAttribute("msg", msg);
+	            mv.setViewName("redirect:/memberAll");
+	         }else {
+	            String msg = "회원 정보 등록에 실패하였습니다.";
+	            rttr.addFlashAttribute("msg", msg);
+	            mv.setViewName("redirect:/memberAll");
+	         }
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      
+	      return mv;
+	   }
+	  
+		
+	
 }
