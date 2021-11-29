@@ -1,7 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
   <!-- Required meta tags --> 
@@ -23,15 +22,17 @@
   <link rel="stylesheet" href="resources/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="resources/images/favicon.png" />
-  
-  
+
+  <!-- fullcalendar -->
 <link rel="stylesheet" href="resources/schedule/vendor/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/fullcalendar.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/select2.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/select2.min.css">
 <link rel="stylesheet" href="resources/schedule/css/main.css">
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
 </head>
 <body>
   <div class="container-scroller">
@@ -235,17 +236,41 @@
   </div>
   <!-- container-scroller -->
 
-  	
-
-	<script src="resources/schedule/vendor/js/jquery.min.js"></script>
+ 	<!-- 스크립트 src 여기서 부터 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	<!-- 화면 template 관련 src -->
+	<!-- base:js -->
+	<script src="resources/vendors/base/vendor.bundle.base.js"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page-->
+	<!-- End plugin js for this page-->
+	<!-- inject:js -->
+	<script src="resources/js/off-canvas.js"></script>
+	<script src="resources/js/hoverable-collapse.js"></script>
+	<script src="resources/js/template.js"></script>
+	<!-- endinject -->
+	<!-- plugin js for this page -->
+	<script src="resources/vendors/chart.js/Chart.min.js"></script>
+	<script src="resources/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+	<!-- End plugin js for this page -->
+	<!-- Custom js for this page-->
+	 
+ 	<!-- 이페이지에서만 쓰는 src -->
+<!--  	<script src="resources/schedule/vendor/js/jquery.min.js"></script>
     <script src="resources/schedule/vendor/js/bootstrap.min.js"></script>
     <script src="resources/schedule/vendor/js/moment.min.js"></script>
     <script src="resources/schedule/vendor/js/fullcalendar.min.js"></script>
     <script src="resources/schedule/vendor/js/ko.js"></script>
     <script src="resources/schedule/vendor/js/select2.min.js"></script>
-    <script src="resources/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
-    
-    
+    <script src="resources/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  
+	<!-- 스크립트 src 까지 -->
+	
+	
+    <!-- 여기부터 스크립트소스코드 작성 --> 
  <script type="text/javascript">
  	document.addEventListener('DOMContentLoaded', function() {
      var calendarEl = document.getElementById('calendar');
@@ -283,7 +308,7 @@
 	  eventLongPressDelay : 0,
 	  selectLongPressDelay : 0,   */
 	  height:600,
-	  plugins:['interaction', 'dayGrid'],
+/*  plugins:['interaction', 'dayGrid'],*/
 	  defaultView:'dayGridMonth',
 	  defaultDate: new Date(),
 	  locale  : 'ko', 
@@ -361,22 +386,6 @@
  	<!--  <script src="resources/schedule/js/main.js"></script> -->
 	<script src="resources/schedule/js/addSchedule.js"></script>
 	
-	
-  <!-- base:js -->
-  <script src="resources/vendors/base/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="resources/js/off-canvas.js"></script>
-  <script src="resources/js/hoverable-collapse.js"></script>
-  <script src="resources/js/template.js"></script>
-  <!-- endinject -->
-  <!-- plugin js for this page -->
-  <script src="resources/vendors/chart.js/Chart.min.js"></script>
-  <script src="resources/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
-  <!-- End plugin js for this page -->
-  <!-- Custom js for this page-->
 
  
   

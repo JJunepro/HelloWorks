@@ -15,7 +15,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	
 
 	@Override
-	public List<Schedule> getEvent(Schedule svo) {
+	public List<Schedule> getEvent(Schedule svo) throws Exception {
 		return scheduleDao.getEvent(svo);
 	}
 	

@@ -13,7 +13,7 @@ public class AfterThrowingLog {
 
 	private static final Logger logger = LoggerFactory.getLogger(AfterThrowingLog.class);
 
-	@AfterThrowing(pointcut = "LogPointcut.allPointcut()", throwing = "exceptObj")
+	//@AfterThrowing(pointcut = "LogPointcut.serviceImplPointcut()", throwing = "exceptObj")
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {
 
 		String methodName = jp.getSignature().getName();

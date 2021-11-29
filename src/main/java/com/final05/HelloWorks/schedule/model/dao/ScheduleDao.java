@@ -9,17 +9,17 @@ import org.springframework.stereotype.Repository;
 import com.final05.HelloWorks.schedule.model.vo.Schedule;
 
 @Repository("scheduleDao")
-public class ScheduleDao {
+public class ScheduleDao  {
 	@Autowired
 	private SqlSession sqlSession;
 	
 	//일정 가져오기
-	public List<Schedule> getEvent(Schedule svo){
+	public List<Schedule> getEvent(Schedule svo) throws Exception{
 		return sqlSession.selectList("Schedule.getEvent", svo);
 	}
 	
 	//리스트
-	public List<Schedule> showSchedule(Schedule svo)  {
+	public List<Schedule> showSchedule(Schedule svo) throws Exception{
 		return sqlSession.selectList("Schedule.showSchedule");
 	}
 	

@@ -55,10 +55,13 @@ public class ScheduleController {
 	public String getEvent(
 			Schedule svo
 			) {
-		System.out.println("[[getEvent]]");
-		System.out.println(svo);
-		List<Schedule> volist = scheduleService.getEvent(svo);
-		System.out.println(volist);
+		List<Schedule> volist = null;
+		try {
+			volist = scheduleService.getEvent(svo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Gson gson = new Gson();
 		return gson.toJson(volist);
 	}

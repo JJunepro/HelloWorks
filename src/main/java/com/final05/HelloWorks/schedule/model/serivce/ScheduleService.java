@@ -6,7 +6,7 @@ import com.final05.HelloWorks.schedule.model.vo.Schedule;
 
 public interface ScheduleService {
 	
-	public List<Schedule> getEvent (Schedule svo);
+	public List<Schedule> getEvent(Schedule svo) throws Exception;
 	
 	public List<Schedule> showSchedule(Schedule svo) throws Exception;
 	

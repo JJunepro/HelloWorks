@@ -11,7 +11,7 @@ import com.final05.HelloWorks.attendance.dao.AttendanceDAO;
 @RequestMapping("/work")
 public class AttendanceController {
 	
-	@Autowired
-	private AttendanceDAO attDAO;
+//	@Autowired
+//	private AttendanceDAO attDAO;
 	
 }
