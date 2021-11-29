@@ -29,13 +29,20 @@ public class MemberDao {
   public Member pwdSearch(Member vo) {
 	 return sqlSession.selectOne("Member.pwdSearch", vo);
  }
+  /*
  public Member profile(String uid) {
 	  System.out.println("id"+uid);
 		 return sqlSession.selectOne("Member.profile", uid);
 	 }
- 
+ */
  public List<Member> memberAll(Member vo) {
 		 return sqlSession.selectList("Member.memberAll", vo);
 	 }
+ 
+ public int memberAdd(Member vo) {
+     return sqlSession.insert("Member.memberAdd", vo);
+  }
+
+ 
 }
 
