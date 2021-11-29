@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,7 +37,7 @@ public class MemberController {
 		mv.setViewName("login");
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "login", method = RequestMethod.POST) // 포스트 방식 매핑
 	public String login(Member vo, HttpSession session) throws Exception {
 		String viewName = "";
@@ -59,12 +60,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "logout")
-	public ModelAndView logout(HttpSession session) {
-		memberService.logout(session);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home");
-		mav.addObject("msg", "logout");
-		return mav;
+	public ModelAndView logout(HttpSession session, SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		session.invalidate();
+		
+		System.out.println("ssssssession : " + session);
+        ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
 	}
 
 	@RequestMapping(value = "idSearch", method = RequestMethod.GET)
@@ -126,22 +128,30 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
-	public ModelAndView profile(ModelAndView mv) {
+	public ModelAndView profile(ModelAndView mv, HttpSession session) {
+		System.out.println("여기session:"+ session.getAttribute("memberinfo"));
 		mv.setViewName("profile");
 		return mv;
 	}
-	
 	/*
-	 @RequestMapping("profile")
-	    public String profile(String uid, Model model,HttpSession session){
-	        // 회원 정보를 model에 저장
-	        model.addAttribute("info", memberService.profile(session.getId()));
+	@RequestMapping(value = "profile2", method = RequestMethod.GET)
+	public ModelAndView profile2(ModelAndView mv) {
+		mv.setViewName("profile2");
+		return mv;
+	}
+	*/
+	
+	 @RequestMapping(value = "profile2", method = RequestMethod.GET)
+	    public String profile2(@RequestParam("uid") String uid, Model model,HttpSession session){
+	        
+	        model.addAttribute("info", memberService.profile2(uid));
 	        System.out.println("아이디 확인 : "+uid);
+	        System.out.println("정보 확인 : ");
 	        logger.info("아이디 : "+uid);
-	        // member_view.jsp로 포워드
-	        return "profile";
+	       
+	        return "profile2";
 	    }
-	 */
+	 
 	
 	  @RequestMapping(value="memberAll", method=RequestMethod.GET) 
 	  public ModelAndView memberAll(ModelAndView mv) { 
@@ -216,6 +226,18 @@ public class MemberController {
 	      return mv;
 	   }
 	  
+	  @RequestMapping(value = "memberDelete", method = RequestMethod.GET)
+	    public String memberDelete(@RequestParam("uid") String uid, Model model){
+	       	System.out.println("삭제 id: "+uid);
+	            memberService.memberDelete(uid);
+	            
+	            return "redirect:/memberAll";
+	            
+	        } 
+	  
+
+
+}
+	  
 		
 	
-}

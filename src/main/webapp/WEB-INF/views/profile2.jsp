@@ -39,13 +39,24 @@
 		width: 300px;
 		height: 50px;
 	}
-#btn{
+	.btnn{
 		border-radius:0.5em;
 		width: 100px;
 		height: 40px;
 	}
-
+<a href="profile2?uid=${vo.uid}">
 </style>
+<script>
+ 	$(document).ready(function(){
+    	$("#btnDelete").click(function(){
+        	// 확인 대화상자 
+        	if(confirm("삭제하시겠습니까?")){
+        	    document.form1.action = "memberDelete";
+        	    document.form1.submit();
+        	}
+    	});
+	}); 
+</script>
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
@@ -225,7 +236,6 @@
 					</a></li>
 				</ul>
 			</nav>
-			
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
@@ -248,21 +258,21 @@
 													<td>부서</td>
 													<td></td>
 													<td>이름</td>
-													<td>${memberinfo.name }</td>
+													<td>${info.name }</td>
 												</tr>
 												<tr>
 													<td>주소 </td>
-													<td>${memberinfo.address }</td>
+													<td>${info.address }</td>
 													<td>사번</td>
-													<td>${memberinfo.dept }</td>
+													<td>${info.dept }</td>
 													<td>직급</td>
 													<td></td>
 												</tr>
 												<tr>
 													<td>ID</td>
-													<td>${memberinfo.uid }</td>
+													<td>${info.uid }</td>
 													<td>회사 번호</td>
-													<td>${memberinfo.cPhone }</td>
+													<td>${info.cPhone }</td>
 													<td>직책</td>
 													<td></td>
 												</tr>
@@ -270,9 +280,9 @@
 													<td>PWD</td>
 													<td></td>
 													<td>휴대 전화</td>
-													<td>${memberinfo.phone }</td>
+													<td>${info.phone }</td>
 													<td>메일</td>
-													<td>${memberinfo.mail }</td>
+													<td>${info.mail }</td>
 												</tr>
 												
 											</table>
@@ -294,27 +304,26 @@
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu8">자격증</a></li>
    					</ul>
-   						 <div class="col-xl-12 d-flex grid-margin stretch-card">
    						 <div class="tab-content">
    						 
 						
-						<div class="tab-pane container active"  id = "menu1"  style = "width:100%; overflow:auto">			
-									<table border="0" width="1120px;">
+						<div class="tab-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">			
+									<table border="0" width="1100px;">
 												<tr>
 													<td>주민 번호 </td>
-													<td>${memberinfo.resident }</td>
+													<td>${info.resident }</td>
 													<td>급여</td>
-													<td>${memberinfo.salary }</td>
+													<td>${info.salary }</td>
 													<td>입사일</td>
-													<td>${memberinfo.entry }</td>
+													<td>${info.entry }</td>
 												</tr>
 												<tr>
 													<td>성별</td>
-													<td>${memberinfo.gender }</td>
+													<td>${info.gender }</td>
 													<td>급여일</td>
-													<td>${memberinfo.salaryDate }</td>
+													<td>${info.salaryDate }</td>
 													<td>퇴사일</td>
-													<td>${memberinfo.last }</td>
+													<td>${info.last }</td>
 												</tr>
 											
 												
@@ -322,7 +331,7 @@
 									</div>
 									
 						<div class="tab-pane container fade" id = "menu2">
-								<table border="0" width="1120px;">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>시작일</td>
 													<td></td>
@@ -337,7 +346,7 @@
 									
 									
 									<div class="tab-pane container fade" id = "menu3">
-										<table border="0" width="1120px;">
+										<table border="0" width="1250px;">
 												<th>관계</th>
 												<th>이름</th>
 												<th>생년월일</th>
@@ -359,7 +368,7 @@
 									</div>
 									
 								<div class="tab-pane container fade" id = "menu4">
-								<table border="0" width="1120px;">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>평가 내용</td>
 													<td colspan="2"></td>
@@ -386,7 +395,7 @@
 									</div>
 									
 										<div class="tab-pane container fade" id = "menu5">
-								<table border="0" width="1120px;">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>학교명</td>
 													<td></td>
@@ -408,7 +417,7 @@
 									</div>
 									
 								<div class="tab-pane container fade" id = "menu6">
-								<table border="0" width="1120px;">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>포상명</td>
 													<td></td>
@@ -421,7 +430,7 @@
 									</div>
 									
 								<div class="tab-pane container fade" id = "menu7">
-								<table border="0" width="1120px;">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>직장명</td>
 													<td></td>
@@ -438,7 +447,7 @@
 									</div>
 									
 								<div class="tab-pane container fade" id = "menu8">
-								<table border="0" width="1120px;">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>자격증명</td>
 													<td></td>
@@ -454,11 +463,15 @@
 											</table>
 									</div>
 								</div>
-								</div>
+							
 								<table border="0" width="100%;">
-									<td width="90%"></td>
-									<td><button id = "#" class="btn">수정</button></td>
+									<form action = "memberDelete" method="get">
+										<td width="90%"><input type ="hidden" value = "${info.uid }"></td>
+										<td><button id = "#" class="btnn">수정</button>
+										<button id = "btnDelete" class="btnn">삭제</button></td>
+									</form>
 								</table>
+							
 					</div>
 				</div>
 			</div>
@@ -511,3 +524,7 @@
 </body>
 
 </html>
+
+						
+						
+	

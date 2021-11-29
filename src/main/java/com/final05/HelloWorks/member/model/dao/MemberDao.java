@@ -21,20 +21,19 @@ public class MemberDao {
   public Member login(Member vo) {
      return sqlSession.selectOne("Member.login", vo);
   }
-  public void logout(HttpSession sessin) {
-  }
+  
   public Member idSearch(Member vo) {
 	 return sqlSession.selectOne("Member.idSearch", vo);
  }
   public Member pwdSearch(Member vo) {
 	 return sqlSession.selectOne("Member.pwdSearch", vo);
  }
-  /*
- public Member profile(String uid) {
+ 
+ public Member profile2(String uid) {
 	  System.out.println("id"+uid);
 		 return sqlSession.selectOne("Member.profile", uid);
 	 }
- */
+ 
  public List<Member> memberAll(Member vo) {
 		 return sqlSession.selectList("Member.memberAll", vo);
 	 }
@@ -42,7 +41,9 @@ public class MemberDao {
  public int memberAdd(Member vo) {
      return sqlSession.insert("Member.memberAdd", vo);
   }
-
+ public int memberDelete(String uid) {
+     return sqlSession.delete("Member.memberDelete", uid);
+  }
  
 }
 

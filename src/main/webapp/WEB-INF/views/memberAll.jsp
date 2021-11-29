@@ -230,7 +230,7 @@
             </div>
           </div>
           <div class="row mt-3">
-            <div class="col-xl-3 flex-column d-flex grid-margin stretch-card">
+            <div class="col-xl-2 flex-column d-flex grid-margin stretch-card">
               <div class="row flex-grow">
                  <div class="col-sm-12 stretch-card">
                     <div class="card">
@@ -249,7 +249,8 @@
                </div>
               </div>
             </div>
-            <div class="col-xl-9 d-flex grid-margin stretch-card">
+         
+            <div class="col-xl-10 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                       <h3>직원 목록</h3>
@@ -264,18 +265,24 @@
 								<th>생년월일</th>
 								<th>주소</th>
 								<th>입사일</th>
+							
+								
+															
 								<c:forEach var = "vo" items = "${list }">
 								<tr>					
 									<td >${vo.dept } </td>
-									<td>${vo.name }</td>
+									<td><a href="profile2?uid=${vo.uid}">${vo.name }</a></td>
 									<td></td>
 									<td></td>
 									<td>${vo.birth }</td>
 									<td>${vo.address }</td>
 									<td>${vo.entry }</td>
+									
+									
 								</tr>
 								
-								</c:forEach>			
+								</c:forEach>
+										
 							</table>
 						</div>
 						
@@ -288,10 +295,9 @@
          <div class="col-xl-12 d-flex grid-margin stretch-card"> 
          	<div class="card-body">
           		<table width="103%;">
-          			<td style="width:80%;"></td>
+          			<td style="width:90%;"></td>
           			<td><button id = "btn" class="#" onclick="location.href='memberAdd'">추가</button></td>
-        			
-        			<td><button id = "btn" class="#">삭제</button></td>
+        		
          		</table>
 			</div>
 		</div>

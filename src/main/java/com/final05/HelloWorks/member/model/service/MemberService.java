@@ -19,12 +19,7 @@ public class MemberService {
 	   public Member login(Member vo) {
 	      return memberDao.login(vo);
 	   }
-	   public void logout(HttpSession session) {
-	        // 세션 변수 개별 삭제
-	        // session.removeAttribute("userId");
-	        // 세션 정보를 초기화 시킴
-	        session.invalidate();
-	    }
+	  
 	   public Member idSearch(Member vo) {
 		      return memberDao.idSearch(vo);
 		   }
@@ -32,11 +27,11 @@ public class MemberService {
 	   public Member pwdSearch(Member vo) {
 		   return memberDao.pwdSearch(vo);
 	   }
-	   /*
-	   public Member profile(String uid) {			
-			return memberDao.profile(uid);
+	   
+	   public Member profile2(String uid) {			
+			return memberDao.profile2(uid);
 	   }
-	   */
+	   
 	   public List<Member> memberAll(Member vo) {			
 			return memberDao.memberAll(vo);
 	   }
@@ -44,5 +39,10 @@ public class MemberService {
 	   public int memberAdd(Member vo) {
 		   return memberDao.memberAdd(vo);
 	   }
+
+	   public int memberDelete(String uid) {
+		   return memberDao.memberDelete(uid);
+	   }
+	   
 }
 

@@ -41,9 +41,12 @@
         SELECT * FROM MEMBER
        	WHERE U_ID = #{uid}
     </select>
+    
        <select id="memberAll" resultMap="MemberMap" parameterType="Member">
         SELECT * FROM MEMBER
     </select>
-    
+    <delete id="memberDelete">
+		delete from MEMBER where U_ID=#{uid}
+	</delete>
    
 </mapper>
