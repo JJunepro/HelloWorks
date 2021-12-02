@@ -6,20 +6,20 @@
 	<!--  	<id property="scheduleNum" column="SCHEDULE_NUM"/>-->
 		<result property="scheduleNum" column="SCHEDULE_NUM" />
 		<result property="uid" column="U_ID" />
-		<result property="scheduleTitle" column="SCHEDULE_TITLE" />
+		<result property="title" column="SCHEDULE_TITLE" />
 		<result property="scheduleMemo" column="SCHEDULE_MEMO" />
-		<result property="scheduleStart" column="SCHEDULE_START" />
-		<result property="scheduleEnd" column="SCHEDULE_END" />
-		<result property="scheduleTxtcolor" column="SCHEDULE_TXTCOLOR" />
-		<result property="scheduleAllDay" column="SCHEDULE_ALLDAY" />
+		<result property="start" column="SCHEDULE_START" />
+		<result property="end" column="SCHEDULE_END" />
+		<result property="color" column="SCHEDULE_TXTCOLOR" />
+		<result property="allDay" column="SCHEDULE_ALLDAY" />
 	</resultMap>
 	
 	<select id="getEvent" resultMap="scheduleRM" parameterType="Schedule">
 		<![CDATA[
 		SELECT *
 		FROM SCHEDULE
-		WHERE SCHEDULE_START >= TO_DATE(#{scheduleStart},'YYYY-MM-DD')
-		AND SCHEDULE_END < TO_DATE(#{scheduleEnd},'YYYY-MM-DD')+1
+		WHERE SCHEDULE_START >= TO_DATE(#{start},'YYYY-MM-DD')
+		AND SCHEDULE_END < TO_DATE(#{end},'YYYY-MM-DD')+1
 		]]>
 	</select>
 	

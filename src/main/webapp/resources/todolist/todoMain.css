@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/* COMMON */
+body {
+      padding: 0;
+      margin: 0;
+    }
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 날짜부분 */
+.date {
+	margin: auto;
+	width: 300px;
+	font-size: 30px;
+ }
+ 
+/* TODO제목 */
+.header__title {
+	display: flex;
+    margin-bottom: 20px;
+    }
+.header__title h1 {
+      margin: 0 0 0 10px;
+    }
+.header__title .material-icons {
+      font-size: 44px;
+    }
+ 
+/* 주요 일정 */
+.todo__import {
+	margin-bottom: 30px;
+	}
+	
+/* 기본 일정 */
+.basic__title {
+	display: flex;
+    }
+.basic__title h3 {
+      margin: 0;
+    }
+
+/* todo입력창 */
+ .todo__input {
+   height: 34px;
+   position: relative;
+   margin: 0 0 0 10px;
+ }
+ .todo__input .input__texts {
+   height: 30px;
+   width: 160px;
+   padding: 4px 10px;
+   box-sizing: border-box;
+   border-width: 2px;
+   border-radius: 3px;
+   outline: none;
+   background-color: #fff;
+   color: #777;
+   border-color: #71B3F0;
+   font-size: 12px;
+   transition: width .4s;
+ }
+.input__button {
+  border: 0;
+  background-color: #fff;
+  height: 24px;
+  width: 24px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  cursor: pointer;
+}
+.todo__input .material-icons {
+  color: #71B3F0;
+  background-color: #fff;
+}
+    

@@ -1,4 +1,4 @@
-package com.final05.HelloWorks.schedule.model.vo;
+ package com.final05.HelloWorks.schedule.model.vo;
 
 import java.util.Date;
 
@@ -17,83 +17,72 @@ public class Schedule {
 	private static final long serialVersionUID = 1111L;
 	private int scheduleNum;
 	private String uid;
-	private String scheduleTitle;
+	private String title;
 	private String scheduleMemo;
-	private String scheduleStart;
-	private String scheduleEnd;
-	private String scheduleTxtcolor;
-	private boolean scheduleAllDay = false;
+	private String start;
+	private String end;
+	private String color;
+	private boolean allDay = false;
+	
+	
+	
 	
 	@Override
 	public String toString() {
-		return "Schedule [scheduleNum=" + scheduleNum + ", uid=" + uid + ", scheduleTitle=" + scheduleTitle
-				+ ", scheduleMemo=" + scheduleMemo + ", scheduleStart=" + scheduleStart + ", scheduleEnd=" + scheduleEnd
-				+ ", scheduleTxtcolor=" + scheduleTxtcolor + ", scheduleAllDay=" + scheduleAllDay + "]";
+		return "Schedule [scheduleNum=" + scheduleNum + ", uid=" + uid + ", title=" + title + ", scheduleMemo="
+				+ scheduleMemo + ", start=" + start + ", end=" + end + ", color=" + color + ", allDay=" + allDay + "]";
 	}
-
 	public int getScheduleNum() {
 		return scheduleNum;
 	}
-
 	public void setScheduleNum(int scheduleNum) {
 		this.scheduleNum = scheduleNum;
 	}
-
 	public String getUid() {
 		return uid;
 	}
-
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-
-	public String getScheduleTitle() {
-		return scheduleTitle;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setScheduleTitle(String scheduleTitle) {
-		this.scheduleTitle = scheduleTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
 	public String getScheduleMemo() {
 		return scheduleMemo;
 	}
-
 	public void setScheduleMemo(String scheduleMemo) {
 		this.scheduleMemo = scheduleMemo;
 	}
-
-	public String getScheduleStart() {
-		return scheduleStart;
+	public String getStart() {
+		return start;
 	}
-
-	public void setScheduleStart(String scheduleStart) {
-		this.scheduleStart = scheduleStart;
+	public void setStart(String start) {
+		this.start = start;
 	}
-
-	public String getScheduleEnd() {
-		return scheduleEnd;
+	public String getEnd() {
+		return end;
 	}
-
-	public void setScheduleEnd(String scheduleEnd) {
-		this.scheduleEnd = scheduleEnd;
+	public void setEnd(String end) {
+		this.end = end;
 	}
-
-	public String getScheduleTxtcolor() {
-		return scheduleTxtcolor;
+	public String getColor() {
+		return color;
 	}
-
-	public void setScheduleTxtcolor(String scheduleTxtcolor) {
-		this.scheduleTxtcolor = scheduleTxtcolor;
+	public void setColor(String color) {
+		this.color = color;
 	}
-
-	public boolean isScheduleAllDay() {
-		return scheduleAllDay;
+	public boolean isAllDay() {
+		return allDay;
 	}
-
-	public void setScheduleAllDay(boolean scheduleAllDay) {
-		this.scheduleAllDay = scheduleAllDay;
+	public void setAllDay(boolean allDay) {
+		this.allDay = allDay;
 	}
+	
+	
+	
 	
 	
 	

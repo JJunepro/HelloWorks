@@ -32,6 +32,9 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
+	
+	
+	
 	@RequestMapping(value = "schedule/addSchedule")
 	public String addSchedule() {
 		return "schedule/addSchedule";
@@ -45,26 +48,20 @@ public class ScheduleController {
 		return map;
 	}
 	
-//	@RequestMapping(value="/schedule")
-//	public String schedule(Model model) throws Exception {
-//		model.addAttribute("showSchedule", scheduleService.showSchedule());
-//		return "schedule/schedule";
-//	}
+
 	@RequestMapping(value = "/getEvent", produces = "application/text; charset=UTF-8")
 	@ResponseBody
-	public String getEvent(
-			Schedule svo
-			) {
+	public String getEvent(Schedule svo) {
 		List<Schedule> volist = null;
 		try {
 			volist = scheduleService.getEvent(svo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		Gson gson = new Gson();
+		System.out.println(volist);
 		return gson.toJson(volist);
-	}
+}
 	
 
 	

@@ -6,7 +6,7 @@
   <!-- Required meta tags --> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Regal Admin</title>
+  <title>HelloWorks</title>
   <!-- base:css -->
   <link rel="stylesheet" href="resources/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="resources/vendors/feather/feather.css">
@@ -24,11 +24,17 @@
   <link rel="shortcut icon" href="resources/images/favicon.png" />
 
   <!-- fullcalendar -->
-<link rel="stylesheet" href="resources/schedule/vendor/css/bootstrap-datetimepicker.min.css">
+<!-- <link rel="stylesheet" href="resources/schedule/vendor/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/fullcalendar.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/select2.min.css">
 <link rel="stylesheet" href="resources/schedule/vendor/css/select2.min.css">
-<link rel="stylesheet" href="resources/schedule/css/main.css">
+<link rel="stylesheet" href="resources/schedule/css/main.css"> -->
+
+<link href='resources/schedule/packages/core/main.css' rel='stylesheet' />
+<link href='resources/schedule/packages/daygrid/main.css' rel='stylesheet' />
+
+
+
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -264,127 +270,75 @@
     <script src="resources/schedule/vendor/js/ko.js"></script>
     <script src="resources/schedule/vendor/js/select2.min.js"></script>
     <script src="resources/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>-->
+    
+    <!-- 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> -->
+  
+  	<script src='resources/schedule/packages/core/main.js'></script>
+	<script src='resources/schedule/packages/interaction/main.js'></script>
+	<script src='resources/schedule/packages/daygrid/main.js'></script>
+	<script src='resources/schedule/packages/core/locales/ko.js'></script>
+	<script src='resources/schedule/packages/bundle/moment.min.js'></script>
+  	
   
 	<!-- 스크립트 src 까지 -->
 	
 	
     <!-- 여기부터 스크립트소스코드 작성 --> 
  <script type="text/javascript">
- 	document.addEventListener('DOMContentLoaded', function() {
-     var calendarEl = document.getElementById('calendar');
+ document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
 
-     var calendar = new FullCalendar.Calendar(calendarEl, {
-	//var calendar = $('#calendar').fullCalendar({
-	 /** ******************
-	   *  OPTIONS
-	   * *******************/
-	  /* locale  : 'ko',    
-	  timezone : "local", 
-	  nextDayThreshold : "09:00:00",
-	  allDaySlot  : true,
-	  displayEventTime  : true,
-	  displayEventEnd  : true,
-	  firstDay : 0, //월요일이 먼저 오게 하려면 1
-	  weekNumbers : false,
-	  selectable : true,
-	  weekNumberCalculation : "ISO",
-	  eventLimit: true,
-	  views : { month : { eventLimit : 12 } // 한 날짜에 최대 이벤트 12개, 나머지는 + 처리됨
-		  },
-	  eventLimitClick : 'week', //popover
-	  navLinks : true,
-	  timeFormat : 'HH:mm',
-	  defaultTimedEventDuration : '01:00:00',
-	  editable : true,
-	  minTime  : '00:00:00',
-	  maxTime : '24:00:00',
-	  slotLabelFormat : 'HH:mm',
-	  weekends : true,
-	  nowIndicator : true,
-	  dayPopoverFormat : 'MM/DD dddd',
-	  longPressDelay : 0,
-	  eventLongPressDelay : 0,
-	  selectLongPressDelay : 0,   */
-	  height:600,
-/*  plugins:['interaction', 'dayGrid'],*/
-	  defaultView:'dayGridMonth',
-	  defaultDate: new Date(),
-	  locale  : 'ko', 
-	  eventLimit: true,
-	  eventLimitClick : 'popover', //popover//week
-	  editable : true,
-	  droppable:true,
-	  header : {
-		  left   : 'today, prevYear, nextYear, viewWeekends',
-		  center : 'prev, title, next',
-		  right  : 'month, agendaWeek, agendaDay, listWeek'
-		  },
-		 /*
-	  views: {
-		  month : {columnFormat : 'dddd'},
-		  agendaWeek : {
-			  columnFormat : 'M/D ddd',
-			  titleFormat  : 'YYYY년 M월 D일',
-			  eventLimit   : false 
-			  },
-		agendaDay : {
-			columnFormat : 'dddd', eventLimit   : false
-			},
-			listWeek : { columnFormat : '' }
-			},
-			*/
-			events:	function (start, end, timezone, callback) {
-				console.log("start:"+ moment(start).format('YYYY-MM-DD'));
-				console.log(moment(end).format('YYYY-MM-DD'));
-			    $.ajax({
-			      type: "get",
-			      url: "${pageContext.request.contextPath}/getEvent",
-			      data: {
-			    	  scheduleStart : moment(start).format('YYYY-MM-DD'),
-			    	  scheduleEnd   : moment(end).format('YYYY-MM-DD')
-			      },
-			      
-			      dataType: "json",
-			      success: function (result) {
-			    	  var events = [];
-                      if(result!=null){
-/*                    	  
-						$.each(result, function(index, element) {
-                           	var enddate=element.enddate;
-                              if(enddate==null){
-                                   enddate=element.startdate;
-                               }
-                               
-                               var startdate=moment(element.startdate).format('YYYY-MM-DD');
-                               var enddate=moment(enddate).format('YYYY-MM-DD');
-                               var realmname = element.realmname;
-                               
-                               // realmname (분야) 분야별로 color 설정
-                               if (realmname == "기타"){
-                                   events.push({
-                                          title: element.title,
-                                          start: startdate,
-                                          end: enddate,
-                                             url: "${pageContext.request.contextPath }/detail.do?seq="+element.seq,
-                                             color:"#6937a1"                                                   
-                                   }); //.push()
-                               } // if 분야 
-                          }); //.each()
-*/
-                          console.log(events);
-                      }//if end
-                      callback(events);     
-			      } //success
-			    });// ajax
-			 } //events : function
-		});  // new FullCalender 
-		calendar.render();
-    });
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid' ],
+      header: {
+        left: 'prevYear,prev,next,nextYear today',
+        center: 'title',
+        right: 'dayGridMonth,dayGridWeek,dayGridDay'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      locale: 'ko',
+      events:function(info, successCallback, failureCallback){
+    	  	console.log("events 진입");
+            $.ajax({
+                   url: '${pageContext.request.contextPath}/getEvent',
+                   dataType: 'json',
+                   success:  function(result) {
+                   var events = [];
+                   if(result!=null){
+                	   $.each(result, function(index, element) {
+                		   var enddate = element.end;
+                		   if(enddate == null){
+                			   enddate = element.start; }
+                		   
+                             var startdate = moment(element.start).format('YYYY-MM-DD');
+                             var enddate = moment(enddate).format('YYYY-MM-DD');
+                            console.log("startdate"+startdate);
+                            console.log("enddate"+enddate);
+                             events.push({
+                            	 title: element.title,
+                            	 start: startdate,
+                            	 end: enddate,                                                
+                            			 }); //.push()
+                               }); //.each()
+                               console.log(events);
+                           }//if end                           
+                           successCallback(events);                               
+                       }//success: function end                          
+            }); //ajax end
+        }, //events:function end
+   });//new FullCalendar end
+ 
+   calendar.render();
+   
+  });
+
   	</script>
  	<!--  <script src="resources/schedule/js/main.js"></script> -->
-	<script src="resources/schedule/js/addSchedule.js"></script>
+	
 	
 
  
