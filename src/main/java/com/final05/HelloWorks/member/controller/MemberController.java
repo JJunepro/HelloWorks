@@ -1,8 +1,9 @@
 package com.final05.HelloWorks.member.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.final05.HelloWorks.member.model.service.MemberService;
+import com.final05.HelloWorks.member.model.vo.Family;
 import com.final05.HelloWorks.member.model.vo.Member;
 
 @Controller // 현재 클래스를 스프링에서 관리하는 컨트롤러 bean으로 생성
@@ -143,8 +145,11 @@ public class MemberController {
 	
 	 @RequestMapping(value = "profile2", method = RequestMethod.GET)
 	    public String profile2(@RequestParam("uid") String uid, Model model,HttpSession session){
+		 	
+		 	Member meminfo=memberService.profile2(uid);
+		 	System.out.println("여기"+ meminfo);
+	        model.addAttribute("info", meminfo);
 	        
-	        model.addAttribute("info", memberService.profile2(uid));
 	        System.out.println("아이디 확인 : "+uid);
 	        System.out.println("정보 확인 : ");
 	        logger.info("아이디 : "+uid);
@@ -227,15 +232,33 @@ public class MemberController {
 	   }
 	  
 	  @RequestMapping(value = "memberDelete", method = RequestMethod.GET)
-	    public String memberDelete(@RequestParam("uid") String uid, Model model){
-	       	System.out.println("삭제 id: "+uid);
-	            memberService.memberDelete(uid);
+	  public String memberDelete(@RequestParam("uid") String uid, Model model){
+	  		System.out.println("삭제 id: "+uid);
+	        memberService.memberDelete(uid);
 	            
-	            return "redirect:/memberAll";
+	        return "redirect:/memberAll";
 	            
-	        } 
+	  } 
 	  
+	  //@RequestParam(value = "uid", required=false)String uid
+	  
+	  @RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
+	  public String memberUpdate(Member vo, Model model){
+	        System.out.println("업데이트 id: "+vo);
+	        memberService.memberUpdate(vo);
+	            
+	        return "redirect:/profile2?uid="+vo.getUid();
+	            
+	  } 
 
+	  @RequestMapping(value = "familyUpdate", method = RequestMethod.POST)
+	  public String familyUpdate(Family fvo){
+	        System.out.println("업데이트 id: "+fvo);
+	        memberService.familyUpdate(fvo);
+	            
+	        return "redirect:/profile2?uid="+fvo.getUid();
+	            
+	  } 
 
 }
 	  

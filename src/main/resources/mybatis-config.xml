@@ -10,7 +10,16 @@
 	<typeAliases>
 		<typeAlias
 			type="com.final05.HelloWorks.member.model.vo.Member" alias="Member" />
-		<typeAlias
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Family" alias="Family" />
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Prize" alias="Prize" />
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Career" alias="Career" />
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Certificate" alias="Certificate" />
+			
+			<typeAlias
 			type="com.final05.HelloWorks.board.model.vo.Board" alias="Board" />
 			<typeAlias
 			type="com.final05.HelloWorks.board.model.vo.Comment" alias="Comment" />

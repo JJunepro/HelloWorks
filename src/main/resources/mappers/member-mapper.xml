@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Member">
-<resultMap type="Member" id="MemberMap">
+	<resultMap type="Member" id="MemberMap">
 		<id property="uid" column="U_ID" />
 		<result property="oCode" column="O_CODE" />
 		<result property="pwd" column="PWD" />
@@ -19,34 +19,95 @@
 		<result property="salaryDate" column="SALARYDATE" />
 		<result property="entry" column="ENTRY" />
 		<result property="last" column="LAST" />
+		<collection property="family" resultMap="FamilyMap"></collection>
 	</resultMap>
-	  <insert id="memberAdd"  parameterType="Member">
-       INSERT INTO MEMBER(NAME,U_ID,PWD,O_CODE,DEPT,BIRTH,RESIDENT,ADDRESS,MAIL,GENDER,PHONE,C_PHONE,SALARY,SALARYDATE,P_IMAGE,ENTRY)
-        VALUES (#{name},#{uid},#{pwd},#{oCode},#{dept},#{birth},#{resident},#{address},#{mail},#{gender},#{phone},#{cPhone},#{salary},#{salaryDate},#{pImage},sysdate)
-    </insert>
-    
- <select id="login" resultMap="MemberMap" parameterType="Member">
-        SELECT * FROM MEMBER
-        WHERE U_ID = #{uid} AND PWD = #{pwd}
-    </select>
-     <select id="idSearch" resultMap="MemberMap" parameterType="Member">
-        SELECT NAME, U_ID FROM MEMBER
-        WHERE NAME = #{name} AND MAIL = #{mail} 
-    </select>
-     <select id="pwdSearch" resultMap="MemberMap" parameterType="Member">
-        SELECT NAME, PWD FROM MEMBER
-        WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
-    </select>
-    <select id="profile" resultMap="MemberMap" parameterType="Member">
-        SELECT * FROM MEMBER
-       	WHERE U_ID = #{uid}
-    </select>
-    
-       <select id="memberAll" resultMap="MemberMap" parameterType="Member">
-        SELECT * FROM MEMBER
-    </select>
-    <delete id="memberDelete">
-		delete from MEMBER where U_ID=#{uid}
+
+	<resultMap type="Family" id="FamilyMap">
+		<result property="uid" column="U_ID" />
+		<result property="fRelation" column="F_RELATION" />
+		<result property="fName" column="F_NAME" />
+		<result property="fBirth" column="F_BIRTH" />
+		<result property="fPhone" column="F_PHONE" />
+		<result property="fJob" column="F_JOB" />
+		<result property="fWith" column="F_WITH" />
+	</resultMap>
+
+	<resultMap type="Prize" id="PrizeMap">
+		<result property="uid" column="U_ID" />
+		<result property="pCrape" column="P_CRAPE" />
+		<result property="pInstitution" column="P_INSTITUTION" />
+		<result property="pDate" column="P_DATE" />
+	</resultMap>
+
+	<resultMap type="Career" id="CareerMap">
+		<result property="uid" column="U_ID" />
+		<result property="cRectal" column="C_RECTAL" />
+		<result property="cTask" column="C_TASK" />
+		<result property="cStart" column="C_START" />
+		<result property="cEnd" column="C_END" />
+	</resultMap>
+
+	<resultMap type="Certificate" id="CertificateMap">
+		<result property="uid" column="U_ID" />
+		<result property="ceName" column="CE_NAME" />
+		<result property="ceIssuer" column="CE_ISSUER" />
+		<result property="ceDate" column="CE_DATE" />
+	</resultMap>
+
+
+
+
+	<insert id="memberAdd" parameterType="Member">
+		INSERT INTO
+		MEMBER(NAME,U_ID,PWD,O_CODE,DEPT,BIRTH,RESIDENT,ADDRESS,MAIL,GENDER,PHONE,C_PHONE,SALARY,SALARYDATE,P_IMAGE,ENTRY)
+		VALUES
+		(#{name},#{uid},#{pwd},#{oCode},#{dept},#{birth},#{resident},#{address},#{mail},#{gender},#{phone},#{cPhone},#{salary},#{salaryDate},#{pImage},sysdate)
+	</insert>
+
+	<select id="login" resultMap="MemberMap" parameterType="Member">
+		SELECT * FROM MEMBER
+		WHERE U_ID = #{uid} AND PWD = #{pwd}
+	</select>
+	<select id="idSearch" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT NAME, U_ID FROM MEMBER
+		WHERE NAME = #{name} AND MAIL = #{mail}
+	</select>
+	<select id="pwdSearch" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT NAME, PWD FROM MEMBER
+		WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
+	</select>
+
+	<select id="profile" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT * FROM MEMBER a join FAMILY b
+		using (U_ID)
+		where U_ID = #{uid}
+	</select>
+
+
+	<select id="memberAll" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT * FROM MEMBER
+	</select>
+	<delete id="memberDelete">
+		delete from MEMBER where U_ID = #{uid}
 	</delete>
-   
+
+	<update id="memberUpdate" parameterType="Member">
+		update MEMBER set NAME =
+		#{name}, DEPT = #{dept}, ADDRESS = #{address}, GENDER = #{gender},
+		RESIDENT = #{resident}, MAIL = #{mail},
+		C_PHONE = #{cPhone}, PHONE =
+		#{phone}, SALARY = #{salary}, SALARYDATE = #{salaryDate}, LAST = #{last}
+		where U_ID = #{uid}
+	</update>
+	<update id="familyUpdate" parameterType="Family">
+		update FAMILY set
+		F_RELATION = #{fRelation},F_NAME = #{fName}, F_BIRTH=
+		#{fBirth},F_PHONE = #{fPhone},F_JOB = #{fJob},F_WITH = #{fWith}
+		where U_ID = #{uid} and F_NAME = #{fName}
+	</update>
+
 </mapper>

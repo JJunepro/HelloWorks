@@ -1,6 +1,7 @@
 package com.final05.HelloWorks.member.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ public class Member {
 	private String salaryDate;	// 급여일
 	private Date entry;	// 입사일
 	private Date last;	//퇴사일
+	private List<Family> family;
 	
 	public Member() {}
 
@@ -49,32 +51,20 @@ public class Member {
 		this.last = last;
 	}
 	
-	public Member(String uid, int oCode, String pwd, int dept, String name, int birth, int resident, String address,
-			String mail, int phone, String gender, int cPhone, int salary, String pImage, String salaryDate) {
-		super();
-		this.uid = uid;
-		this.oCode = oCode;
-		this.pwd = pwd;
-		this.dept = dept;
-		this.name = name;
-		this.birth = birth;
-		this.resident = resident;
-		this.address = address;
-		this.mail = mail;
-		this.phone = phone;
-		this.gender = gender;
-		this.cPhone = cPhone;
-		this.salary = salary;
-		this.pImage = pImage;
-		this.salaryDate = salaryDate;
-	}
-
 	@Override
 	public String toString() {
 		return "Member [uid=" + uid + ", oCode=" + oCode + ", pwd=" + pwd + ", dept=" + dept + ", name=" + name
 				+ ", birth=" + birth + ", resident=" + resident + ", address=" + address + ", mail=" + mail + ", phone="
 				+ phone + ", gender=" + gender + ", cPhone=" + cPhone + ", salary=" + salary + ", pImage=" + pImage
-				+ ", salaryDate=" + salaryDate + ", entry=" + entry + ", last=" + last + "]";
+				+ ", salaryDate=" + salaryDate + ", entry=" + entry + ", last=" + last + ", family=" + family + "]";
+	}
+
+	public List<Family> getFamily() {
+		return family;
+	}
+
+	public void setFamily(List<Family> family) {
+		this.family = family;
 	}
 
 	public String getUid() {
