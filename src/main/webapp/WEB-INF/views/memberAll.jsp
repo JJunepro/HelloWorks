@@ -38,6 +38,10 @@
 		width: 100px;
 		height: 40px;
 	}
+		#leftdiv{
+		width: 300px;
+		margin-left: auto;
+	}
 	
 </style>
 <body>
@@ -254,6 +258,8 @@
                 <div class="card">
                   <div class="card-body">
                       <h3>직원 목록</h3>
+                      <div id= "leftdiv">	
+                      </div>
                       <div class="row">
                         
                         <div style="width:100%; height:580px; overflow:auto">

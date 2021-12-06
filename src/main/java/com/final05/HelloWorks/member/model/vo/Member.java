@@ -24,7 +24,14 @@ public class Member {
 	private String salaryDate;	// 급여일
 	private Date entry;	// 입사일
 	private Date last;	//퇴사일
+	private Organization organization;
+	private Degree degree;
+	private Appreaisal appreaisal;
+	private Transfer transfer;
 	private List<Family> family;
+	private List<Prize> prize;
+	private List<Career> career;
+	private List<Certificate> certificate;
 	
 	public Member() {}
 
@@ -51,12 +58,76 @@ public class Member {
 		this.last = last;
 	}
 	
+
+	
+
+
+
 	@Override
 	public String toString() {
 		return "Member [uid=" + uid + ", oCode=" + oCode + ", pwd=" + pwd + ", dept=" + dept + ", name=" + name
 				+ ", birth=" + birth + ", resident=" + resident + ", address=" + address + ", mail=" + mail + ", phone="
 				+ phone + ", gender=" + gender + ", cPhone=" + cPhone + ", salary=" + salary + ", pImage=" + pImage
-				+ ", salaryDate=" + salaryDate + ", entry=" + entry + ", last=" + last + ", family=" + family + "]";
+				+ ", salaryDate=" + salaryDate + ", entry=" + entry + ", last=" + last + ", organization="
+				+ organization + ", degree=" + degree + ", appreaisal=" + appreaisal + ", transfer=" + transfer
+				+ ", family=" + family + ", prize=" + prize + ", career=" + career + ", certificate=" + certificate
+				+ "]";
+	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+
+	public Degree getDegree() {
+		return degree;
+	}
+
+	public void setDegree(Degree degree) {
+		this.degree = degree;
+	}
+
+	public Appreaisal getAppreaisal() {
+		return appreaisal;
+	}
+
+	public void setAppreaisal(Appreaisal appreaisal) {
+		this.appreaisal = appreaisal;
+	}
+
+	public Transfer getTransfer() {
+		return transfer;
+	}
+
+	public void setTransfer(Transfer transfer) {
+		this.transfer = transfer;
+	}
+
+	public List<Prize> getPrize() {
+		return prize;
+	}
+
+	public void setPrize(List<Prize> prize) {
+		this.prize = prize;
+	}
+
+	public List<Career> getCareer() {
+		return career;
+	}
+
+	public void setCareer(List<Career> career) {
+		this.career = career;
+	}
+
+	public List<Certificate> getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(List<Certificate> certificate) {
+		this.certificate = certificate;
 	}
 
 	public List<Family> getFamily() {

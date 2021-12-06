@@ -11,6 +11,14 @@
 		<typeAlias
 			type="com.final05.HelloWorks.member.model.vo.Member" alias="Member" />
 			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Organization" alias="Organization" />
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Degree" alias="Degree" />
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Appreaisal" alias="Appreaisal" />
+			<typeAlias
+			type="com.final05.HelloWorks.member.model.vo.Transfer" alias="Transfer" />
+			<typeAlias
 			type="com.final05.HelloWorks.member.model.vo.Family" alias="Family" />
 			<typeAlias
 			type="com.final05.HelloWorks.member.model.vo.Prize" alias="Prize" />

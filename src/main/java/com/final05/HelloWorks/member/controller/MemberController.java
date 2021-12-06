@@ -1,7 +1,8 @@
 package com.final05.HelloWorks.member.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.final05.HelloWorks.member.model.service.MemberService;
+import com.final05.HelloWorks.member.model.vo.Appreaisal;
+import com.final05.HelloWorks.member.model.vo.Career;
+import com.final05.HelloWorks.member.model.vo.Certificate;
+import com.final05.HelloWorks.member.model.vo.Degree;
 import com.final05.HelloWorks.member.model.vo.Family;
 import com.final05.HelloWorks.member.model.vo.Member;
+import com.final05.HelloWorks.member.model.vo.Organization;
+import com.final05.HelloWorks.member.model.vo.Prize;
+import com.final05.HelloWorks.member.model.vo.Transfer;
 
 @Controller // 현재 클래스를 스프링에서 관리하는 컨트롤러 bean으로 생성
 @SessionAttributes("memberinfo")
@@ -184,11 +192,10 @@ public class MemberController {
 	  
 	  @RequestMapping(value = "memberAdd", method=RequestMethod.POST)
 	  public ModelAndView memberAdd(Member vo, @RequestParam("uid") String uid,@RequestParam("pwd") String pwd,@RequestParam("name") String name,
-			   @RequestParam("oCode") int oCode,@RequestParam("dept") int dept,@RequestParam("birth") int birth,
-			   @RequestParam("resident") int resident,@RequestParam("address") String address,
-			   @RequestParam("mail") String mail,@RequestParam("phone") int phone,@RequestParam("gender") String gender,
-			   @RequestParam("cPhone") int cPhone,@RequestParam("salary") int salary,
-			   @RequestParam("pImage") String pImage,@RequestParam("salaryDate") String salaryDate,
+			   @RequestParam("oCode") int oCode,@RequestParam("dept") int dept,@RequestParam("address") String address,
+			   @RequestParam("resident") int resident,@RequestParam("mail") String mail,@RequestParam("cPhone") int cPhone,
+			   @RequestParam("phone") int phone,@RequestParam("salary") int salary,@RequestParam("salaryDate") String salaryDate,
+			   @RequestParam("gender") String gender,@RequestParam("birth") int birth,@RequestParam("entry") Date entry,
 	         HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
 	      int result=0;
 	      
@@ -199,18 +206,18 @@ public class MemberController {
 	         vo.setName(name);
 	         vo.setUid(uid);
 	         vo.setPwd(pwd);
-	         vo.setoCode(oCode);
 	         vo.setDept(dept);
-	         vo.setBirth(birth);
-	         vo.setResident(resident);
+	         vo.setoCode(oCode);
 	         vo.setAddress(address); 
+	         vo.setResident(resident);
 	         vo.setMail(mail);
-	         vo.setGender(gender);
-	         vo.setPhone(phone);
 	         vo.setcPhone(cPhone);
+	         vo.setPhone(phone);   
 	         vo.setSalary(salary);
 	         vo.setSalaryDate(salaryDate);
-	         vo.setpImage(pImage);
+	         vo.setGender(gender);
+	         vo.setBirth(birth);
+	         vo.setEntry(entry);
 	         
 	         result = memberService.memberAdd(vo);
 	         System.out.println(result);
@@ -245,21 +252,71 @@ public class MemberController {
 	  @RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
 	  public String memberUpdate(Member vo, Model model){
 	        System.out.println("업데이트 id: "+vo);
-	        memberService.memberUpdate(vo);
-	            
-	        return "redirect:/profile2?uid="+vo.getUid();
-	            
+	        memberService.memberUpdate(vo);	            
+	        return "redirect:/profile2?uid="+vo.getUid();         
 	  } 
-
+	  @RequestMapping(value = "organizationUpdate", method = RequestMethod.POST)
+	  public String organizationUpdate(Organization ovo,Member vo){
+	        System.out.println("업데이트 id: "+ovo);
+	        memberService.organizationUpdate(ovo);	          
+	        return "redirect:/profile2?uid="+vo.getUid();	          
+	  } 
+	  @RequestMapping(value = "degreeUpdate", method = RequestMethod.POST)
+	  public String degreeUpdate(Degree dvo){
+	        System.out.println("업데이트 id: "+dvo);
+	        memberService.degreeUpdate(dvo);	          
+	        return "redirect:/profile2?uid="+dvo.getUid();	          
+	  } 
+	  @RequestMapping(value = "appreaisalUpdate", method = RequestMethod.POST)
+	  public String appreaisalUpdate(Appreaisal avo){
+	        System.out.println("업데이트 id: "+avo);
+	        memberService.appreaisalUpdate(avo);	          
+	        return "redirect:/profile2?uid="+avo.getUid();	          
+	  } 
+	  @RequestMapping(value = "transferUpdate", method = RequestMethod.POST)
+	  public String transferUpdate(Transfer tvo){
+	        System.out.println("업데이트 id: "+tvo);
+	        memberService.transferUpdate(tvo);	          
+	        return "redirect:/profile2?uid="+tvo.getUid();	          
+	  } 
 	  @RequestMapping(value = "familyUpdate", method = RequestMethod.POST)
-	  public String familyUpdate(Family fvo){
+	  public String familyUpdate(Family fvo,Member vo){
 	        System.out.println("업데이트 id: "+fvo);
-	        memberService.familyUpdate(fvo);
-	            
-	        return "redirect:/profile2?uid="+fvo.getUid();
-	            
+	        
+	        ArrayList<Family> list = new ArrayList<Family>();	
+	        Map<String, Object>paramMap = new HashMap<String, Object>();
+	        paramMap.put("list", list);
+	        memberService.familyUpdate(paramMap);
+	        
+	        return "redirect:/profile2?uid="+fvo.getUid();	          
 	  } 
-
+		
+//		  @RequestMapping(value = "familyUpdate", method = RequestMethod.POST) public
+//		  String familyUpdate(Family fvo,Member vo){
+//		  System.out.println("업데이트 id: "+fvo);
+//		  
+//		  memberService.familyUpdate(fvo);
+//		  
+//		  return "redirect:/profile2?uid="+fvo.getUid(); }
+//		 
+	  @RequestMapping(value = "prizeUpdate", method = RequestMethod.POST)
+	  public String prizeUpdate(Prize pvo){
+	        System.out.println("업데이트 id: "+pvo);
+	        memberService.prizeUpdate(pvo);	          
+	        return "redirect:/profile2?uid="+pvo.getUid();	          
+	  } 
+	  @RequestMapping(value = "careerUpdate", method = RequestMethod.POST)
+	  public String careerUpdate(Career cavo){
+	        System.out.println("업데이트 id: "+cavo);
+	        memberService.careerUpdate(cavo);	          
+	        return "redirect:/profile2?uid="+cavo.getUid();	          
+	  } 
+	  @RequestMapping(value = "certificateUpdate", method = RequestMethod.POST)
+	  public String certificateUpdate(Certificate cevo){
+	        System.out.println("업데이트 id: "+cevo);
+	        memberService.certificateUpdate(cevo);	          
+	        return "redirect:/profile2?uid="+cevo.getUid();	          
+	  } 
 }
 	  
 		

@@ -241,46 +241,56 @@
 										</div>
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
+										 
 											<table border="0" width="1250px;">
 												<tr>
-													<td>직원 구분 </td>
-													<td></td>
-													<td>부서</td>
-													<td></td>
 													<td>이름</td>
-													<td>${memberinfo.name }</td>
-												</tr>
-												<tr>
-													<td>주소 </td>
-													<td>${memberinfo.address }</td>
-													<td>사번</td>
-													<td>${memberinfo.dept }</td>
-													<td>직급</td>
-													<td></td>
-												</tr>
-												<tr>
+													<td><input type = "text" id = "name" name = "name" value = "${memberinfo.name }"></td>
 													<td>ID</td>
 													<td>${memberinfo.uid }</td>
-													<td>회사 번호</td>
-													<td>${memberinfo.cPhone }</td>
-													<td>직책</td>
+													<td>PWD</td>
 													<td></td>
 												</tr>
 												<tr>
-													<td>PWD</td>
-													<td></td>
-													<td>휴대 전화</td>
-													<td>${memberinfo.phone }</td>
+													<td>사번</td>
+													<td><input type = "text" id = "dept" name = "dept" value = "${memberinfo.dept }"></td>
+													<td>주소 </td>
+													<td><input type = "text" id = "address" name = "address" value = "${memberinfo.address }"></td>												
+													<td>성별</td>
+													<td><input type = "text" id = "gender" name = "gender" value = "${memberinfo.gender }"></td>
+												</tr>
+												<tr>
+													<td>주민 번호 </td>
+													<td><input type = "text" id = "resident" name = "resident" value = "${memberinfo.resident }"></td>
 													<td>메일</td>
-													<td>${memberinfo.mail }</td>
+													<td><input type = "text" id = "mail" name = "mail" value = "${memberinfo.mail }"></td>
+													<td>회사 번호</td>
+													<td><input type = "text" id = "cPhone" name = "cPhone" value = "${memberinfo.cPhone }"></td>
+													
+												</tr>
+												<tr>
+													
+													<td>휴대 전화</td>
+													<td><input type = "text" id = "phone" name = "phone" value = "${memberinfo.phone }"></td>
+													<td>급여</td>
+													<td><input type = "text" id = "salary" name = "salary" value = "${memberinfo.salary }"></td>
+													<td>급여일</td>
+													<td><input type = "text" id = "salaryDate" name = "salaryDate" value = "${memberinfo.salaryDate }"></td>
+												</tr>
+												<tr>
+													<td>생년월일</td>
+													<td><input type = "text" id = "birth" name = "birth" value = "${memberinfo.birth }"></td>
+													<td>입사일</td>
+													<td><input type = "text" id = "entry" name = "entry" value = "${memberinfo.entry }"></td>
+													<td>퇴사일</td>
+													<td><input type = "text" id = "last" name = "last" value = "${memberinfo.last }"></td>
 												</tr>
 												
 											</table>
 										</div>
-
-									
 									</div>
 								</div>
+								</form>
 							</div>
 						</div>
 
@@ -294,173 +304,217 @@
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu8">자격증</a></li>
    					</ul>
-   						 <div class="col-xl-12 d-flex grid-margin stretch-card">
    						 <div class="tab-content">
    						 
 						
-						<div class="tab-pane container active"  id = "menu1"  style = "width:100%; overflow:auto">			
-									<table border="0" width="1120px;">
+						<div class="tab-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">		
+						<form id = "updateform1" action="memberUpdate" method="post">
+						<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">	
+									<table border="0" width="1100px;">
 												<tr>
-													<td>주민 번호 </td>
-													<td>${memberinfo.resident }</td>
-													<td>급여</td>
-													<td>${memberinfo.salary }</td>
-													<td>입사일</td>
-													<td>${memberinfo.entry }</td>
+													<td>부서 코드</td>
+													<td><input type = "text" id = "oCode" name = "oCode" value = "${info.organization.oCode }"></td>
+												
+													<td>부서</td>
+													<td><input type = "text" id = "oName" name = "oName" value = "${info.organization.oName }"></td>
 												</tr>
-												<tr>
-													<td>성별</td>
-													<td>${memberinfo.gender }</td>
-													<td>급여일</td>
-													<td>${memberinfo.salaryDate }</td>
-													<td>퇴사일</td>
-													<td>${memberinfo.last }</td>
-												</tr>
-											
 												
 											</table>
+											<button type="submit" id = "updatesub1" class="btn btn-outline-info" onclick="location.href='organizationUpdate?uid=${memberinfo.uid }'">수정</button>
+							</form>
+						
+						</div>
+							
+						<div class="tab-pane container fade" id = "menu2">
+						
+						<form id = "updateform2" action="transferUpdate" method="post">
+						<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">	
+								<table border="0" width="1250px;">
+									<tr>
+										<td>직원 구분 </td>
+										<td><input type = "text" id = "uType" name = "uType" value = "${memberinfo.transfer.uType }"></td>											
+										<td>직급</td>
+										<td><input type = "text" id = "uRank" name = "uRank" value = "${memberinfo.transfer.uRank }"></td>
+										<td>시작일</td>
+										<td><input type = "text" id = "uStart" name = "uStart" value = "${memberinfo.transfer.uStart }"></td>
+										<td>종료일</td>
+										<td><input type = "text" id = "uEnd" name = "uEnd" value = "${memberinfo.transfer.uEnd }"></td>
+									 
+									</tr>
+								</table>
+								<button type="submit" id = "updatesub2" class="btn btn-outline-info" onclick="location.href='transferUpdate?uid=${memberinfo.uid }'">수정</button>
+							</form>
+							
 									</div>
 									
-						<div class="tab-pane container fade" id = "menu2">
-								<table border="0" width="1120px;">
-												<tr>
-													<td>시작일</td>
-													<td></td>
-													<td>종료일</td>
-													<td></td>
-												
-												</tr>
-											
-												
-											</table>
-									</div>
+									
 									
 									
 									<div class="tab-pane container fade" id = "menu3">
-										<table border="0" width="1120px;">
+										<form id = "updateform3" action="familyUpdate" method="post">
+										<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">
+										<table border="0" width="1250px;">
 												<th>관계</th>
 												<th>이름</th>
 												<th>생년월일</th>
 												<th>휴대전화</th>
 												<th>직업</th>
 												<th>동거여부</th>
-											
-										<c:forEach var = "vo" items = "${list }">
+										<c:forEach var = "vo1" items = "${memberinfo.family }" varStatus="status">
+									
 										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td><input type = "text" id = "fRelation_${status.count}" name = "fRelation_${status.count}" value = "${vo1.fRelation }"></td>
+											<td><input type = "text" id = "fName_${status.count}" name = "fName_${status.count}" value = "${vo1.fName }"></td>
+											<td><input type = "text" id = "fBirth_${status.count}" name = "fBirth_${status.count}" value = "${vo1.fBirth }"></td>
+											<td><input type = "text" id = "fPhone_${status.count}" name = "fPhone_${status.count}" value = "${vo1.fPhone }"></td>
+											<td><input type = "text" id = "fJob_${status.count}" name = "fJob_${status.count}" value = "${vo1.fJob }"></td>
+											<td><input type = "text" id = "fWith_${status.count}" name = "fWith_${status.count}" value = "${vo1.fWith }"></td>
+											<td><button type="submit" id = "updatesub3" class="btn btn-outline-info" onclick="location.href='familyUpdate?uid=${memberinfo.uid }'">수정</button></td>
 										</tr>
-										</c:forEach>	
+										</c:forEach>
+									
 										</table>
+										<button type="submit" id = "updatesub0" class="btn btn-outline-info" onclick="location.href='familyUpdate?uid=${memberinfo.uid }'">수정</button>
+									</form>	
 									</div>
 									
 								<div class="tab-pane container fade" id = "menu4">
-								<table border="0" width="1120px;">
+								<form id = "updateform4" action="appreaisalUpdate" method="post">
+								<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>평가 내용</td>
-													<td colspan="2"></td>
+													<td colspan="4"><textarea cols="100" rows="3" id = "aContent" name = "aContent" >${memberinfo.appreaisal.aContent }</textarea></td>
 												</tr>
 												<tr>
 													<td>채점 내용</td>
-													<td colspan="2"></td>
+													<td colspan="4"><textarea cols="100" rows="3" id = "aRating" name = "aRating"  >${memberinfo.appreaisal.aRating }</textarea></td>
 												</tr>
 												<tr>
 													<td>평가자</td>
-													<td></td>
+													<td><input type = "text" id = "aRater" name = "aRater" value = "${memberinfo.appreaisal.aRater }"></td>
 													<td>점수</td>
-													<td></td>
+													<td><input type = "text" id = "aScore" name = "aScore" value = "${memberinfo.appreaisal.aScore }"></td>
 												</tr>
 												<tr>
 													<td>시작일</td>
-													<td></td>
+													<td><input type = "text" id = "aStart" name = "aStart" value = "${memberinfo.appreaisal.aStart }"></td>
 													<td>종료일</td>
-													<td></td>
+													<td><input type = "text" id = "aEnd" name = "aEnd" value = "${memberinfo.appreaisal.aEnd }"></td>
 												</tr>
 												
 												
 											</table>
+											<button type="submit" id = "updatesub4" class="btn btn-outline-info" onclick="location.href='appreaisalUpdate?uid=${memberinfo.uid }'">수정</button>
+									</form>
 									</div>
 									
 										<div class="tab-pane container fade" id = "menu5">
-								<table border="0" width="1120px;">
+										<form id = "updateform5" action="degreeUpdate" method="post">
+								<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">
+								<table border="0" width="1250px;">
 												<tr>
 													<td>학교명</td>
-													<td></td>
+													<td><input type = "text" id = "dSchool" name = "dSchool" value = "${memberinfo.degree.dSchool }"></td>
 													<td>전공</td>
-													<td></td>
+													<td><input type = "text" id = "dMajor" name = "dMajor" value = "${memberinfo.degree.dMajor }"></td>
 													<td>학위</td>
-													<td></td>
+													<td><input type = "text" id = "dDegree" name = "dDegree" value = "${memberinfo.degree.dDegree }"></td>
 												</tr>
 												<tr>
 													<td>졸업여부</td>
-													<td></td>
+													<td><input type = "text" id = "dGraduated" name = "dGraduated" value = "${memberinfo.degree.dGraduated }"></td>
 													<td>입학일</td>
-													<td></td>
+													<td><input type = "text" id = "dStart" name = "dStart" value = "${memberinfo.degree.dStart }"></td>
 													<td>졸업일</td>
-													<td></td>
+													<td><input type = "text" id = "dEnd" name = "dEnd" value = "${memberinfo.degree.dEnd }"></td>
 												</tr>
 												
 											</table>
+											<button type="submit" id = "updatesub5" class="btn btn-outline-info" onclick="location.href='degreeUpdate?uid=${memberinfo.uid }'">수정</button>
+									</form>
 									</div>
 									
 								<div class="tab-pane container fade" id = "menu6">
-								<table border="0" width="1120px;">
-												<tr>
-													<td>포상명</td>
-													<td></td>
-													<td>포상기관</td>
-													<td></td>
-													<td>포상일</td>
-													<td></td>
-												</tr>	
-											</table>
-									</div>
+								  
+								<form id = "updateform6" action="prizeUpdate" method="post">
+								<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
+								<table border="0" width="1250px;">
+									<th>포상명</th>
+									<th>포상기관</th>
+									<th>포상일</th>
+										
+									<c:forEach var = "vo2" items = "${memberinfo.prize }" varStatus="status">
+									<tr>
+										<td><input type = "text" id = "pCrape_${status.count}" name = "pCrape_${status.count}" value = "${vo2.pCrape }"></td>
+										<td><input type = "text" id = "pInstitution_${status.count}" name = "pInstitution_${status.count}" value = "${vo2.pInstitution }"></td>
+										<td><input type = "text" id = "pDate_${status.count}" name = "pDate_${status.count}" value = "${vo2.pDate }"></td>
+										<td><button type="submit" id = "updatesub6" class="btn btn-outline-info" onclick="location.href='prizeUpdate?uid=${vo2.uid }'">수정</button></td>
+									</tr>
+									</c:forEach>	
+										
+								</table>
+								</form>
+								
+								</div>
 									
 								<div class="tab-pane container fade" id = "menu7">
-								<table border="0" width="1120px;">
-												<tr>
-													<td>직장명</td>
-													<td></td>
-													<td>업무</td>
-													<td></td>
-												</tr>	
-												<tr>
-													<td>시작일</td>
-													<td></td>
-													<td>종료일</td>
-													<td></td>
-												</tr>
-											</table>
-									</div>
+								
+								<form id = "updateform7" action="careerUpdate" method="post">
+								<table border="0" width="1250px;">
+									<th>직장명</th>
+									<th>업무</th>
+									<th>시작일</th>
+									<th>종료일</th>
+									
+									<c:forEach var = "vo3" items = "${memberinfo.career }" varStatus="status">
+									<input type = "hidden" id = "uid3" name = "uid3" value = "${vo3.uid }">
+									<tr>
+										<td><input type = "text" id = "cRectal_${status.count}" name = "cRectal_${status.count}" value = "${vo3.cRectal }"></td>
+										<td><input type = "text" id = "cTask_${status.count}" name = "cTask_${status.count}" value = "${vo3.cTask }"></td>
+										<td><input type = "text" id = "cStart_${status.count}" name = "cStart_${status.count}" value = "${vo3.cStart }"></td>
+										<td><input type = "text" id = "cEnd_${status.count}" name = "cEnd_${status.count}" value = "${vo3.cEnd }"></td>
+										<td><button type="submit" id = "updatesub7" class="btn btn-outline-info" onclick="location.href='careerUpdate?uid=${vo3.uid }'">수정</button></td>
+									</tr>
+									</c:forEach>
+								</table>
+								</form>
+								
+								</div>
 									
 								<div class="tab-pane container fade" id = "menu8">
-								<table border="0" width="1120px;">
-												<tr>
-													<td>자격증명</td>
-													<td></td>
-													<td>발행기관</td>
-													<td></td>
-												</tr>	
-												<tr>
-													<td>취득일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</table>
-									</div>
-								</div>
-								</div>
-								<table border="0" width="100%;">
-									<td width="90%"></td>
-									<td><button id = "#" class="btn">수정</button></td>
+								
+								<form id = "updateform8" action="certificateUpdate" method="post">
+								<table border="0" width="1250px;">
+									<th>자격증명</th>
+									<th>발행기관</th>
+									<th>취득일</th>
+									<c:forEach var = "vo4" items = "${memberinfo.certificate }" varStatus="status">
+									<input type = "hidden" id = "uid4" name = "uid4" value = "${vo4.uid }">
+									<tr>
+										<td><input type = "text" id = "ceName_${status.count}" name = "ceName_${status.count}" value = "${vo4.ceName }"></td>
+										<td><input type = "text" id = "ceIssuer_${status.count}" name = "ceIssuer_${status.count}" value = "${vo4.ceIssuer }"></td>
+										<td><input type = "text" id = "ceDate_${status.count}" name = "ceDate_${status.count}" value = "${vo4.ceDate }"></td>
+										<td><button type="submit" id = "updatesub8" class="btn btn-outline-info" onclick="location.href='certificateUpdate?uid=${vo4.uid }'">수정</button></td>
+									</tr>
+									</c:forEach>
 								</table>
+								</form>
+								
+								</div>
+							</div>
+							
+						
+							</div>
+							
+						
+						
+						
 					</div>
-				</div>
+						
+						
+						
+				
 			</div>
 		</div>
 		<!-- content-wrapper ends -->

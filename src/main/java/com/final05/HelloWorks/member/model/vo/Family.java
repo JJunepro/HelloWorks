@@ -1,6 +1,7 @@
 package com.final05.HelloWorks.member.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,8 @@ public class Family {
 	private String fPhone;  // 휴대전화
 	private String fJob;  // 직업
 	private String fWith;  // 동거여부
+	
+	private List<Family> FamilyList;
 	
 	public Family() {}
 
@@ -31,6 +34,14 @@ public class Family {
 	public String toString() {
 		return "Family [uid=" + uid + ", fRelation=" + fRelation + ", fName=" + fName + ", fBirth=" + fBirth
 				+ ", fPhone=" + fPhone + ", fJob=" + fJob + ", fWith=" + fWith + "]";
+	}
+
+	public List<Family> getFamilyList() {
+		return FamilyList;
+	}
+
+	public void setFamilyList(List<Family> familyList) {
+		FamilyList = familyList;
 	}
 
 	public String getUid() {
@@ -88,6 +99,7 @@ public class Family {
 	public void setfWith(String fWith) {
 		this.fWith = fWith;
 	}
+
 
 	
 	

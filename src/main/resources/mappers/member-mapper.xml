@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Member">
-<resultMap type="Member" id="MemberMap">
+	<resultMap type="Member" id="MemberMap">
 		<id property="uid" column="U_ID" />
 		<result property="oCode" column="O_CODE" />
 		<result property="pwd" column="PWD" />
@@ -19,34 +19,209 @@
 		<result property="salaryDate" column="SALARYDATE" />
 		<result property="entry" column="ENTRY" />
 		<result property="last" column="LAST" />
+		<collection property="family" resultMap="FamilyMap"></collection>
+		<collection property="degree" resultMap="DegreeMap"></collection>
+		<collection property="appreaisal" resultMap="AppreaisalMap"></collection>
+		<collection property="transfer" resultMap="TransferMap"></collection>
+		<collection property="prize" resultMap="PrizeMap"></collection>
+		<collection property="career" resultMap="CareerMap"></collection>
+		<collection property="certificate" resultMap="CertificateMap"></collection>
 	</resultMap>
-	  <insert id="memberAdd"  parameterType="Member">
-       INSERT INTO MEMBER(NAME,U_ID,PWD,O_CODE,DEPT,BIRTH,RESIDENT,ADDRESS,MAIL,GENDER,PHONE,C_PHONE,SALARY,SALARYDATE,P_IMAGE,ENTRY)
-        VALUES (#{name},#{uid},#{pwd},#{oCode},#{dept},#{birth},#{resident},#{address},#{mail},#{gender},#{phone},#{cPhone},#{salary},#{salaryDate},#{pImage},sysdate)
-    </insert>
-    
- <select id="login" resultMap="MemberMap" parameterType="Member">
-        SELECT * FROM MEMBER
-        WHERE U_ID = #{uid} AND PWD = #{pwd}
-    </select>
-     <select id="idSearch" resultMap="MemberMap" parameterType="Member">
-        SELECT NAME, U_ID FROM MEMBER
-        WHERE NAME = #{name} AND MAIL = #{mail} 
-    </select>
-     <select id="pwdSearch" resultMap="MemberMap" parameterType="Member">
-        SELECT NAME, PWD FROM MEMBER
-        WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
-    </select>
-    <select id="profile" resultMap="MemberMap" parameterType="Member">
-        SELECT * FROM MEMBER
-       	WHERE U_ID = #{uid}
-    </select>
-    
-       <select id="memberAll" resultMap="MemberMap" parameterType="Member">
-        SELECT * FROM MEMBER
-    </select>
-    <delete id="memberDelete">
-		delete from MEMBER where U_ID=#{uid}
+	
+	<resultMap type="Organization" id="OrganizationMap">
+		<result property="oCode" column="O_CODE" />
+		<result property="oName" column="O_NAME" />
+		<result property="oLevel" column="O_LEVEL" />
+	</resultMap>
+	<resultMap type="Degree" id="DegreeMap">
+		<result property="uid" column="U_ID" />
+		<result property="dSchool" column="D_SCHOOL" />
+		<result property="dMajor" column="D_MAJOR" />
+		<result property="dDegree" column="D_DEGREE" />
+		<result property="dGraduated" column="D_GRADUATED" />
+		<result property="dStart" column="D_START" />
+		<result property="dEnd" column="D_END" />
+	</resultMap>
+		<resultMap type="Appreaisal" id="AppreaisalMap">
+		<result property="uid" column="U_ID" />
+		<result property="oCode" column="O_CODE" />
+		<result property="aContent" column="A_CONTENT" />
+		<result property="aRater" column="A_RATER" />
+		<result property="aRating" column="A_RATING" />
+		<result property="aScore" column="A_SCORE" />
+		<result property="aStart" column="A_START" />
+		<result property="aEnd" column="A_END" />
+	</resultMap>
+		<resultMap type="Transfer" id="TransferMap">
+		<result property="uid" column="U_ID" />
+		<result property="oCode" column="O_CODE" />
+		<result property="uRank" column="U_RANK" />
+		<result property="uType" column="U_TYPE" />
+		<result property="uStart" column="U_START" />
+		<result property="uEnd" column="U_END" />
+	</resultMap>
+	<resultMap type="Family" id="FamilyMap">
+		<result property="uid" column="U_ID" />
+		<result property="fRelation" column="F_RELATION" />
+		<result property="fName" column="F_NAME" />
+		<result property="fBirth" column="F_BIRTH" />
+		<result property="fPhone" column="F_PHONE" />
+		<result property="fJob" column="F_JOB" />
+		<result property="fWith" column="F_WITH" />
+	</resultMap>
+
+	<resultMap type="Prize" id="PrizeMap">
+		<result property="uid" column="U_ID" />
+		<result property="pCrape" column="P_CRAPE" />
+		<result property="pInstitution" column="P_INSTITUTION" />
+		<result property="pDate" column="P_DATE" />
+	</resultMap>
+
+	<resultMap type="Career" id="CareerMap">
+		<result property="uid" column="U_ID" />
+		<result property="cRectal" column="C_RECTAL" />
+		<result property="cTask" column="C_TASK" />
+		<result property="cStart" column="C_START" />
+		<result property="cEnd" column="C_END" />
+	</resultMap>
+
+	<resultMap type="Certificate" id="CertificateMap">
+		<result property="uid" column="U_ID" />
+		<result property="ceName" column="CE_NAME" />
+		<result property="ceIssuer" column="CE_ISSUER" />
+		<result property="ceDate" column="CE_DATE" />
+	</resultMap>
+
+
+
+
+	<insert id="memberAdd" parameterType="Member">
+		INSERT INTO
+		MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY)
+		VALUES
+		(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry})
+	</insert>
+
+	<select id="login" resultMap="MemberMap" parameterType="Member">
+		SELECT * FROM MEMBER a join FAMILY b 
+		using (U_ID)
+		join PRIZE c 
+		using (U_ID)
+		join CAREER d 
+		using (U_ID)
+		join CERTIFICATE e
+		using (U_ID)
+		join DEGREE f
+		using (U_ID)
+		join APPREAISAL g
+		using (U_ID)
+		join TRANSFER h
+		using (U_ID)
+		join ORGANIZATION i
+		using (O_CODE)
+		WHERE U_ID = #{uid} AND PWD = #{pwd}
+	</select>
+	<select id="idSearch" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT NAME, U_ID FROM MEMBER
+		WHERE NAME = #{name} AND MAIL = #{mail}
+	</select>
+	<select id="pwdSearch" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT NAME, PWD FROM MEMBER
+		WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
+	</select>
+
+	<select id="profile" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT * FROM MEMBER a left join FAMILY b 
+		using (U_ID)
+		left join PRIZE c 
+		using (U_ID)
+		left join CAREER d 
+		using (U_ID)
+		left join CERTIFICATE e
+		using (U_ID)
+		left join DEGREE f
+		using (U_ID)
+		left join APPREAISAL g
+		using (U_ID)
+		left join TRANSFER h
+		using (U_ID)
+		left join ORGANIZATION i
+		using (O_CODE)
+		where U_ID = #{uid}
+	</select>
+
+
+	<select id="memberAll" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT * FROM MEMBER 
+	</select>
+	
+	<delete id="memberDelete">
+		delete from MEMBER where U_ID = #{uid}
 	</delete>
-   
+
+	<update id="memberUpdate" parameterType="Member">
+		update MEMBER set NAME =
+		#{name}, DEPT = #{dept}, ADDRESS = #{address}, GENDER = #{gender},
+		RESIDENT = #{resident}, MAIL = #{mail},
+		C_PHONE = #{cPhone}, PHONE =
+		#{phone}, SALARY = #{salary}, SALARYDATE = #{salaryDate},BIRTH=#{birth},ENTRY=#{entry} ,LAST = #{last}
+		where U_ID = #{uid}
+	</update>
+	<update id="familyUpdate" parameterType="Family">
+		<foreach collection="family" item="item" index="index">
+		update FAMILY set
+		F_RELATION = #{fRelation},F_NAME = #{fName}, F_BIRTH=
+		#{fBirth},F_PHONE = #{fPhone},F_JOB = #{fJob},F_WITH = #{fWith}
+		where U_ID = #{uid} and F_NAME = #{fName}
+		</foreach>
+	</update>
+	<update id="prizeUpdate" parameterType="Prize">
+		<foreach collection="prize" item="item" index="index">
+		update PRIZE set
+		P_CRAPE = #{pCrape},P_INSTITUTION = #{pInstitution},P_DATE = #{pDate}
+		where U_ID = #{uid}
+		</foreach>
+	</update>
+	
+	<update id="careerUpdate" parameterType="Career">
+		<foreach collection="Career" item="item" index="index">
+		update CAREER set
+		C_RECTAL = #{cRectal},C_TASK = #{cTask},C_START = #{cStart},C_END = #{cEnd}
+		where U_ID = #{uid}
+		</foreach>
+	</update>
+	<update id="certificateUpdate" parameterType="Certificate">
+		<foreach collection="Certificate" item="item" index="index">
+		update CERTIFICATE set
+		CE_NAME = #{ceName},CE_ISSUER = #{ceIssuer},CE_DATE = #{ceDate}
+		where U_ID = #{uid}
+		</foreach>
+	</update>
+	
+	<update id="OrganizationUpdate" parameterType="Organization">
+		update ORGANIZATION set
+		O_CODE = #{oCode},O_NAME = #{oName}
+		where O_CODE = #{oCode}	
+	</update>
+	<update id="DegreeUpdate" parameterType="Degree">
+		update DEGREE set
+		D_SCHOOL = #{dSchool},D_MAJOR = #{dMajor},D_DEGREE = #{dDegree},D_GRADUATED = #{dGraduated},D_START = #{dStart},D_END = #{dEnd}
+		where U_ID = #{uid}	
+	</update>
+	<update id="AppreaisalUpdate" parameterType="Appreaisal">
+		update APPREAISAL set
+		A_CONTENT = #{aContent},A_RATING = #{aRating},A_RATER = #{aRater},A_SCORE = #{aScore},A_START = #{aStart},A_END = #{aEnd}
+		where U_ID = #{uid}	
+	</update>
+	<update id="TransferUpdate" parameterType="Transfer">
+		update TRANSFER set
+		U_TYPE = #{uType},U_RANK = #{uRank},U_START = #{uStart},U_END = #{uEnd}
+		where U_ID = #{uid}	
+	</update>
+	
+
 </mapper>
