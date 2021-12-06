@@ -21,6 +21,7 @@
 
 	<!-- Spring MVC AOP 어노테이션 자동 등록 -->
 	<aop:aspectj-autoproxy />
+	
 	<!-- Multipart 파일 업로드 관련 bean 등록 -->
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />

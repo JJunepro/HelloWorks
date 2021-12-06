@@ -4,44 +4,44 @@
 	<!-- 원하는 포맷에 맞춰 출력하기 위해 resultMap 등록 -->
 	<resultMap id="resultComment" type="Comment">
 		<!-- property는 필드명, column 은 DB 컬럼 명을 입력한다 -->
-		<id property="comment_id" column="COMMENT_ID" />
+		<id property="c_n" column="C_N" />
 		<result property="b_n" column="B_N" />
-		<result property="comment_name" column="COMMENT_NAME" />
-		<result property="comment_pwd" column="COMMENT_PWD" />
-		<result property="comments" column="COMMENTS" />
-		<result property="regdate" column="REGDATE" />
+		<result property="c_name" column="C_NAME" />
+		<result property="c_pwd" column="C_PWD" />
+		<result property="c_comments" column="C_COMMENTS" />
+		<result property="c_timestamp" column="C_TIMESTAMP" />
 	</resultMap>
 
 	<!-- 해당 게시글에 대한 댓글 리스트 조회 -->
 	<select id="selectCommentAll" parameterType="string"
 		resultType="arraylist" resultMap="resultComment">
-		SELECT * FROM COMMENT WHERE BOARD_NUM = #{b_n}
+		SELECT * FROM COMMENT WHERE B_N = #{b_n}
 	</select>
 	<!-- 댓글 단일 조회 -->
 	<select id="selectComment" parameterType="string"
 		resultType="Comment" resultMap="resultComment">
-		SELECT * FROM COMMENT WHERE COMMENT_ID = #{comment_id}
+		SELECT * FROM COMMENT WHERE C_N = #{c_n}
 	</select>
 
 	<!-- 댓글 입력 -->
-	<insert id="insertComment" parameterType="Comment"
+	<insert id="writeComment" parameterType="Comment"
 		flushCache="true" statementType="PREPARED" timeout="20">
 		INSERT INTO COMMENT VALUES(
-		'BR'||TO_CHAR(SYSDATE,'RRMMDD')||LPAD(BOARD_COMMENT_SEQ.NEXTVAL,2,'0'),
-		#{b_n}, #{comment_name}, #{comment_pwd}, #{comments}, SYSDATE)
+		'CO'||TO_CHAR(SYSDATE,'RRMMDD')||LPAD(BOARD_COMMENT_SEQ.NEXTVAL,2,'0'),
+		#{b_n}, #{c_name}, #{c_pwd}, #{c_comments}, SYSDATE)
 	</insert>
 	<!-- 댓글 수정 -->
 	<update id="updateComment" parameterType="Comment"
 		flushCache="true" statementType="PREPARED" timeout="20">
-		UPDATE COMMENT SET COMMENTS = #{comments}
-		WHERE COMMENT_ID = #{comment_id}
-		AND COMMENT_PWD = #{comment_pwd}
+		UPDATE COMMENT SET COMMENTS = #{c_comments}
+		WHERE C_N = #{c_n}
+		AND C_PWD = #{c_pwd}
 	</update>
 	<!-- 댓글 삭제 -->
 	<delete id="deleteComment" parameterType="Comment"
 		flushCache="true" statementType="PREPARED" timeout="20">
 		DELETE FROM COMMENT
-		WHERE COMMENT_ID = #{comment_id}
-		AND COMMENT_PWD = #{comment_pwd}
+		WHERE C_N = #{c_n}
+		AND C_PWD = #{c_pwd}
 	</delete>
 </mapper>

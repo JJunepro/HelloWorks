@@ -17,20 +17,21 @@ import com.final05.HelloWorks.board.model.Service.CommentService;
 import com.final05.HelloWorks.board.model.vo.Board;
 
 @Controller
+@RequestMapping("/board/*")
 public class BoardController {
 	@Autowired
 	private BoardService bService;
+
 	@Autowired
 	private CommentService cService;
 
 	public static final int LIMIT = 10;
 
-	@RequestMapping(value = "blist.do", method = RequestMethod.GET)
+	@RequestMapping(value = "boardlist", method = RequestMethod.GET)
 	public ModelAndView boardListService(@RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "keyword", required = false) String keyword, ModelAndView mv) {
 		try {
 			int currentPage = page;
-
 			// 한 페이지당 출력할 목록 갯수
 			int listCount = bService.totalCount();
 			int maxPage = (int) ((double) listCount / LIMIT + 0.9);
@@ -41,7 +42,7 @@ public class BoardController {
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("maxPage", maxPage);
 			mv.addObject("listCount", listCount);
-			mv.setViewName("board/blist");
+			mv.setViewName("board/boardlist");
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("errorPage");
@@ -49,7 +50,7 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping(value = "bDetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "boardDetail", method = RequestMethod.GET)
 	public ModelAndView boardDetail(@RequestParam(name = "b_n") int b_n,
 			@RequestParam(name = "page", defaultValue = "1") int page, ModelAndView mv) {
 		try {
@@ -66,11 +67,11 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping(value = "bRenew.do", method = RequestMethod.GET)
+	@RequestMapping(value = "reWrite", method = RequestMethod.GET)
 	public ModelAndView boardDetail(@RequestParam(name = "b_n") int b_n, ModelAndView mv) {
 		try {
 			mv.addObject("board", bService.selectBoard(1, b_n));
-			mv.setViewName("board/boardRenew");
+			mv.setViewName("board/reWrite");
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("errorPage");
@@ -78,62 +79,63 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping(value = "writeForm.do", method = RequestMethod.GET)
+	@RequestMapping(value = "writeForm", method = RequestMethod.GET)
 	public String boardInsertForm(ModelAndView mv) {
 		return "board/writeForm";
 	}
 
-//	@RequestMapping(value = "bInsert.do", method = RequestMethod.POST)
-//	public ModelAndView boardInsert(Board b, @RequestParam(name = "upfile", required = false) MultipartFile report,
-//			HttpServletRequest request, ModelAndView mv) {
-//		try {
-//			if (report != null && !report.equals(""))
-//				saveFile(report, request);
-//			b.getImg_n(report.getOriginalFilename());
-//			bService.insertBoard(b);
-//			mv.setViewName("redirect:blist.do");
-//		} catch (Exception e) {
-//			mv.addObject("msg", e.getMessage());
-//			mv.setViewName("errorPage");
-//		}
-//		return mv;
-//	}
-//
-//	@RequestMapping(value = "bUpdate.do", method = RequestMethod.POST)
-//	public ModelAndView boardUpdate(Board b, @RequestParam(name = "page", defaultValue = "1") int page,
-//			@RequestParam("upfile") MultipartFile report, HttpServletRequest request, ModelAndView mv) {
-//		try {
-//			if (report != null && !report.equals("")) {
-//				removeFile(b.getBoard_file(), request);
-//				saveFile(report, request);
-//			}
-//			b.setBoard_file(report.getOriginalFilename());
-//			mv.addObject("board_num", bService.updateBoard(b).getBoard_num());
-//			mv.addObject("currentPage", page);
-//			mv.setViewName("redirect:bDetail.do");
-//		} catch (Exception e) {
-//			mv.addObject("msg", e.getMessage());
-//			mv.setViewName("errorPage");
-//		}
-//		return mv;
-//	}
-//	@RequestMapping(value = "bDelete.do", method = RequestMethod.GET)
-//	public ModelAndView boardDelete(@RequestParam(name = "board_num") String board_num,
-//			@RequestParam(name = "page", defaultValue = "1") int page, HttpServletRequest request, ModelAndView mv) {
-//		try {
-//			Board b = bService.selectBoard(1, board_num);
-//			removeFile(b.getBoard_file(), request);
-//
-//			bService.deleteBoard(board_num);
-//			mv.addObject("currentPage", page);
-//			mv.setViewName("redirect:blist.do");
-//		} catch (Exception e) {
-//			mv.addObject("msg", e.getMessage());
-//			mv.setViewName("errorPage");
-//		}
-//		return mv;
-//	}
-	
+	@RequestMapping(value = "boardWrite", method = RequestMethod.POST)
+	public ModelAndView boardInsert(Board b, @RequestParam(name = "upfile", required = false) MultipartFile report,
+			HttpServletRequest request, ModelAndView mv) {
+		try {
+			if (report != null && !report.equals(""))
+				saveFile(report, request);
+			b.setB_file(report.getOriginalFilename());
+			bService.writeBoard(b);
+			mv.setViewName("redirect:boardlist");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("errorPage");
+		}
+		return mv;
+	}
+
+	@RequestMapping(value = "boardUpdate", method = RequestMethod.POST)
+	public ModelAndView boardUpdate(Board b, @RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam("upfile") MultipartFile report, HttpServletRequest request, ModelAndView mv) {
+		try {
+			if (report != null && !report.equals("")) {
+				removeFile(b.getB_file(), request);
+				saveFile(report, request);
+			}
+			b.setB_file(report.getOriginalFilename());
+			mv.addObject("board_num", bService.updateBoard(b).getB_n());
+			mv.addObject("currentPage", page);
+			mv.setViewName("redirect:boardDetail");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("errorPage");
+		}
+		return mv;
+	}
+
+	@RequestMapping(value = "boardDelete", method = RequestMethod.GET)
+	public ModelAndView boardDelete(@RequestParam(name = "b_n") int b_n,
+			@RequestParam(name = "page", defaultValue = "1") int page, HttpServletRequest request, ModelAndView mv) {
+		try {
+			Board b = bService.selectBoard(1, b_n);
+			removeFile(b.getB_file(), request);
+
+			bService.deleteBoard(b_n);
+			mv.addObject("currentPage", page);
+			mv.setViewName("redirect:boardlist");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("errorPage");
+		}
+		return mv;
+	}
+
 	private void saveFile(MultipartFile report, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\uploadFiles";
@@ -156,14 +158,14 @@ public class BoardController {
 		}
 	}
 
-	private void removeFile(String board_file, HttpServletRequest request) {
+	private void removeFile(String b_file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\uploadFiles";
 
-		String filePath = savePath + "\\" + board_file;
+		String filePath = savePath + "\\" + b_file;
 		try {
 			// 파일 저장
-			System.out.println(board_file + "을 삭제합니다.");
+			System.out.println(b_file + "을 삭제합니다.");
 			System.out.println("기존 저장 경로 : " + savePath);
 
 			File delFile = new File(filePath);

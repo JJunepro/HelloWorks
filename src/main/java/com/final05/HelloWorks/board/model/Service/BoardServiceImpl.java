@@ -28,7 +28,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> selectList(int startPage, int limit) {
-		// TODO Auto-generated method stub
 		return bDao.selectList(startPage, limit);
 	}
 
@@ -38,8 +37,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void insertBoard(Board b) {
-		bDao.insertboard(b);
+	public void writeBoard(Board b) {
+		bDao.writeBoard(b);
 	}
 
 	@Override

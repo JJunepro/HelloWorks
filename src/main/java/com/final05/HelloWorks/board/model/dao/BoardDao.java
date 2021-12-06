@@ -38,8 +38,8 @@ public class BoardDao {
 	}
 
 	// 글 입력
-	public int insertboard(Board b) {
-		return sqlSession.insert("Board.insertBoard", b);
+	public int writeBoard(Board b) {
+		return sqlSession.insert("Board.writeBoard", b);
 	}
 
 	// 글 수정

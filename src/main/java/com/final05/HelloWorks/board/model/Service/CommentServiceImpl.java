@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public int insertComment(Comment c) {
+	public int writeComment(Comment c) {
 		return cDao.insertComment(c);
 	}
 
