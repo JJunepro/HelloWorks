@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 public class Organization {
 	private int oCode;	// 부서 코드
 	private String oName;	// 부서이름
-	private String oLevel;  // 부서레벨	
+	private int oLevel;  // 부서레벨	
 	
 	public Organization() {}
 
-	public Organization(int oCode, String oName, String oLevel) {
+	public Organization(int oCode, String oName, int oLevel) {
 		super();
 		this.oCode = oCode;
 		this.oName = oName;
@@ -40,13 +40,14 @@ public class Organization {
 		this.oName = oName;
 	}
 
-	public String getoLevel() {
+	public int getoLevel() {
 		return oLevel;
 	}
 
-	public void setoLevel(String oLevel) {
+	public void setoLevel(int oLevel) {
 		this.oLevel = oLevel;
 	}
+	
 	
 	
 	

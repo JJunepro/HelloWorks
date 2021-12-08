@@ -49,7 +49,7 @@
         justify-content: space-around;
 	}
 	#leftdiv{
-		width: 300px;
+		width: 250px;
 		margin-left: auto;
 	}
 </style>
@@ -249,6 +249,7 @@
 									<div id = "topdiv">
 									<h2 >직원 정보</h2>
 										<div id= "leftdiv">	
+											<a href="memberAll"role="button" class="btn btn-outline-info">목록</a>
 											<button type="submit" id = "updatesub" class="btn btn-outline-info" onclick="location.href='memberUpdate?uid=${info.uid }'">수정</button>
 											<a href="memberDelete?uid=${info.uid }"role="button" class="btn btn-outline-info">삭제</a>
 										</div>
@@ -257,12 +258,12 @@
 									
 									<div class="row">
 										<div class="user-image">
-											<img src="${info.pImage }" width="200px" height= "200px">
+											<img src="${info.pImage }" width="180px" height= "180px">
 										</div>
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
 										 
-											<table border="0" width="1250px;">
+											<table border="0" width="1100px;">
 												<tr>
 													<td>이름</td>
 													<td><input type = "text" id = "name" name = "name" value = "${info.name }"></td>
@@ -305,7 +306,10 @@
 													<td>퇴사일</td>
 													<td><input type = "text" id = "last" name = "last" value = "${info.last }"></td>
 												</tr>
-												
+												<tr>
+													<td>직책</td>
+													<td><input type = "text" id = "position" name = "position" value = "${info.position }"></td>
+												</tr>
 											</table>
 										</div>
 									</div>

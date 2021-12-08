@@ -41,7 +41,8 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-
+	public static final int LIMIT = 10;
+	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv) {
 		mv.setViewName("login");
@@ -50,6 +51,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST) // 포스트 방식 매핑
 	public String login(Member vo, HttpSession session) throws Exception {
+		System.out.println("vo : " + vo);
 		String viewName = "";
 		logger.info("post login");
 
@@ -152,14 +154,14 @@ public class MemberController {
 	*/
 	
 	 @RequestMapping(value = "profile2", method = RequestMethod.GET)
-	    public String profile2(@RequestParam("uid") String uid, Model model,HttpSession session){
+	    public String profile2(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model,HttpSession session){
 		 	
-		 	Member meminfo=memberService.profile2(uid);
+		 	Member meminfo=memberService.profile2(vo);
 		 	System.out.println("여기"+ meminfo);
 	        model.addAttribute("info", meminfo);
 	        
 	        System.out.println("아이디 확인 : "+uid);
-	        System.out.println("정보 확인 : ");
+	        System.out.println("정보 확인 : "+meminfo);
 	        logger.info("아이디 : "+uid);
 	       
 	        return "profile2";
@@ -184,6 +186,43 @@ public class MemberController {
 	 return mv; 
 	 }
 	  
+
+	  @RequestMapping(value="memberSeach", method=RequestMethod.GET) 
+	  public ModelAndView memberSeach(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "keyword", required = false) String keyword,ModelAndView mv) { 
+		  try {	
+				if (keyword != null && !keyword.equals(""))
+					mv.addObject("list", memberService.memberSeach(keyword));
+				mv.setViewName("memberAll");
+			} catch (Exception e) {
+				mv.addObject("msg", e.getMessage());
+				
+			}
+			return mv;
+		}
+	  
+/*
+	  @RequestMapping(value="memberAll", method=RequestMethod.GET) 
+	  public ModelAndView memberSelect(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "keyword", required = false) String keyword,ModelAndView mv) { 
+		  try {
+				int currentPage = page;
+				// 한 페이지당 출력할 목록 갯수
+				int listCount = memberService.totalCount();
+				int maxPage = (int) ((double) listCount / LIMIT + 0.9);
+				if (keyword != null && !keyword.equals(""))
+					mv.addObject("list", memberService.selectSearch(keyword));
+				else
+					mv.addObject("list", memberService.selectList(currentPage, LIMIT));
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("listCount", listCount);
+				mv.setViewName("memberAll");
+			} catch (Exception e) {
+				mv.addObject("msg", e.getMessage());
+				
+			}
+			return mv;
+		}
+	  */
 	  @RequestMapping(value = "memberAdd", method = RequestMethod.GET)
 		public ModelAndView memberAdd(ModelAndView mv) {
 			mv.setViewName("memberAdd");
@@ -191,18 +230,28 @@ public class MemberController {
 		}
 	  
 	  @RequestMapping(value = "memberAdd", method=RequestMethod.POST)
-	  public ModelAndView memberAdd(Member vo, @RequestParam("uid") String uid,@RequestParam("pwd") String pwd,@RequestParam("name") String name,
+	  public ModelAndView memberAdd(Member vo, @RequestParam("uid") String uid,@RequestParam("uid") List<Family> uid1,
+			  @RequestParam("uid") Degree uid2,@RequestParam("uid") List<Career> uid3,@RequestParam("uid") List<Certificate> uid4,
+			   @RequestParam("pwd") String pwd,@RequestParam("name") String name,
 			   @RequestParam("oCode") int oCode,@RequestParam("dept") int dept,@RequestParam("address") String address,
 			   @RequestParam("resident") int resident,@RequestParam("mail") String mail,@RequestParam("cPhone") int cPhone,
 			   @RequestParam("phone") int phone,@RequestParam("salary") int salary,@RequestParam("salaryDate") String salaryDate,
-			   @RequestParam("gender") String gender,@RequestParam("birth") int birth,@RequestParam("entry") Date entry,
-	         HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+			   @RequestParam("gender") String gender,@RequestParam("birth") int birth,@RequestParam("entry") String entry,
+			   @RequestParam(value="fRelation", required=false) List<Family> fRelation,@RequestParam(value="fName", required=false) List<Family> fName,
+			   @RequestParam(value="fBirth", required=false) List<Family> fBirth,@RequestParam(value="fPhone", required=false) List<Family> fPhone,
+			   @RequestParam(value="fJob", required=false) List<Family> fJob,@RequestParam(value="fWith", required=false) List<Family> fWith,
+			   @RequestParam(value="dSchool", required=false) Degree dSchool,@RequestParam(value="dMajor", required=false) Degree dMajor,
+			   @RequestParam(value="dDegree", required=false) Degree dDegree,@RequestParam(value="dGraduated", required=false) Degree dGraduated,
+			   @RequestParam(value="dStart", required=false) Degree dStart,@RequestParam(value="dEnd", required=false) Degree dEnd,
+			   @RequestParam(value="cRectal", required=false) List<Career> cRectal,@RequestParam(value="cTask", required=false) List<Career> cTask,
+			   @RequestParam(value="cStart", required=false) List<Career> cStart,@RequestParam(value="cEnd", required=false) List<Career> cEnd,
+			   @RequestParam(value="ceName", required=false) List<Certificate> ceName,@RequestParam(value="ceIssuer", required=false) List<Certificate> ceIssuer,
+			   @RequestParam(value="ceDate", required=false) List<Certificate> ceDate,
+			   HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
 	      int result=0;
-	      
+	      System.out.println("dddd");
 	      try {
-	         
 	         System.out.println(result);
-	         
 	         vo.setName(name);
 	         vo.setUid(uid);
 	         vo.setPwd(pwd);
@@ -218,16 +267,43 @@ public class MemberController {
 	         vo.setGender(gender);
 	         vo.setBirth(birth);
 	         vo.setEntry(entry);
+	         vo.setFamily(uid1);
+	         vo.setFamily(fRelation);
+	         vo.setFamily(fName);
+	         vo.setFamily(fBirth);
+	         vo.setFamily(fPhone);
+	         vo.setFamily(fJob);
+	         vo.setFamily(fWith); 
+	         vo.setDegree(uid2);
+	         vo.setDegree(dSchool);
+	         vo.setDegree(dMajor);
+	         vo.setDegree(dDegree);   
+	         vo.setDegree(dGraduated);
+	         vo.setDegree(dStart);
+	         vo.setDegree(dEnd);
+	         vo.setCareer(uid3);
+	         vo.setCareer(cRectal);   
+	         vo.setCareer(cTask);
+	         vo.setCareer(cStart);
+	         vo.setCareer(cEnd);
+	         vo.setCertificate(uid4);   
+	         vo.setCertificate(ceName);
+	         vo.setCertificate(ceIssuer);
+	         vo.setCertificate(ceDate);
 	         
-	         result = memberService.memberAdd(vo);
+	         result =  memberService.memberAdd(vo);
+	       
+	         
+	        
+	         
 	         System.out.println(result);
 	         if(result==1) {
-	            String msg = "회원 정보가 등록되었습니다.";
-	            rttr.addFlashAttribute("msg", msg);
+	          //  String msg = "회원 정보가 등록되었습니다.";
+	          //  rttr.addFlashAttribute("msg", msg);
 	            mv.setViewName("redirect:/memberAll");
 	         }else {
-	            String msg = "회원 정보 등록에 실패하였습니다.";
-	            rttr.addFlashAttribute("msg", msg);
+	          //  String msg = "회원 정보 등록에 실패하였습니다.";
+	           // rttr.addFlashAttribute("msg", msg);
 	            mv.setViewName("redirect:/memberAll");
 	         }
 	         
@@ -237,6 +313,8 @@ public class MemberController {
 	      
 	      return mv;
 	   }
+	  
+	 
 	  
 	  @RequestMapping(value = "memberDelete", method = RequestMethod.GET)
 	  public String memberDelete(@RequestParam("uid") String uid, Model model){

@@ -12,7 +12,7 @@ public class Certificate {
 	private String ceDate;	// 취득일
 	
 	public Certificate() {}
-	
+
 	public Certificate(String uid, String ceName, String ceIssuer, String ceDate) {
 		super();
 		this.uid = uid;
@@ -57,6 +57,9 @@ public class Certificate {
 	public void setCeDate(String ceDate) {
 		this.ceDate = ceDate;
 	}
+
+	
+	
 	
 
 }

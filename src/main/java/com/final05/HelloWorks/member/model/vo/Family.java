@@ -10,16 +10,16 @@ public class Family {
 	private String uid;  // 아이디
 	private String fRelation;  // 관계
 	private String fName;  // 이름
-	private Date fBirth;  // 생년월일
+	private String fBirth;  // 생년월일
 	private String fPhone;  // 휴대전화
 	private String fJob;  // 직업
 	private String fWith;  // 동거여부
 	
-	private List<Family> FamilyList;
+	//private List<Family> FamilyList;
 	
 	public Family() {}
 
-	public Family(String uid, String fRelation, String fName, Date fBirth, String fPhone, String fJob, String fWith) {
+	public Family(String uid, String fRelation, String fName, String fBirth, String fPhone, String fJob, String fWith) {
 		super();
 		this.uid = uid;
 		this.fRelation = fRelation;
@@ -34,14 +34,6 @@ public class Family {
 	public String toString() {
 		return "Family [uid=" + uid + ", fRelation=" + fRelation + ", fName=" + fName + ", fBirth=" + fBirth
 				+ ", fPhone=" + fPhone + ", fJob=" + fJob + ", fWith=" + fWith + "]";
-	}
-
-	public List<Family> getFamilyList() {
-		return FamilyList;
-	}
-
-	public void setFamilyList(List<Family> familyList) {
-		FamilyList = familyList;
 	}
 
 	public String getUid() {
@@ -68,11 +60,11 @@ public class Family {
 		this.fName = fName;
 	}
 
-	public Date getfBirth() {
+	public String getfBirth() {
 		return fBirth;
 	}
 
-	public void setfBirth(Date fBirth) {
+	public void setfBirth(String fBirth) {
 		this.fBirth = fBirth;
 	}
 
@@ -100,6 +92,8 @@ public class Family {
 		this.fWith = fWith;
 	}
 
+	
+	
 
 	
 	

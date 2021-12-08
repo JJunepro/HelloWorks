@@ -35,18 +35,44 @@ public class MemberService {
 		   return memberDao.pwdSearch(vo);
 	   }
 	   
-	   public Member profile2(String uid) {			
-			return memberDao.profile2(uid);
+	   public Member profile2(Member vo) {			
+			return memberDao.profile2(vo);
 	   }
 	 
-	   
+	  
 	   public List<Member> memberAll(Member vo) {			
 			return memberDao.memberAll(vo);
 	   }
-	   
+	   public List<Member> memberSeach(String keyword) {			
+			return memberDao.memberSeach(keyword);
+	   }
+	/* 
+		public int totalCount() {
+			return memberDao.listCount();
+		}
+		public List<Member> selectList(int startPage, int limit) {
+			return memberDao.selectList(startPage, limit);
+		}
+	     public List<Member> selectSearch(String keyword) {			
+			return memberDao.searchList(keyword);
+		 }
+	     */
 	   public int memberAdd(Member vo) {
 		   return memberDao.memberAdd(vo);
 	   }
+	   public int memberAdd(Family fvo) {
+		   return memberDao.memberAdd(fvo);
+	   }
+	   public int memberAdd(Degree dvo) {
+		   return memberDao.memberAdd(dvo);
+	   }
+	   public int memberAdd(Career cvo) {
+		   return memberDao.memberAdd(cvo);
+	   }
+	   public int memberAdd(Certificate cevo) {
+		   return memberDao.memberAdd(cevo);
+	   }
+	  
 
 	   public int memberDelete(String uid) {
 		   return memberDao.memberDelete(uid);

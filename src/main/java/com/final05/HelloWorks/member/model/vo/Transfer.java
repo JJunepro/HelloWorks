@@ -10,13 +10,12 @@ public class Transfer {
 	private int oCode;	// 부서 코드
 	private int uRank;	// 직급
 	private String uType;	// 직원구분
-	private Date uStart;	//시작일
-	private Date uEnd;	// 종료일
+	private String uStart;	//시작일
+	private String uEnd;	// 종료일
 	
 	public Transfer() {}
-	
-	
-	public Transfer(String uid, int oCode, int uRank, String uType, Date uStart, Date uEnd) {
+
+	public Transfer(String uid, int oCode, int uRank, String uType, String uStart, String uEnd) {
 		super();
 		this.uid = uid;
 		this.oCode = oCode;
@@ -26,14 +25,12 @@ public class Transfer {
 		this.uEnd = uEnd;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Transfer [uid=" + uid + ", oCode=" + oCode + ", uRank=" + uRank + ", uType=" + uType + ", uStart="
 				+ uStart + ", uEnd=" + uEnd + "]";
 	}
-	
-	
+
 	public String getUid() {
 		return uid;
 	}
@@ -66,21 +63,24 @@ public class Transfer {
 		this.uType = uType;
 	}
 
-	public Date getuStart() {
+	public String getuStart() {
 		return uStart;
 	}
 
-	public void setuStart(Date uStart) {
+	public void setuStart(String uStart) {
 		this.uStart = uStart;
 	}
 
-	public Date getuEnd() {
+	public String getuEnd() {
 		return uEnd;
 	}
 
-	public void setuEnd(Date uEnd) {
+	public void setuEnd(String uEnd) {
 		this.uEnd = uEnd;
 	}
+	
+	
+	
 
 	
 	

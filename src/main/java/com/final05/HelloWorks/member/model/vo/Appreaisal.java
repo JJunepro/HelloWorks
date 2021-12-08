@@ -12,13 +12,15 @@ public class Appreaisal {
 	private String aRater;	// 평가자
 	private String aRating;	// 채점내용
 	private int aScore;	// 점수
-	private Date aStart;	// 시작일
-	private Date aEnd;	// 종료일
+	private String aStart;	// 시작일
+	private String aEnd;	// 종료일
 	
 	public Appreaisal() {}
 
-	public Appreaisal(String uid, int oCode, String aContent, String aRater, String aRating, int aScore, Date aStart,
-			Date aEnd) {
+
+
+	public Appreaisal(String uid, int oCode, String aContent, String aRater, String aRating, int aScore, String aStart,
+			String aEnd) {
 		super();
 		this.uid = uid;
 		this.oCode = oCode;
@@ -35,7 +37,7 @@ public class Appreaisal {
 		return "Appreaisal [uid=" + uid + ", oCode=" + oCode + ", aContent=" + aContent + ", aRater=" + aRater
 				+ ", aRating=" + aRating + ", aScore=" + aScore + ", aStart=" + aStart + ", aEnd=" + aEnd + "]";
 	}
-
+	
 	public String getUid() {
 		return uid;
 	}
@@ -84,19 +86,19 @@ public class Appreaisal {
 		this.aScore = aScore;
 	}
 
-	public Date getaStart() {
+	public String getaStart() {
 		return aStart;
 	}
 
-	public void setaStart(Date aStart) {
+	public void setaStart(String aStart) {
 		this.aStart = aStart;
 	}
 
-	public Date getaEnd() {
+	public String getaEnd() {
 		return aEnd;
 	}
 
-	public void setaEnd(Date aEnd) {
+	public void setaEnd(String aEnd) {
 		this.aEnd = aEnd;
 	}
 

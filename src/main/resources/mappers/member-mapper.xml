@@ -6,6 +6,7 @@
 		<result property="oCode" column="O_CODE" />
 		<result property="pwd" column="PWD" />
 		<result property="dept" column="DEPT" />
+		<result property="position" column="POSITION" />
 		<result property="name" column="NAME" />
 		<result property="birth" column="BIRTH" />
 		<result property="resident" column="RESIDENT" />
@@ -19,6 +20,8 @@
 		<result property="salaryDate" column="SALARYDATE" />
 		<result property="entry" column="ENTRY" />
 		<result property="last" column="LAST" />
+		<result property="keyword" column="KEYWORD" />
+		<collection property="organization" resultMap="OrganizationMap"></collection>
 		<collection property="family" resultMap="FamilyMap"></collection>
 		<collection property="degree" resultMap="DegreeMap"></collection>
 		<collection property="appreaisal" resultMap="AppreaisalMap"></collection>
@@ -96,44 +99,17 @@
 
 
 	<insert id="memberAdd" parameterType="Member">
-		INSERT INTO
-		MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY)
-		VALUES
-		(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry})
+		insert all
+			into MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY,POSITION) 
+			values(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry},#{position})
+			into Family(U_ID,F_RELATION,F_NAME,F_BIRTH,F_PHONE,F_JOB,F_WITH) values(#{uid},#{fRelation},#{fName},#{fBirth},#{fPhone},#{fJob},#{fWith})
+			into Degree(U_ID,D_SCHOOL,D_MAJOR,D_DEGREE,D_GRADUATED,D_START,D_END) values(#{uid},#{dSchool},#{dMajor},#{dDegree},#{dGraduated},#{dStart},#{dEnd})
+			into Career(U_ID,C_RECTAL,C_TASK,C_START,C_END) values(#{uid},#{cRectal},#{cTask},#{cStart},#{cEnd})
+			into Certificate(U_ID,CE_NAME,CE_ISSUER,CE_DATE) values(#{uid},#{ceName},#{ceIssuer},#{ceDate})
+		select * from DUAL	
 	</insert>
 
 	<select id="login" resultMap="MemberMap" parameterType="Member">
-		SELECT * FROM MEMBER a join FAMILY b 
-		using (U_ID)
-		join PRIZE c 
-		using (U_ID)
-		join CAREER d 
-		using (U_ID)
-		join CERTIFICATE e
-		using (U_ID)
-		join DEGREE f
-		using (U_ID)
-		join APPREAISAL g
-		using (U_ID)
-		join TRANSFER h
-		using (U_ID)
-		join ORGANIZATION i
-		using (O_CODE)
-		WHERE U_ID = #{uid} AND PWD = #{pwd}
-	</select>
-	<select id="idSearch" resultMap="MemberMap"
-		parameterType="Member">
-		SELECT NAME, U_ID FROM MEMBER
-		WHERE NAME = #{name} AND MAIL = #{mail}
-	</select>
-	<select id="pwdSearch" resultMap="MemberMap"
-		parameterType="Member">
-		SELECT NAME, PWD FROM MEMBER
-		WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
-	</select>
-
-	<select id="profile" resultMap="MemberMap"
-		parameterType="Member">
 		SELECT * FROM MEMBER a left join FAMILY b 
 		using (U_ID)
 		left join PRIZE c 
@@ -150,14 +126,58 @@
 		using (U_ID)
 		left join ORGANIZATION i
 		using (O_CODE)
+		WHERE U_ID = #{uid} AND PWD = #{pwd}
+	</select>
+	<select id="idSearch" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT NAME, U_ID FROM MEMBER
+		WHERE NAME = #{name} AND MAIL = #{mail}
+	</select>
+	<select id="pwdSearch" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT NAME, PWD FROM MEMBER
+		WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
+	</select>
+
+	<select id="profile" resultMap="MemberMap"
+		parameterType="Member">
+		SELECT * FROM MEMBER a
+		left join FAMILY b 
+		using (U_ID)
+		left join PRIZE c 
+		using (U_ID)
+		left join CAREER d 
+		using (U_ID)
+		left join CERTIFICATE e
+		using (U_ID)
+		left join DEGREE f
+		using (U_ID)
+		left join APPREAISAL g
+		using (U_ID)
+		left join TRANSFER h
+		using (U_ID)
+		left join ORGANIZATION i
+		on a.O_CODE = i.O_CODE
 		where U_ID = #{uid}
 	</select>
 
-
+	<!-- 게시글 전체 개수 조회 -->
+	<select id="listCount" resultType="int">
+		SELECT count(*) FROM BOARD
+	</select>
+	
 	<select id="memberAll" resultMap="MemberMap"
 		parameterType="Member">
-		SELECT * FROM MEMBER 
+		select o.O_NAME,m.* from member m left join Organization o ON m.O_CODE = o.O_CODE
 	</select>
+	  
+	<select id="memberSeach" resultMap="MemberMap"
+		parameterType="Member" >
+		select * from MEMBER 
+		where DEPT like '%'|| #{keyword} ||'%'
+		OR NAME like '%'|| #{keyword} ||'%'
+	</select>
+
 	
 	<delete id="memberDelete">
 		delete from MEMBER where U_ID = #{uid}
@@ -166,9 +186,9 @@
 	<update id="memberUpdate" parameterType="Member">
 		update MEMBER set NAME =
 		#{name}, DEPT = #{dept}, ADDRESS = #{address}, GENDER = #{gender},
-		RESIDENT = #{resident}, MAIL = #{mail},
-		C_PHONE = #{cPhone}, PHONE =
-		#{phone}, SALARY = #{salary}, SALARYDATE = #{salaryDate},BIRTH=#{birth},ENTRY=#{entry} ,LAST = #{last}
+		RESIDENT = #{resident}, MAIL = #{mail},C_PHONE = #{cPhone}, PHONE = #{phone},
+		 SALARY = #{salary}, SALARYDATE = #{salaryDate},BIRTH=#{birth},ENTRY=#{entry},
+		 LAST = #{last}, POSITION = #{position}
 		where U_ID = #{uid}
 	</update>
 	<update id="familyUpdate" parameterType="Family">

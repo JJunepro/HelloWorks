@@ -13,7 +13,7 @@ public class Career {
 	private String cEnd;  // 종료일
 	
 	public Career() {}
-	
+
 	public Career(String uid, String cRectal, String cTask, String cStart, String cEnd) {
 		super();
 		this.uid = uid;
@@ -68,6 +68,8 @@ public class Career {
 	public void setcEnd(String cEnd) {
 		this.cEnd = cEnd;
 	}
+
+	
 	
 	
 	

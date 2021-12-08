@@ -237,12 +237,12 @@
 									<h2>직원 정보</h2>
 									<div class="row">
 										<div class="user-image">
-											<img src="${memberinfo.pImage }" width="150px" height= "150px">
+											<img src="${memberinfo.pImage }" width="180px" height= "180px">
 										</div>
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
 										 
-											<table border="0" width="1250px;">
+											<table border="0" width="1100px;">
 												<tr>
 													<td>이름</td>
 													<td><input type = "text" id = "name" name = "name" value = "${memberinfo.name }"></td>
@@ -285,7 +285,10 @@
 													<td>퇴사일</td>
 													<td><input type = "text" id = "last" name = "last" value = "${memberinfo.last }"></td>
 												</tr>
-												
+												<tr>
+													<td>직책</td>
+													<td><input type = "text" id = "position" name = "position" value = "${info.position }"></td>
+												</tr>
 											</table>
 										</div>
 									</div>
