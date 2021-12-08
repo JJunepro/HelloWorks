@@ -9,7 +9,7 @@ public interface BoardService {
 	Board selectBoard(int chk, int b_n);
 	List<Board> selectList(int startPage, int limit);
 	List<Board> selectSearch(String keyword);
-	void insertBoard(Board b);
+	void writeBoard(Board b);
 	Board updateBoard(Board b);
 	void deleteBoard(int b_n);
 }

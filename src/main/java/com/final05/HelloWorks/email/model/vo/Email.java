@@ -5,7 +5,8 @@ public class Email {
 	private String e_title;
 	private String e_content;
 	private String uid;
-	private String e_recipient;
+	private String e_sender;
+	private String e_receiver;
 	private String e_sendtime;
 	private String e_recipetime;
 	private String e_cc;
@@ -15,9 +16,14 @@ public class Email {
 	private String e_image;
 	private String e_imagesrc;
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Email [e_num=" + e_num + ", e_title=" + e_title + ", e_content=" + e_content + ", uid=" + uid
+				+ ", e_sender=" + e_sender + ", e_receiver=" + e_receiver + ", e_sendtime=" + e_sendtime
+				+ ", e_recipetime=" + e_recipetime + ", e_cc=" + e_cc + ", e_tag=" + e_tag + ", e_open=" + e_open
+				+ ", e_size=" + e_size + ", e_image=" + e_image + ", e_imagesrc=" + e_imagesrc + "]";
+	}
+
 	public int getE_num() {
 		return e_num;
 	}
@@ -50,12 +56,20 @@ public class Email {
 		this.uid = uid;
 	}
 
-	public String getE_recipient() {
-		return e_recipient;
+	public String getE_sender() {
+		return e_sender;
 	}
 
-	public void setE_recipient(String e_recipient) {
-		this.e_recipient = e_recipient;
+	public void setE_sender(String e_sender) {
+		this.e_sender = e_sender;
+	}
+
+	public String getE_receiver() {
+		return e_receiver;
+	}
+
+	public void setE_receiver(String e_receiver) {
+		this.e_receiver = e_receiver;
 	}
 
 	public String getE_sendtime() {
