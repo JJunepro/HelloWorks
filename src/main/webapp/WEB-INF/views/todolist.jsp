@@ -22,7 +22,13 @@
   <link rel="stylesheet" href="resources/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="resources/images/favicon.png" />
-
+	<!-- calendar icon -->
+	<style>
+		.icon-calendar img {
+			width: 18px;
+			height: 21.6px;
+		}
+	</style>
 
 
 
@@ -30,7 +36,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   
   <link rel="stylesheet" href="resources/todolist/todoMain.css">
-	
 
 
 </head>
@@ -155,10 +160,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/HelloWorks/schedule">
-              <i class="icon-anchor menu-icon"></i>
+				<i class="icon-calendar menu-icon"><img class="menu-icon" alt="img" src="resources/schedule/calendar.svg"></i>
               <span class="menu-title">Schedule</span>
-              
             </a>
+                
+            
             <!-- 
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
@@ -226,7 +232,6 @@
 	    <div class="date">
 	      <h1>2021.12.01</h1>
 	    </div>
-
 	
 	  <div class="header__title">
 	    <span class="material-icons">checklist</span>
@@ -236,39 +241,44 @@
 	 
 	<div class="todo__import">
 	  <h3>주요일정</h3>
-	  <table>
-	    <tr>
-	      <td>오늘주요일정1</td>
-	    </tr>
-	    <tr>
-	      <td>오늘주요일정2</td>
-	    </tr>
-	    <tr>
-	      <td>오늘주요일정3</td>
-	    </tr>
-	  </table>
+	      <c:forEach var="list" items="${list }">
+		      <table>
+		        <tr>
+		          <td>${list.todoTitle }</td>
+		        </tr>
+		      </table>
+	      </c:forEach>
 	</div>
 	
 	<div class="todo__basic">
 	  <div class="basic__title">
-	    <h3>내 일정</h3>
+	    <h3 style="margin-bottom:5px;">내 일정</h3>
 	    <form class="todo__input">
 	      <input type="text" class="input__texts" required="required" placeholder="일정을 입력해주세요">
 	      <button type="button" class="input__button"><span class="material-icons">add_circle_outline</span></button>
 	    </form>
 	  </div>
 	      <div class="item__list"></div>
-	      <table>
-	        <tr>
-	          <td>오늘일정1</td>
-	        </tr>
-	        <tr>
-	          <td>오늘일정2</td>
-	        </tr>
-	        <tr>
-	          <td>오늘일정3</td>
-	        </tr>
-	      </table>
+	      <c:forEach var="list" items="${list }">
+		      <table>
+		        <tr>
+		          <td>${list.todoTitle }</td>
+		        </tr>
+		      </table>
+	      </c:forEach>
+	      
+	      
+	      <!-- Modal-->
+	      <div class="modal">
+	      	<div class="modal__header"></div>
+	      	<div class="modal__body">
+	      		<form>
+	      		일정 <input type="text" class="input__txt" required="required" placeholder="일정을 입력해주세요">
+	      		<button type="button" class="input__btn">추가</button>
+	      		</form>
+	      	</div>
+	      </div>
+	      
 	  </div>
 		
        

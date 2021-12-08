@@ -13,7 +13,18 @@ public class TodolistDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Todolist> todolistAll(Todolist vo){
-		return sqlSession.selectList("Todolist.todolistAll", vo);
+	public List<Todolist> todolistToday(Todolist vo){
+		return sqlSession.selectList("Todolist.todolistToday", vo);
+	}
+	
+	public List<Todolist> todayImport(Todolist vo){
+		return sqlSession.selectList("Todolist.todayImport", vo);
+	}
+	public List<Todolist> todayDone(Todolist vo) {
+		return sqlSession.selectList("Todolist.todayDone", vo);
+	}
+	
+	public int todoInsert(Todolist vo) {
+		return sqlSession.insert("Todolist.todoInsert", vo);
 	}
 }

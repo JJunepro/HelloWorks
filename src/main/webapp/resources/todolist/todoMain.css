@@ -10,7 +10,12 @@ ul, li {
   padding: 0;
   margin: 0;
 }
-
+td {
+	padding: 5px 5px 5px 0;
+}
+*:focus {
+  outline: none;
+}
 /* 날짜부분 */
 .date {
 	margin: auto;
@@ -24,15 +29,23 @@ ul, li {
     margin-bottom: 20px;
     }
 .header__title h1 {
-      margin: 0 0 0 10px;
+      margin: 0;
+      font-size: 30px;
     }
 .header__title .material-icons {
-      font-size: 44px;
+      font-size: 30px;
+      margin: 0 5px 0 0;
     }
+ 
+.main-panel h3{
+	font-size: 25px;
+	font-weight: 600;
+	margin-bottom: 5px;
+	}
  
 /* 주요 일정 */
 .todo__import {
-	margin-bottom: 30px;
+	margin-bottom: 100px;
 	}
 	
 /* 기본 일정 */
@@ -45,12 +58,11 @@ ul, li {
 
 /* todo입력창 */
  .todo__input {
-   height: 34px;
    position: relative;
    margin: 0 0 0 10px;
  }
  .todo__input .input__texts {
-   height: 30px;
+   height: 28px;
    width: 160px;
    padding: 4px 10px;
    box-sizing: border-box;

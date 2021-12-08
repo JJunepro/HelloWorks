@@ -19,19 +19,16 @@ public class Todolist {
 	private int todoNum;
 	private String uid;
 	private String todoTitle;
-	private String todoMemo;
 	private String todoDate;
 	private String todoMark; // 일정0 주요일정1
 	private String todoProcess; //진행중0 완료1
 	
-	
-	
+
 	@Override
 	public String toString() {
-		return "Todolist [todoNum=" + todoNum + ", uid=" + uid + ", todoTitle=" + todoTitle + ", todoMemo=" + todoMemo
-				+ ", todoDate=" + todoDate + ", todoMark=" + todoMark + ", todoProcess=" + todoProcess + "]";
+		return "Todolist [todoNum=" + todoNum + ", uid=" + uid + ", todoTitle=" + todoTitle + ", todoDate=" + todoDate
+				+ ", todoMark=" + todoMark + ", todoProcess=" + todoProcess + "]";
 	}
-	
 	public int getTodoNum() {
 		return todoNum;
 	}
@@ -50,12 +47,7 @@ public class Todolist {
 	public void setTodoTitle(String todoTitle) {
 		this.todoTitle = todoTitle;
 	}
-	public String getTodoMemo() {
-		return todoMemo;
-	}
-	public void setTodoMemo(String todoMemo) {
-		this.todoMemo = todoMemo;
-	}
+
 	public String getTodoDate() {
 		return todoDate;
 	}

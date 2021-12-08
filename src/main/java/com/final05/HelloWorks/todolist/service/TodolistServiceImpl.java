@@ -12,10 +12,25 @@ import com.final05.HelloWorks.todolist.vo.Todolist;
 public class TodolistServiceImpl implements TodolistService {
 	@Autowired
 	private TodolistDao todoDao;
-	
+
 	@Override
-	public List<Todolist> todolistAll(Todolist vo) throws Exception {
-		return todoDao.todolistAll(vo);
+	public List<Todolist> todolistToday(Todolist vo) throws Exception {
+		return todoDao.todolistToday(vo);
+	}
+
+	@Override
+	public List<Todolist> todayImport(Todolist vo) throws Exception {
+		return todoDao.todayImport(vo);
+	}
+
+	@Override
+	public List<Todolist> todayDone(Todolist vo) throws Exception {
+		return todoDao.todayDone(vo);
+	}
+
+	@Override
+	public int todoInsert(Todolist vo) throws Exception {
+		return todoDao.todoInsert(vo);
 	}
 
 }
