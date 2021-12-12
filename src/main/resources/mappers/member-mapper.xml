@@ -21,6 +21,7 @@
 		<result property="entry" column="ENTRY" />
 		<result property="last" column="LAST" />
 		<result property="keyword" column="KEYWORD" />
+		<result property="okeyword" column="OKEYWORD" />
 		<collection property="organization" resultMap="OrganizationMap"></collection>
 		<collection property="family" resultMap="FamilyMap"></collection>
 		<collection property="degree" resultMap="DegreeMap"></collection>
@@ -98,14 +99,25 @@
 
 
 
-	<insert id="memberAdd" parameterType="Member">
+	
+<insert id="memberAdd" parameterType="Member">
 		insert all
 			into MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY,POSITION) 
 			values(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry},#{position})
-			into Family(U_ID,F_RELATION,F_NAME,F_BIRTH,F_PHONE,F_JOB,F_WITH) values(#{uid},#{fRelation},#{fName},#{fBirth},#{fPhone},#{fJob},#{fWith})
-			into Degree(U_ID,D_SCHOOL,D_MAJOR,D_DEGREE,D_GRADUATED,D_START,D_END) values(#{uid},#{dSchool},#{dMajor},#{dDegree},#{dGraduated},#{dStart},#{dEnd})
-			into Career(U_ID,C_RECTAL,C_TASK,C_START,C_END) values(#{uid},#{cRectal},#{cTask},#{cStart},#{cEnd})
-			into Certificate(U_ID,CE_NAME,CE_ISSUER,CE_DATE) values(#{uid},#{ceName},#{ceIssuer},#{ceDate})
+			 <foreach collection="family" item="item" index="index">
+			into Family(U_ID,F_RELATION,F_NAME,F_BIRTH,F_PHONE,F_JOB,F_WITH)
+			values (#{family.uid},#{item.family.fRelation},#{item.family.fName},#{item.family.fBirth},#{item.family.fPhone},#{item.family.fJob},#{item.family.fWith})
+			</foreach>
+			into Degree(U_ID,D_SCHOOL,D_MAJOR,D_DEGREE,D_GRADUATED,D_START,D_END) 
+			values(#{degree.uid},#{degree.dSchool},#{degree.dMajor},#{degree.dDegree},#{degree.dGraduated},#{degree.dStart},#{degree.dEnd})
+			<foreach collection="career" item="item" index="index">
+			into Career(U_ID,C_RECTAL,C_TASK,C_START,C_END) values
+			(#{career.uid},#{item.career.cRectal},#{item.career.cTask},#{item.career.cStart},#{item.career.cEnd})
+			</foreach>
+			<foreach collection="certificate" item="item" index="index">
+			into Certificate(U_ID,CE_NAME,CE_ISSUER,CE_DATE) values
+			(#{certificate.uid},#{item.certificate.ceName},#{item.certificate.ceIssuer},#{item.certificate.ceDate})
+			</foreach>
 		select * from DUAL	
 	</insert>
 
@@ -163,13 +175,19 @@
 
 	<!-- 게시글 전체 개수 조회 -->
 	<select id="listCount" resultType="int">
-		SELECT count(*) FROM BOARD
+		SELECT count(*) FROM MEMBER
 	</select>
 	
 	<select id="memberAll" resultMap="MemberMap"
 		parameterType="Member">
 		select o.O_NAME,m.* from member m left join Organization o ON m.O_CODE = o.O_CODE
 	</select>
+	
+	<select id="memberOSeach" resultMap="MemberMap"
+		parameterType="Member">
+	select o.O_NAME,m.* from member m left join Organization o ON m.O_CODE = o.O_CODE where O_NAME = #{okeyword}
+	</select>
+	
 	  
 	<select id="memberSeach" resultMap="MemberMap"
 		parameterType="Member" >
@@ -188,15 +206,15 @@
 		#{name}, DEPT = #{dept}, ADDRESS = #{address}, GENDER = #{gender},
 		RESIDENT = #{resident}, MAIL = #{mail},C_PHONE = #{cPhone}, PHONE = #{phone},
 		 SALARY = #{salary}, SALARYDATE = #{salaryDate},BIRTH=#{birth},ENTRY=#{entry},
-		 LAST = #{last}, POSITION = #{position}
-		where U_ID = #{uid}
+		 LAST = #{last}, O_CODE = #{oCode}  ,POSITION = #{position}
+		where U_ID = #{uid} and O_CODE = #{oCode}
 	</update>
 	<update id="familyUpdate" parameterType="Family">
 		<foreach collection="family" item="item" index="index">
 		update FAMILY set
 		F_RELATION = #{fRelation},F_NAME = #{fName}, F_BIRTH=
 		#{fBirth},F_PHONE = #{fPhone},F_JOB = #{fJob},F_WITH = #{fWith}
-		where U_ID = #{uid} and F_NAME = #{fName}
+		where U_ID = #{family.uid} and F_NAME = #{item.family.fName}
 		</foreach>
 	</update>
 	<update id="prizeUpdate" parameterType="Prize">

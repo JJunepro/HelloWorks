@@ -1,5 +1,6 @@
 package com.final05.HelloWorks.member.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,19 +41,24 @@ public class MemberService {
 	   }
 	 
 	  
-	   public List<Member> memberAll(Member vo) {			
-			return memberDao.memberAll(vo);
+//	   public List<Member> memberAll(Member vo) {			
+//			return memberDao.memberAll(vo);
+//	   }
+	   public List<Member> memberOSeach(String okeyword) {			
+			return memberDao.memberOSeach(okeyword);
 	   }
 	   public List<Member> memberSeach(String keyword) {			
 			return memberDao.memberSeach(keyword);
 	   }
-	/* 
+	
 		public int totalCount() {
 			return memberDao.listCount();
 		}
-		public List<Member> selectList(int startPage, int limit) {
-			return memberDao.selectList(startPage, limit);
+		
+		public List<Member> memberAll(int startPage, int limit) {
+			return memberDao.memberAll(startPage, limit);
 		}
+		/* 
 	     public List<Member> selectSearch(String keyword) {			
 			return memberDao.searchList(keyword);
 		 }
@@ -60,18 +66,7 @@ public class MemberService {
 	   public int memberAdd(Member vo) {
 		   return memberDao.memberAdd(vo);
 	   }
-	   public int memberAdd(Family fvo) {
-		   return memberDao.memberAdd(fvo);
-	   }
-	   public int memberAdd(Degree dvo) {
-		   return memberDao.memberAdd(dvo);
-	   }
-	   public int memberAdd(Career cvo) {
-		   return memberDao.memberAdd(cvo);
-	   }
-	   public int memberAdd(Certificate cevo) {
-		   return memberDao.memberAdd(cevo);
-	   }
+	  
 	  
 
 	   public int memberDelete(String uid) {
@@ -93,8 +88,8 @@ public class MemberService {
 		   return memberDao.transferUpdate(tvo);
 	   }
 	  
-	   public int familyUpdate(Map<String, Object> map) {
-		   return memberDao.familyUpdate(map);
+	   public List<Family> familyUpdate(ArrayList<Family> family) {
+		   return memberDao.familyUpdate(family);
 	   }
 	   public int prizeUpdate(Prize pvo) {
 		   return memberDao.prizeUpdate(pvo);

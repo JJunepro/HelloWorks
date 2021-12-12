@@ -1,6 +1,7 @@
 package com.final05.HelloWorks.member.model.dao;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +46,14 @@ public class MemberDao {
 	  return sqlSession.selectOne("Member.profile", vo);
 	 }
 
- public List<Member> memberAll(Member vo) {
-		 return sqlSession.selectList("Member.memberAll", vo);
-	 }
+		/*
+		 * public List<Member> memberAll(Member vo) { return
+		 * sqlSession.selectList("Member.memberAll", vo); }
+		 */
+ public List<Member> memberOSeach(String okeyword) {
+	 System.out.println("okeyword2"+okeyword);
+	 return sqlSession.selectList("Member.memberOSeach", okeyword);
+ }
  public List<Member> memberSeach(String keyword) {
 	 return sqlSession.selectList("Member.memberSeach", keyword);
  }
@@ -55,33 +61,24 @@ public class MemberDao {
  public List<Member> searchList(String keyword) {
 	 return sqlSession.selectList("Member.memberSelect", keyword);
  }
-	public List<Member> selectList(int startPage, int limit) {
+ */
+	public List<Member> memberAll(int startPage, int limit) {
 		int startRow = (startPage - 1) * limit;
 		RowBounds row = new RowBounds(startRow, limit);
-		return sqlSession.selectList("Member.selectList", null, row);
+		return sqlSession.selectList("Member.memberAll", null, row);
 	}
 	
 	public int listCount() {
-		return sqlSession.selectOne("Board.listCount");
+		return sqlSession.selectOne("Member.listCount");
 	}
 	
- */
+ 
  
  public int memberAdd(Member vo) {
+	 System.out.println("vovo"+vo);
      return sqlSession.insert("Member.memberAdd", vo);
   }
- public int memberAdd(Family fvo) {
-     return sqlSession.insert("Member.memberAdd", fvo);
-  }
- public int memberAdd(Degree dvo) {
-     return sqlSession.insert("Member.memberAdd", dvo);
-  }
- public int memberAdd(Career cvo) {
-     return sqlSession.insert("Member.memberAdd", cvo);
-  }
- public int memberAdd(Certificate cevo) {
-     return sqlSession.insert("Member.memberAdd", cevo);
-  }
+ 
  public int memberDelete(String uid) {
      return sqlSession.delete("Member.memberDelete", uid);
   }
@@ -108,9 +105,12 @@ public class MemberDao {
      return sqlSession.update("Member.TransferUpdate", tvo);
   }
  
- public int familyUpdate(Map<String, Object> map) {
-	 System.out.println("dao 업테이트"+map);
-     return sqlSession.update("Member.familyUpdate", map);
+ public List<Family> familyUpdate(ArrayList<Family> family2) {
+	 System.out.println("dao 업테이트"+family2);
+	 for(Family family : family2) {
+		 sqlSession.update("Member.familyUpdate", family);
+	 }
+	return null;
   }
  public int prizeUpdate(Prize pvo) {
 	 System.out.println("dao 업테이트"+pvo);

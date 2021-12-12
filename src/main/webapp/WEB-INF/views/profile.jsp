@@ -298,9 +298,8 @@
 						</div>
 
  					 <ul class="nav nav-tabs">
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">기본</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu2">인사 발령</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">가족</a></li>
+     					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu2">가족</a></li>
+     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">인사 발령</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu4">인사평가</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu5">학력</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu6">포상</a></li>
@@ -310,7 +309,7 @@
    						 <div class="tab-content">
    						 
 						
-						<div class="tab-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">		
+						<%-- <div class="tab-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">		
 						<form id = "updateform1" action="memberUpdate" method="post">
 						<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">	
 									<table border="0" width="1100px;">
@@ -326,34 +325,9 @@
 											<button type="submit" id = "updatesub1" class="btn btn-outline-info" onclick="location.href='organizationUpdate?uid=${memberinfo.uid }'">수정</button>
 							</form>
 						
-						</div>
-							
-						<div class="tab-pane container fade" id = "menu2">
-						
-						<form id = "updateform2" action="transferUpdate" method="post">
-						<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">	
-								<table border="0" width="1250px;">
-									<tr>
-										<td>직원 구분 </td>
-										<td><input type = "text" id = "uType" name = "uType" value = "${memberinfo.transfer.uType }"></td>											
-										<td>직급</td>
-										<td><input type = "text" id = "uRank" name = "uRank" value = "${memberinfo.transfer.uRank }"></td>
-										<td>시작일</td>
-										<td><input type = "text" id = "uStart" name = "uStart" value = "${memberinfo.transfer.uStart }"></td>
-										<td>종료일</td>
-										<td><input type = "text" id = "uEnd" name = "uEnd" value = "${memberinfo.transfer.uEnd }"></td>
-									 
-									</tr>
-								</table>
-								<button type="submit" id = "updatesub2" class="btn btn-outline-info" onclick="location.href='transferUpdate?uid=${memberinfo.uid }'">수정</button>
-							</form>
-							
-									</div>
+						</div> --%>
 									
-									
-									
-									
-									<div class="tab-pane container fade" id = "menu3">
+									<div class="tab-pane container fade" id = "menu2"  style = "width:100%;  overflow:auto">
 										<form id = "updateform3" action="familyUpdate" method="post">
 										<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">
 										<table border="0" width="1250px;">
@@ -380,6 +354,30 @@
 										<button type="submit" id = "updatesub0" class="btn btn-outline-info" onclick="location.href='familyUpdate?uid=${memberinfo.uid }'">수정</button>
 									</form>	
 									</div>
+									
+									
+									<div class="tab-pane container fade" id = "menu3">
+						
+						<form id = "updateform2" action="transferUpdate" method="post">
+						<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">	
+								<table border="0" width="1250px;">
+									<tr>
+										<td>직원 구분 </td>
+										<td><input type = "text" id = "uType" name = "uType" value = "${memberinfo.transfer.uType }"></td>											
+										<td>직급</td>
+										<td><input type = "text" id = "uRank" name = "uRank" value = "${memberinfo.transfer.uRank }"></td>
+										<td>시작일</td>
+										<td><input type = "text" id = "uStart" name = "uStart" value = "${memberinfo.transfer.uStart }"></td>
+										<td>종료일</td>
+										<td><input type = "text" id = "uEnd" name = "uEnd" value = "${memberinfo.transfer.uEnd }"></td>
+									 
+									</tr>
+								</table>
+								<button type="submit" id = "updatesub2" class="btn btn-outline-info" onclick="location.href='transferUpdate?uid=${memberinfo.uid }'">수정</button>
+							</form>
+							
+									</div>
+									
 									
 								<div class="tab-pane container fade" id = "menu4">
 								<form id = "updateform4" action="appreaisalUpdate" method="post">

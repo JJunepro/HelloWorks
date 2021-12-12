@@ -246,6 +246,10 @@ th, td {
 
 						</div>
 					</div>
+					
+					<script>
+				
+					</script>
 					<div class="row mt-3">
 						<div class="col-xl-2 flex-column d-flex grid-margin stretch-card">
 							<div class="row flex-grow">
@@ -253,14 +257,17 @@ th, td {
 									<div class="card">
 										<div class="card-body">
 											<h3>부서</h3>
-											<ui class="nav flex-column sub-menu">
-											<li><a href="">경영지원실</a></li>
-											<li><a href="">기획예산실</a></li>
-											<li><a href="">인사총무실</a></li>
-											<li><a href="">개발팀</a></li>
-											<li><a href="">기획팀</a></li>
+											<form action="memberOSeach" method="get" name="listForm">
+											<ui class="nav flex-column sub-menu" name="okeyword">
+												<li><a href="memberOSeach?okeyword=경영지원실">경영지원실</a></li>
+												<li><a href="memberOSeach?okeyword=기획예산실">기획예산실</a></li>
+												<li><a href="memberOSeach?okeyword=인사총무실">인사총무실</a></li>
+												<li><a href="memberOSeach?okeyword=개발팀">개발팀</a></li>
+												<li><a href="memberOSeach?okeyword=기획팀">기획팀</a></li>
 											</ui>
-
+											</form>
+												
+											
 										</div>
 									</div>
 								</div>

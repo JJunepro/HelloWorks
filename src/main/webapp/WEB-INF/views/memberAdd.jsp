@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="resources/images/favicon.png" />
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <style>
 	tr, td{
@@ -53,7 +53,6 @@
 		margin-left: auto;
 	}
 </style>
-
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
@@ -245,9 +244,10 @@
 					</div>
 					
 					<div class="row mt-3">
-					<form action="memberAdd" method="post">
+					<form action="memberAdd" method="post" name = "memAdd" id = "memAdd" >
 						<div class="col-xl-12 d-flex grid-margin stretch-card">
 							<div class="card">
+							
 							
 							
 								<div class="card-body" style = "width:100%;  overflow:auto">
@@ -269,7 +269,7 @@
 													<td>이름</td>
 													<td><input type="text" name="name"></td>
 													<td>ID</td>
-													<td><input type="text" name="uid"></td>
+													<td><input type="text" name="uid" id = "uid"></td>
 													<td>PWD</td>
 													<td><input type="text" name="pwd"></td>
 												</tr>
@@ -319,9 +319,8 @@
 								
 							</div>
 						</div>
-
  					 <ul class="nav nav-tabs">
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">기본</a></li>
+     					<!--  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">기본</a></li> -->
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">가족</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu5">학력</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
@@ -329,48 +328,46 @@
    					</ul>
    						 <div class="tab-content">
    						 
-						
-						<div class="tab-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">		
-						<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">	
-									<table border="0" width="1100px;">
-												<tr>
-													<td>부서 코드</td>
-													<td><input type = "text" id = "oCode" name = "oCode" value = "${info.organization.oCode }"></td>
-												
-													<td>부서</td>
-													<td><input type = "text" id = "oName" name = "oName" value = "${info.organization.oName }"></td>
-												</tr>
-												
-											</table>
-									
-						
-						</div>
-							
-						
-									
-									
-									
-									
-									<div class="tab-pane container fade" id = "menu3">
-										<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
-										<table border="0" width="1250px;">
+							<div class="tab-pane container active" id = "menu3" style = "width:100%;  overflow:auto">
+										
+										
+										<table border="0" width="1050px;">
+												<th></th>
 												<th>관계</th>
 												<th>이름</th>
 												<th>생년월일</th>
 												<th>휴대전화</th>
 												<th>직업</th>
 												<th>동거여부</th>
-										<c:forEach var = "vo1" items = "${info.family }" varStatus="status">
-										<input type = "hidden" id = "uid" name = "uid" value = "${vo1.fName }">
+											
+											<tr>
+											<td><input type = "text" name = "family[0].uid" id = "uid1" ></td>
+											<td><input type = "text" name = "degree.uid" id = "uid1" ></td>
+											<td><input type = "text" name = "career[0].uid" id = "uid1" ></td>
+											<td><input type = "text" name = "certificate[0].uid" id = "uid1" ></td>
+											<td><input type = "text" name = "family[1].uid" id = "uid1" ></td>
+											<td><input type = "text" name = "career[1].uid" id = "uid1" ></td>
+											<td><input type = "text" name = "certificate[1].uid" id = "uid1" ></td>
+											</tr>
+										
 										<tr>
-											<td><input type = "text" id = "fRelation_${status.count}" name = "fRelation_${status.count}" value = "${vo1.fRelation }"></td>
-											<td><input type = "text" id = "fName_${status.count}" name = "fName_${status.count}" value = "${vo1.fName }"></td>
-											<td><input type = "text" id = "fBirth_${status.count}" name = "fBirth_${status.count}" value = "${vo1.fBirth }"></td>
-											<td><input type = "text" id = "fPhone_${status.count}" name = "fPhone_${status.count}" value = "${vo1.fPhone }"></td>
-											<td><input type = "text" id = "fJob_${status.count}" name = "fJob_${status.count}" value = "${vo1.fJob }"></td>
-											<td><input type = "text" id = "fWith_${status.count}" name = "fWith_${status.count}" value = "${vo1.fWith }"></td>
+											<td><input type = "hidden" name = "family[0].uid" id = "uid1" ></td>
+											<td><input type = "text" name = "family[0].fRelation" ></td>
+											<td><input type = "text" name = "family[0].fName" ></td>
+											<td><input type = "text"  name = "family[0].fBirth" ></td>
+											<td><input type = "text"  name = "family[0].fPhone" ></td>
+											<td><input type = "text" name = "family[0].fJob" ></td>
+											<td><input type = "text"  name = "family[0].fWith" ></td>
 										</tr>
-										</c:forEach>
+										<tr>
+											<td><input type = "hidden" name = "family[1].uid" ></td>
+											<td><input type = "text" name = "family[1].fRelation" ></td>
+											<td><input type = "text" name = "family[1].fName" ></td>
+											<td><input type = "text"  name = "family[1].fBirth" ></td>
+											<td><input type = "text"  name = "family[1].fPhone" ></td>
+											<td><input type = "text" name = "family[1].fJob" ></td>
+											<td><input type = "text"  name = "family[1].fWith" ></td>
+										</tr>
 									
 										</table>
 										
@@ -378,23 +375,22 @@
 							
 									
 										<div class="tab-pane container fade" id = "menu5">
-								<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
 								<table border="0" width="1250px;">
 												<tr>
 													<td>학교명</td>
-													<td><input type = "text" id = "dSchool" name = "dSchool" value = "${info.degree.dSchool }"></td>
+													<td><input type = "text" name = "degree.dSchool"  ></td>
 													<td>전공</td>
-													<td><input type = "text" id = "dMajor" name = "dMajor" value = "${info.degree.dMajor }"></td>
+													<td><input type = "text" name = "degree.dMajor" ></td>
 													<td>학위</td>
-													<td><input type = "text" id = "dDegree" name = "dDegree" value = "${info.degree.dDegree }"></td>
+													<td><input type = "text"  name = "degree.dDegree" ></td>
 												</tr>
 												<tr>
 													<td>졸업여부</td>
-													<td><input type = "text" id = "dGraduated" name = "dGraduated" value = "${info.degree.dGraduated }"></td>
+													<td><input type = "text" name = "degree.dGraduated"></td>
 													<td>입학일</td>
-													<td><input type = "text" id = "dStart" name = "dStart" value = "${info.degree.dStart }"></td>
+													<td><input type = "text"  name = "degree.dStart"></td>
 													<td>졸업일</td>
-													<td><input type = "text" id = "dEnd" name = "dEnd" value = "${info.degree.dEnd }"></td>
+													<td><input type = "text"  name = "degree.dEnd" ></td>
 												</tr>
 												
 											</table>
@@ -411,15 +407,18 @@
 									<th>시작일</th>
 									<th>종료일</th>
 									
-									<c:forEach var = "vo3" items = "${info.career }" varStatus="status">
-									<input type = "hidden" id = "uid3" name = "uid3" value = "${vo3.uid }">
 									<tr>
-										<td><input type = "text" id = "cRectal_${status.count}" name = "cRectal_${status.count}" value = "${vo3.cRectal }"></td>
-										<td><input type = "text" id = "cTask_${status.count}" name = "cTask_${status.count}" value = "${vo3.cTask }"></td>
-										<td><input type = "text" id = "cStart_${status.count}" name = "cStart_${status.count}" value = "${vo3.cStart }"></td>
-										<td><input type = "text" id = "cEnd_${status.count}" name = "cEnd_${status.count}" value = "${vo3.cEnd }"></td>										
+										<td><input type = "text"  name = "career[0].cRectal" ></td>
+										<td><input type = "text" name = "career[0].cTask" ></td>
+										<td><input type = "text" name = "career[0].cStart" ></td>
+										<td><input type = "text" name = "career[0].cEnd"></td>										
 									</tr>
-									</c:forEach>
+										<tr>
+										<td><input type = "text"  name = "career[1].cRectal" ></td>
+										<td><input type = "text" name = "career[1].cTask" ></td>
+										<td><input type = "text" name = "career[1].cStart" ></td>
+										<td><input type = "text" name = "career[1].cEnd"></td>										
+									</tr>
 								</table>
 							
 								
@@ -431,25 +430,38 @@
 									<th>자격증명</th>
 									<th>발행기관</th>
 									<th>취득일</th>
-									<c:forEach var = "vo4" items = "${info.certificate }" varStatus="status">
-									<input type = "hidden" id = "uid4" name = "uid4" value = "${vo4.uid }">
 									<tr>
-										<td><input type = "text" id = "ceName_${status.count}" name = "ceName_${status.count}" value = "${vo4.ceName }"></td>
-										<td><input type = "text" id = "ceIssuer_${status.count}" name = "ceIssuer_${status.count}" value = "${vo4.ceIssuer }"></td>
-										<td><input type = "text" id = "ceDate_${status.count}" name = "ceDate_${status.count}" value = "${vo4.ceDate }"></td>
+										<td><input type = "text" name = "certificate[0].ceName" ></td>
+										<td><input type = "text"  name = "certificate[0].ceIssuer"></td>
+										<td><input type = "text"  name = "certificate[0].ceDate" ></td>
 									</tr>
-									</c:forEach>
+									<tr>
+										<td><input type = "text" name = "certificate[1].ceName" ></td>
+										<td><input type = "text"  name = "certificate[1].ceIssuer" ></td>
+										<td><input type = "text"  name = "certificate[1].ceDate" ></td>
+									</tr>
 								</table>
 								</div>
 							</div>
 							<a href="memberAll"role="button" class="btn btn-outline-info">목록</a>
-							<button type="submit" id = "updatesub" class="btn btn-outline-info"">추가</button>
+							<input type="submit" id = "mAdd" class="btn btn-outline-info" value = "추가"  >
 							
 							</form>
 						</div>
 					</div>
 			</div>
 		</div>
+		
+		<script>
+			$(document).ready(function(){
+				$("form").submit(function(e) {
+					var id = document.getElementId("uid");
+					 console.log("id"+id);
+					 $('#uid1').val('#uid'); 
+				});
+			});
+		</script> 
+		
 		<!-- content-wrapper ends -->
 		<!-- partial:partials/_footer.html -->
 		<footer class="footer">

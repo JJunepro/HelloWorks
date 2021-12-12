@@ -35,17 +35,14 @@ public class Member {
 	private List<Certificate> certificate;
 	
 	private String keyword;
+	private String okeyword;
 	
 	public Member() {}
-	
-	
-	
-
 	public Member(String uid, int oCode, String pwd, int dept, String position, String name, int birth, int resident,
 			String address, String mail, int phone, String gender, int cPhone, int salary, String pImage,
 			String salaryDate, String entry, String last, Organization organization, Degree degree,
 			Appreaisal appreaisal, Transfer transfer, List<Family> family, List<Prize> prize, List<Career> career,
-			List<Certificate> certificate, String keyword) {
+			List<Certificate> certificate, String keyword, String okeyword) {
 		super();
 		this.uid = uid;
 		this.oCode = oCode;
@@ -74,7 +71,9 @@ public class Member {
 		this.career = career;
 		this.certificate = certificate;
 		this.keyword = keyword;
+		this.okeyword = okeyword;
 	}
+
 
 
 
@@ -87,26 +86,26 @@ public class Member {
 				+ ", pImage=" + pImage + ", salaryDate=" + salaryDate + ", entry=" + entry + ", last=" + last
 				+ ", organization=" + organization + ", degree=" + degree + ", appreaisal=" + appreaisal + ", transfer="
 				+ transfer + ", family=" + family + ", prize=" + prize + ", career=" + career + ", certificate="
-				+ certificate + ", keyword=" + keyword + "]";
+				+ certificate + ", keyword=" + keyword + ", okeyword=" + okeyword + "]";
 	}
 
 
 
+
+
+	public String getOkeyword() {
+		return okeyword;
+	}
+	public void setOkeyword(String okeyword) {
+		this.okeyword = okeyword;
+	}
 
 	public String getPosition() {
 		return position;
 	}
-
-
-
-
 	public void setPosition(String position) {
 		this.position = position;
 	}
-
-
-
-
 	public String getUid() {
 		return uid;
 	}
@@ -314,6 +313,7 @@ public class Member {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
 
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class Family {
 	private String uid;  // 아이디
 	private String fRelation;  // 관계
@@ -14,8 +15,6 @@ public class Family {
 	private String fPhone;  // 휴대전화
 	private String fJob;  // 직업
 	private String fWith;  // 동거여부
-	
-	//private List<Family> FamilyList;
 	
 	public Family() {}
 
