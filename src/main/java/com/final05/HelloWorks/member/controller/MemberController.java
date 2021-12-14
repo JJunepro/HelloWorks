@@ -41,14 +41,14 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	public static final int LIMIT = 5;
+	public static final int LIMIT = 10;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv) {
 		mv.setViewName("login");
 		return mv;
 	}
-	
+	// 로그인
 	@RequestMapping(value = "login", method = RequestMethod.POST) // 포스트 방식 매핑
 	public String login(Member vo, HttpSession session) throws Exception {
 		System.out.println("vo : " + vo);
@@ -70,7 +70,7 @@ public class MemberController {
 		System.out.println("login : " + login);
 		return viewName;
 	}
-
+	// 로그아웃
 	@RequestMapping(value = "logout")
 	public ModelAndView logout(HttpSession session, SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
@@ -92,7 +92,7 @@ public class MemberController {
 		mv.setViewName("pwdSearch");
 		return mv;
 	}
-
+	// 아이디 찾기
 	@RequestMapping(value = "idSearch", method = RequestMethod.POST) // 포스트 방식 매핑
 	public String idSearch(Member vo, Model model) {
 		String viewName = "";
@@ -116,7 +116,7 @@ public class MemberController {
 		System.out.println(member.getName());
 		return "idSearch";
 	}
-
+	// 비밀번호 찾기
 	@RequestMapping(value = "pwdSearch", method = RequestMethod.POST)
 	public String pwdSearch(Member vo, Model model) {
 		Member member = memberService.pwdSearch(vo);
@@ -138,7 +138,7 @@ public class MemberController {
 		}
 		return "pwdSearch";
 	}
-	
+	// 회원 정보
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public ModelAndView profile(ModelAndView mv, HttpSession session) {
 		System.out.println("여기session:"+ session.getAttribute("memberinfo"));
@@ -152,7 +152,7 @@ public class MemberController {
 		return mv;
 	}
 	*/
-	
+	// 회원 정보
 	 @RequestMapping(value = "profile2", method = RequestMethod.GET)
 	    public String profile2(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model,HttpSession session){
 		 	
@@ -169,14 +169,17 @@ public class MemberController {
 	 
 	
 	
-	  
+	  // 부서 검색
 	  @RequestMapping(value="memberOSeach", method=RequestMethod.GET) 
 	  public ModelAndView memberOSeach(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "okeyword", required = false) String okeyword,ModelAndView mv) { 
 		  System.out.println("okeyword"+okeyword);
+		  List<Organization> list2 = new ArrayList<Organization>();
 		  try {	
 				if (okeyword != null && !okeyword.equals(""))
 					mv.addObject("list", memberService.memberOSeach(okeyword));
+					list2 = memberService.organizationAll();
 				System.out.println("mv"+mv);
+				mv.addObject("list2",list2);
 				mv.setViewName("memberAll");
 			} catch (Exception e) {
 				mv.addObject("msg", e.getMessage());
@@ -184,6 +187,7 @@ public class MemberController {
 			}
 			return mv;
 		}
+	  // 회원 검색
 	  @RequestMapping(value="memberSeach", method=RequestMethod.GET) 
 	  public ModelAndView memberSeach(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "keyword", required = false) String keyword,ModelAndView mv) { 
 		  try {	
@@ -196,7 +200,27 @@ public class MemberController {
 			}
 			return mv;
 		}
-	  
+	  // 부서 목록
+	  @RequestMapping(value="organizationAll", method=RequestMethod.GET) 
+	  public ModelAndView organizationAll(@RequestParam(name = "page", defaultValue = "1") int page , ModelAndView mv) { 
+		  int currentPage = page;
+		  // 한 페이지당 출력할 목록 갯수
+		  int listCount = memberService.totalCount();
+		  int maxPage = (int) ((double) listCount / LIMIT + 0.9);
+		  List<Organization> list2 = new ArrayList<Organization>();
+		  try { 
+			  list2 = memberService.organizationAll();
+			  mv.addObject("list2",list2);
+			  System.out.println("list2"+list2);
+		  }catch(Exception e) {
+			  e.printStackTrace(); 
+		  }
+
+	  mv.setViewName("organizationAll");
+
+	 return mv; 
+	 }
+	  // 회원 목록
 	  @RequestMapping(value="memberAll", method=RequestMethod.GET) 
 	  public ModelAndView memberAll(@RequestParam(name = "page", defaultValue = "1") int page , ModelAndView mv) { 
 		  int currentPage = page;
@@ -205,9 +229,13 @@ public class MemberController {
 		  int maxPage = (int) ((double) listCount / LIMIT + 0.9);
 		  Member vo = new Member();
 		  List<Member> list = new ArrayList<Member>();
+		  List<Organization> list2 = new ArrayList<Organization>();
 		  try { 
 			  list = memberService.memberAll(currentPage, LIMIT);
+			  list2 = memberService.organizationAll();
 			  mv.addObject("list",list);
+			  mv.addObject("list2",list2);
+			  System.out.println("list2"+list2);
 		  }catch(Exception e) {
 			  e.printStackTrace(); 
 		  }
@@ -239,82 +267,51 @@ public class MemberController {
 			}
 			return mv;
 		}
-	  */
+	  */ 
+	  @RequestMapping(value = "organizationAdd", method = RequestMethod.GET)
+		public ModelAndView organizationAdd(ModelAndView mv) {
+			mv.setViewName("organizationAdd");
+			return mv;
+		}
+	  // 부서 추가
+	  @RequestMapping(value = "organizationAdd", method=RequestMethod.POST)
+	  public ModelAndView organizationAdd(Organization ovo,
+			   HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+	      int result=0;
+	      try {
+	         System.out.println("vo"+ovo);
+	        
+	         result =  memberService.organizationAdd(ovo);
+	      
+	         System.out.println("result"+result);
+	         if(result==1) {
+	            mv.setViewName("redirect:/organizationAll");
+	         }else {
+	            mv.setViewName("redirect:/organizationAll");
+	         }	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }	      
+	      return mv;
+	   }
+	  
 	  @RequestMapping(value = "memberAdd", method = RequestMethod.GET)
 		public ModelAndView memberAdd(ModelAndView mv) {
 			mv.setViewName("memberAdd");
 			return mv;
 		}
-	  
+	  // 회원 추가
 	  @RequestMapping(value = "memberAdd", method=RequestMethod.POST)
 	  public ModelAndView memberAdd(Member vo,
 		  @RequestParam("uid") String uid,
-//			 @RequestParam("uid") List<Family> uid1,
-//			  @RequestParam("uid") Degree uid2,@RequestParam("uid") List<Career> uid3,@RequestParam("uid") List<Certificate> uid4,
-//			   @RequestParam("pwd") String pwd,@RequestParam("name") String name,
-//			   @RequestParam("oCode") int oCode,@RequestParam("dept") int dept,@RequestParam("address") String address,
-//			   @RequestParam("resident") int resident,@RequestParam("mail") String mail,@RequestParam("cPhone") int cPhone,
-//			   @RequestParam("phone") int phone,@RequestParam("salary") int salary,@RequestParam("salaryDate") String salaryDate,
-//			   @RequestParam("gender") String gender,@RequestParam("birth") int birth,@RequestParam("entry") String entry,
-//			   @RequestParam(value="fRelation", required=false) List<Family> family,@RequestParam(value="fName", required=false) List<Family> fName,
-//			   @RequestParam(value="fBirth", required=false) List<Family> fBirth,@RequestParam(value="fPhone", required=false) List<Family> fPhone,
-//			   @RequestParam(value="fJob", required=false) List<Family> fJob,@RequestParam(value="fWith", required=false) List<Family> fWith,
-//			   @RequestParam(value="dSchool", required=false) Degree dSchool,@RequestParam(value="dMajor", required=false) Degree dMajor,
-//			   @RequestParam(value="dDegree", required=false) Degree dDegree,@RequestParam(value="dGraduated", required=false) Degree dGraduated,
-//			   @RequestParam(value="dStart", required=false) Degree dStart,@RequestParam(value="dEnd", required=false) Degree dEnd,
-//			   @RequestParam(value="cRectal", required=false) List<Career> cRectal,@RequestParam(value="cTask", required=false) List<Career> cTask,
-//			   @RequestParam(value="cStart", required=false) List<Career> cStart,@RequestParam(value="cEnd", required=false) List<Career> cEnd,
-//			   @RequestParam(value="ceName", required=false) List<Certificate> ceName,@RequestParam(value="ceIssuer", required=false) List<Certificate> ceIssuer,
-//			   @RequestParam(value="ceDate", required=false) List<Certificate> ceDate,
 			   HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
 	      int result=0;
 	      try {
 	         System.out.println("vo"+vo);
 	         System.out.println("uid"+uid);
-	         
-//	         vo.setUid(uid);
-//	         vo.setPwd(pwd);
-//	         vo.setDept(dept);
-//	         vo.setoCode(oCode);
-//	         vo.setAddress(address); 
-//	         vo.setResident(resident);
-//	         vo.setMail(mail);
-//	         vo.setcPhone(cPhone);
-//	         vo.setPhone(phone);   
-//	         vo.setSalary(salary);
-//	         vo.setSalaryDate(salaryDate);
-//	         vo.setGender(gender);
-//	         vo.setBirth(birth);
-//	         vo.setEntry(entry);
-//	         vo.setFamily(uid1);
-//	         vo.setFamily(family);
-//	         vo.setFamily(fName);
-//	         vo.setFamily(fBirth);
-//	         vo.setFamily(fPhone);
-//	         vo.setFamily(fJob);
-//	         vo.setFamily(fWith); 
-//	         vo.setDegree(uid2);
-//	         vo.setDegree(dSchool);
-//	         vo.setDegree(dMajor);
-//	         vo.setDegree(dDegree);   
-//	         vo.setDegree(dGraduated);
-//	         vo.setDegree(dStart);
-//	         vo.setDegree(dEnd);
-//	         vo.setCareer(uid3);
-//	         vo.setCareer(cRectal);   
-//	         vo.setCareer(cTask);
-//	         vo.setCareer(cStart);
-//	         vo.setCareer(cEnd);
-//	         vo.setCertificate(uid4);   
-//	         vo.setCertificate(ceName);
-//	         vo.setCertificate(ceIssuer);
-//	         vo.setCertificate(ceDate);
-	         
-	         result =  memberService.memberAdd(vo);
-	       
-	         
 	        
-	         
+	         result =  memberService.memberAdd(vo);
+	      
 	         System.out.println("result"+result);
 	         if(result==1) {
 	          //  String msg = "회원 정보가 등록되었습니다.";
@@ -324,63 +321,67 @@ public class MemberController {
 	          //  String msg = "회원 정보 등록에 실패하였습니다.";
 	           // rttr.addFlashAttribute("msg", msg);
 	            mv.setViewName("redirect:/memberAll");
-	         }
-	         
+	         }	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
-	      }
-	      
+	      }	      
 	      return mv;
 	   }
-
-
-
-	  
 	 
-	  
+	  // 회원 삭제
 	  @RequestMapping(value = "memberDelete", method = RequestMethod.GET)
 	  public String memberDelete(@RequestParam("uid") String uid, Model model){
 	  		System.out.println("삭제 id: "+uid);
 	        memberService.memberDelete(uid);
-	            
-	        return "redirect:/memberAll";
-	            
+	        return "redirect:/memberAll";	         
+	  } 
+	  // 부서 삭제
+	  @RequestMapping(value = "organizationDelete", method = RequestMethod.GET)
+	  public String organizationDelete(@RequestParam("uid") String oCode, Model model){
+	  		System.out.println("삭제 code: "+oCode);
+	        memberService.organizationDelete(oCode);
+	        return "redirect:/organizationAll";	         
 	  } 
 	  
-	  //@RequestParam(value = "uid", required=false)String uid
-	  
+	  // 회원 정보 수정 
 	  @RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
 	  public String memberUpdate(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model){
 	        System.out.println("업데이트 id: "+vo);
 	        memberService.memberUpdate(vo);	            
 	        return "redirect:/profile2?uid="+vo.getUid()+"&&oCode="+vo.getoCode();         
 	  } 
+	  // 부서 정보 수정
 	  @RequestMapping(value = "organizationUpdate", method = RequestMethod.POST)
 	  public String organizationUpdate(Organization ovo,Member vo){
 	        System.out.println("업데이트 id: "+ovo);
 	        memberService.organizationUpdate(ovo);	          
 	        return "redirect:/profile2?uid="+vo.getUid()+"&&oCode="+vo.getoCode();	         
 	  } 
+	  // 회원의 학력 정보 수정
 	  @RequestMapping(value = "degreeUpdate", method = RequestMethod.POST)
 	  public String degreeUpdate(Degree dvo,Member vo){
 	        System.out.println("업데이트 id: "+dvo);
 	        memberService.degreeUpdate(dvo);	          
 	        return "redirect:/profile2?uid="+dvo.getUid()+"&&oCode="+vo.getoCode();	          
 	  } 
+	  // 회원의 인사평가 정보 수정
 	  @RequestMapping(value = "appreaisalUpdate", method = RequestMethod.POST)
 	  public String appreaisalUpdate(Appreaisal avo,Member vo){
 	        System.out.println("업데이트 id: "+avo);
 	        memberService.appreaisalUpdate(avo);	          
 	        return "redirect:/profile2?uid="+avo.getUid()+"&&oCode="+vo.getoCode();	          
 	  } 
+	  // 회원의 인사발령 정보 수정
 	  @RequestMapping(value = "transferUpdate", method = RequestMethod.POST)
 	  public String transferUpdate(Transfer tvo,Member vo){
 		  	 System.out.println("업데이트 id: "+tvo);
 	        memberService.transferUpdate(tvo);	          
 	        return "redirect:/profile2?uid="+tvo.getUid()+"&&oCode="+vo.getoCode();	          
 	  } 
-	  @RequestMapping(value = "familyUpdate", method = RequestMethod.GET)
-	  public String familyUpdate(Family fvo,Member vo, HttpServletRequest request){
+	  
+	  // 회원의 가족 정보 수정
+	  @RequestMapping(value = "familyUpdate", method = RequestMethod.POST)
+	  public String familyUpdate(Family[] fvo,Member vo, HttpServletRequest request){
 	        System.out.println("업데이트 id: "+fvo);
 //	        String[] fRelation  = request.getParameterValues("fRelation");
 //	        String[] fName  = request.getParameterValues("fName");
@@ -388,34 +389,29 @@ public class MemberController {
 //	        String[] fPhone  = request.getParameterValues("fPhone");
 //	        String[] fJob  = request.getParameterValues("fJob");
 //	        String[] fWith  = request.getParameterValues("fWith");
-	        ArrayList<Family> family = new ArrayList<Family>();
 	        
-	        
-	        memberService.familyUpdate(family);
+	        System.out.println("family"+fvo);
+	        memberService.familyUpdate(fvo);
 	        
 	        return "redirect:/profile2?uid="+vo.getUid()+"&&oCode="+vo.getoCode();	          
 	  } 
 		
-//		  @RequestMapping(value = "familyUpdate", method = RequestMethod.POST) public
-//		  String familyUpdate(Family fvo,Member vo){
-//		  System.out.println("업데이트 id: "+fvo);
-//		  
-//		  memberService.familyUpdate(fvo);
-//		  
-//		  return "redirect:/profile2?uid="+fvo.getUid(); }
-//		 
+	 // 회원의 포상 정보 수정
 	  @RequestMapping(value = "prizeUpdate", method = RequestMethod.POST)
 	  public String prizeUpdate(Prize pvo){
 	        System.out.println("업데이트 id: "+pvo);
 	        memberService.prizeUpdate(pvo);	          
 	        return "redirect:/profile2?uid="+pvo.getUid();	          
 	  } 
+	  // 회원의 경력 정보 수정
 	  @RequestMapping(value = "careerUpdate", method = RequestMethod.POST)
 	  public String careerUpdate(Career cavo){
 	        System.out.println("업데이트 id: "+cavo);
 	        memberService.careerUpdate(cavo);	          
 	        return "redirect:/profile2?uid="+cavo.getUid();	          
 	  } 
+	  
+	  // 회원의 자격증 정보 수정
 	  @RequestMapping(value = "certificateUpdate", method = RequestMethod.POST)
 	  public String certificateUpdate(Certificate cevo){
 	        System.out.println("업데이트 id: "+cevo);

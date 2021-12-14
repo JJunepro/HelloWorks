@@ -264,7 +264,7 @@
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
 										 
-											<table border="0" width="1100px;">
+											<table border="0" width="1300px;">
 												<tr>
 													<td>이름</td>
 													<td><input type = "text" id = "name" name = "name" value = "${info.name }"></td>
@@ -320,7 +320,7 @@
 								</form>
 							</div>
 						</div>
-
+			
  					 <ul class="nav nav-tabs">
 <!--      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">기본</a></li> -->
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu2">가족</a></li>
@@ -331,30 +331,15 @@
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
      					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu8">자격증</a></li>
    					</ul>
+   					<div class="card-body" style = "width:100%;  overflow:auto">
+   					<div class="row">
    						 <div class="tab-content">
-   						 
-						
-					<%-- 	<div class="tab-pane container active"  id = "menu1"  style = "width:100%;  overflow:auto">		
-						<form id = "updateform1" action="memberUpdate" method="post">
-						<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">	
-									<table border="0" width="1100px;">
-												<tr>
-													
-													<td>부서</td>
-													<td><input type = "text" id = "oName" name = "oName" value = "${info.organization.oName }"></td>
-												</tr>
-												
-											</table>
-											<button type="submit" id = "updatesub1" class="btn btn-outline-info" onclick="location.href='organizationUpdate?uid=${info.uid }'">수정</button>
-							</form>
-						
-						</div> --%>
+   					
+							<div class="tab-pane container active" id = "menu2" >
 							
-							
-							<div class="tab-pane container active" id = "menu2" style = "width:100%;  overflow:auto">
-										<form id = "updateform3" action="familyUpdate" method="get">
+										<form id = "updateform3" action="familyUpdate" method="post">
 										<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
-										<table border="0" width="900px;">
+										<table border="0" width="1570px;">
 												<th>관계</th>
 												<th>이름</th>
 												<th>생년월일</th>
@@ -378,12 +363,12 @@
 									</form>	
 									</div>
 									
-						<div class="tab-pane container fade" id = "menu3">
+						<div class="tab-pane container fade" id = "menu3" >
 						
 						<form id = "updateform2" action="transferUpdate" method="post">
 						<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">	
 						<input type = "hidden" id = "oCode" name = "oCode" value = "${info.oCode }">
-								<table border="0" width="1250px;">
+								<table border="0" width="1570px;">
 									<tr>
 										<td>직원 구분 </td>
 										<td><input type = "text" id = "uType" name = "uType" value = "${info.transfer.uType }"></td>											
@@ -406,7 +391,7 @@
 								<form id = "updateform4" action="appreaisalUpdate" method="post">
 								<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
 								<input type = "hidden" id = "oCode" name = "oCode" value = "${info.oCode }">
-								<table border="0" width="1250px;">
+								<table border="0" width="1570px;">
 												<tr>
 													<td>평가 내용</td>
 													<td colspan="4"><textarea cols="100" rows="3" id = "aContent" name = "aContent" >${info.appreaisal.aContent }</textarea></td>
@@ -434,10 +419,10 @@
 									</form>
 									</div>
 									
-										<div class="tab-pane container fade" id = "menu5">
+										<div class="tab-pane container fade" id = "menu5" >
 										<form id = "updateform5" action="degreeUpdate" method="post">
 								<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
-								<table border="0" width="1250px;">
+								<table border="0" width="1570px;">
 												<tr>
 													<td>학교명</td>
 													<td><input type = "text" id = "dSchool" name = "dSchool" value = "${info.degree.dSchool }"></td>
@@ -460,11 +445,11 @@
 									</form>
 									</div>
 									
-								<div class="tab-pane container fade" id = "menu6">
+								<div class="tab-pane container fade" id = "menu6" >
 								  
 								<form id = "updateform6" action="prizeUpdate" method="post">
 								<input type = "hidden" id = "uid" name = "uid" value = "${info.uid }">
-								<table border="0" width="1250px;">
+								<table border="0" width="1570px;">
 									<th>포상명</th>
 									<th>포상기관</th>
 									<th>포상일</th>
@@ -488,7 +473,7 @@
 								<form id = "updateform7" action="careerUpdate" method="post">
 								<input type = "hidden" id = "uid3" name = "uid3" value = "${info.uid }">
 								<input type = "hidden" id = "oCode" name = "oCode" value = "${info.oCode }">
-								<table border="0" width="1250px;">
+								<table border="0" width="1570px;">
 									<th>직장명</th>
 									<th>업무</th>
 									<th>시작일</th>
@@ -508,12 +493,12 @@
 								
 								</div>
 									
-								<div class="tab-pane container fade" id = "menu8">
+								<div class="tab-pane container fade" id = "menu8" >
 								
 								<form id = "updateform8" action="certificateUpdate" method="post">
 								<input type = "hidden" id = "uid4" name = "uid4" value = "${info.uid }">
 								<input type = "hidden" id = "oCode" name = "oCode" value = "${info.oCode }">
-								<table border="0" width="1250px;">
+								<table border="0" width="1570px;">
 									<th>자격증명</th>
 									<th>발행기관</th>
 									<th>취득일</th>
@@ -530,18 +515,12 @@
 								</form>
 								
 								</div>
-							</div>
 							
-						
 							</div>
-							
-						
-						
-						
 					</div>
 						
 						
-						
+						</div>
 				
 			</div>
 		</div>

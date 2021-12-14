@@ -58,6 +58,10 @@ public class MemberService {
 		public List<Member> memberAll(int startPage, int limit) {
 			return memberDao.memberAll(startPage, limit);
 		}
+		
+		public List<Organization> organizationAll() {
+			return memberDao.organizationAll();
+		}
 		/* 
 	     public List<Member> selectSearch(String keyword) {			
 			return memberDao.searchList(keyword);
@@ -66,11 +70,16 @@ public class MemberService {
 	   public int memberAdd(Member vo) {
 		   return memberDao.memberAdd(vo);
 	   }
-	  
+	   public int organizationAdd(Organization ovo) {
+		   return memberDao.organizationAdd(ovo);
+	   }
 	  
 
 	   public int memberDelete(String uid) {
 		   return memberDao.memberDelete(uid);
+	   }
+	   public int organizationDelete(String oCode) {
+		   return memberDao.organizationDelete(oCode);
 	   }
 	   public int memberUpdate(Member vo) {
 		   return memberDao.memberUpdate(vo);
@@ -88,8 +97,8 @@ public class MemberService {
 		   return memberDao.transferUpdate(tvo);
 	   }
 	  
-	   public List<Family> familyUpdate(ArrayList<Family> family) {
-		   return memberDao.familyUpdate(family);
+	   public int familyUpdate(Family[] fvo) {
+		   return memberDao.familyUpdate(fvo);
 	   }
 	   public int prizeUpdate(Prize pvo) {
 		   return memberDao.prizeUpdate(pvo);

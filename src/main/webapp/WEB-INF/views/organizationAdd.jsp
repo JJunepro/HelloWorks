@@ -244,252 +244,61 @@
 					</div>
 					
 					<div class="row mt-3">
-					<form action="memberAdd" method="post" name = "memAdd" id = "memAdd" >
 						<div class="col-xl-12 d-flex grid-margin stretch-card">
 							<div class="card">
-							
-							
-							
 								<div class="card-body" style = "width:100%;  overflow:auto">
 									<div id = "topdiv">
-									<h2 >직원 정보 등록</h2>
+									<h2 >신설 부서 등록</h2>
 										
 									</div>
 									<br><br>
 									
 									<div class="row">
-										<div class="user-image">
-											<img src="${info.pImage }" width="200px" height= "200px">
-										</div>
-										&ensp;&ensp;&ensp;&ensp;
-										 <div >
-										 
-											<table border="0" width="1300px;">
-												<tr>
-													<td>이름</td>
-													<td><input type="text" name="name"></td>
-													<td>ID</td>
-													<td><input type="text" name="uid" id = "uid"></td>
-													<td>PWD</td>
-													<td><input type="text" name="pwd"></td>
-												</tr>
-												<tr>
-													<td>사번</td>
-													<td><input type="text" name="dept"></td>
-													<td>부서 코드</td>
-													<td><input type="text" name="oCode"></td>
-													<td>주소 </td>
-													<td><input type="text" name="address"></td>		
-												</tr>
-												<tr>
-													<td>주민 번호 </td>
-													<td><input type="text" name="resident"></td>
-													<td>메일</td>
-													<td><input type="email" name="mail"></td>
-													<td>회사 번호</td>
-													<td><input type="text" name="cPhone"></td>
-													
-												</tr>
-												<tr>
-													
-													<td>휴대 전화</td>
-													<td><input type="text" name="phone"></td>
-													<td>급여</td>
-													<td><input type="text" name="salary"></td>
-													<td>급여일</td>
-													<td><input type="text" name="salaryDate"></td>
-												</tr>
-												<tr>
-													<td>성별</td>
-													<td><input type="radio" name="gender" value="boy" />남성
-  													<input type="radio" name="gender" value="girl" />여성</td>
-													<td>생년월일</td>
-													<td><input type="text" name="birth"></td>
-													<td>입사일</td>
-													<td><input type="text" name="entry"></td>
-												</tr>
-												<tr>
-													<td>직책</td>
-													<td><input type = "text" name = "position"></td>
-												</tr>
-											</table>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-						</div>
- 					 <ul class="nav nav-tabs">
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">가족</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu5">학력</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu8">자격증</a></li>
-   					</ul>
-   					<div class="card-body" style = "width:100%;  overflow:auto">
-   					<div class="row">
-   						 <div class="tab-content">
-   						 
-							<div class="tab-pane container active" id = "menu3">
 										
-										
-										<table border="0" width="1570px;">
-												<th>관계</th>
-												<th>이름</th>
-												<th>생년월일</th>
-												<th>휴대전화</th>
-												<th>직업</th>
-												<th>동거여부</th>
-											
-										<!-- 	<tr>
-											<td><input type = "text" name = "family[0].uid" id = "uid1" ></td>
-											<td><input type = "text" name = "degree.uid" id = "uid3" ></td>
-											<td><input type = "text" name = "career[0].uid" id = "uid4" ></td>
-											<td><input type = "text" name = "certificate[0].uid" id = "uid6" ></td>
-											<td><input type = "text" name = "family[1].uid" id = "uid2" ></td>
-											<td><input type = "text" name = "career[1].uid" id = "uid5" ></td>
-											<td><input type = "text" name = "certificate[1].uid" id = "uid7" ></td>
-											</tr>
-											<tr>
-											<td><input type = "text" name = "Appreaisal.uid" id = "uid8" ></td>
-											<td><input type = "text" name = "Transfer.uid" id = "uid9" ></td>
-											<td><input type = "text" name = "Prize[0].uid" id = "uid10" ></td>
-											<td><input type = "text" name = "Appreaisal.oCode" id = "oCode1" ></td>
-											<td><input type = "text" name = "Transfer.oCode" id = "oCode2" ></td>
-											</tr> -->
-										
-										<tr>
-											<td><input type = "text" name = "family[0].fRelation" ></td>
-											<td><input type = "text" name = "family[0].fName" ></td>
-											<td><input type = "text"  name = "family[0].fBirth" ></td>
-											<td><input type = "text"  name = "family[0].fPhone" ></td>
-											<td><input type = "text" name = "family[0].fJob" ></td>
-											<td><input type = "text"  name = "family[0].fWith" ></td>
-										</tr>
-										<tr>
-											<td><input type = "text" name = "family[1].fRelation" ></td>
-											<td><input type = "text" name = "family[1].fName" ></td>
-											<td><input type = "text"  name = "family[1].fBirth" ></td>
-											<td><input type = "text"  name = "family[1].fPhone" ></td>
-											<td><input type = "text" name = "family[1].fJob" ></td>
-											<td><input type = "text"  name = "family[1].fWith" ></td>
-										</tr>
-									
-										</table>
-<!-- 										<td><input type = "hidden" name = "family[0].uid" id = "uid1" ></td>
-										<td><input type = "hidden" name = "family[1].uid" ></td> -->	
-									</div>
-							
-									
-									<div class="tab-pane container fade" id = "menu5">
-										<table border="0" width="1570px;">
+										 <div>
+										 <form action="organizationAdd" method="post" >
+											<table border="0" width="1550px;"  >
 												<tr>
-													<td>학교명</td>
-													<td><input type = "text" name = "degree.dSchool"  ></td>
-													<td>전공</td>
-													<td><input type = "text" name = "degree.dMajor" ></td>
-													<td>학위</td>
-													<td><input type = "text"  name = "degree.dDegree" ></td>
+													<td style="font-size: 30px; text-align: right;" >부서 코드 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+													<td style="text-align: left;"><input type="text" name="oCode" ></td>
 												</tr>
 												<tr>
-													<td>졸업여부</td>
-													<td><input type = "text" name = "degree.dGraduated"></td>
-													<td>입학일</td>
-													<td><input type = "text"  name = "degree.dStart"></td>
-													<td>졸업일</td>
-													<td><input type = "text"  name = "degree.dEnd" ></td>
 												</tr>
+												<tr>
+													<td style="font-size: 30px; text-align: right;">부서 이름&nbsp;&nbsp;&nbsp;&nbsp;</td>
+													<td style="text-align: left;"><input type="text" name="oName" ></td>	
+												</tr>
+													<tr>
+												</tr>
+											 	<tr>
+												<td colspan="2" style="font-size: 30px;">
+												<input type="radio" name="use" value="use" style="width:20px;height:20px;"/>사용
+  													&nbsp;&nbsp;&nbsp;&nbsp;
+  												<input type="radio" name="use" value="unused" style="width:20px;height:20px;" />미사용
+  												</td>
+												</tr> 
+												<tr>
+												</tr>
+												<tr>
+												 <td colspan="2"><input type="submit"  class="btn btn-outline-info" value = "추가"  >
+												 <a href="memberAll"role="button" class="btn btn-outline-info">목록</a></td>
 												
+												</tr>
 											</table>
-											
+										</form>
+										</div>
+										
 									</div>
-									
-								
-									
-								<div class="tab-pane container fade" id = "menu7">
-								
-								<table border="0" width="1570px;">
-									<th>직장명</th>
-									<th>업무</th>
-									<th>시작일</th>
-									<th>종료일</th>
-									
-									<tr>
-										<td><input type = "text"  name = "career[0].cRectal" ></td>
-										<td><input type = "text" name = "career[0].cTask" ></td>
-										<td><input type = "text" name = "career[0].cStart" ></td>
-										<td><input type = "text" name = "career[0].cEnd"></td>										
-									</tr>
-										<tr>
-										<td><input type = "text"  name = "career[1].cRectal" ></td>
-										<td><input type = "text" name = "career[1].cTask" ></td>
-										<td><input type = "text" name = "career[1].cStart" ></td>
-										<td><input type = "text" name = "career[1].cEnd"></td>										
-									</tr>
-								</table>
-							
-								
 								</div>
-									
-								<div class="tab-pane container fade" id = "menu8">
 								
-								<table border="0" width="1570px;">
-									<th>자격증명</th>
-									<th>발행기관</th>
-									<th>취득일</th>
-									<tr>
-										<td><input type = "text" name = "certificate[0].ceName" ></td>
-										<td><input type = "text"  name = "certificate[0].ceIssuer"></td>
-										<td><input type = "text"  name = "certificate[0].ceDate" ></td>
-									</tr>
-									<tr>
-										<td><input type = "text" name = "certificate[1].ceName" ></td>
-										<td><input type = "text"  name = "certificate[1].ceIssuer" ></td>
-										<td><input type = "text"  name = "certificate[1].ceDate" ></td>
-									</tr>
-								</table>
-								</div>
-								<a href="memberAll"role="button" class="btn btn-outline-info">목록</a>
-								<input type="submit" id = "mAdd" class="btn btn-outline-info" value = "추가"  >
 							</div>
-							</div>
-							</div>
-							
-							</form>
 						</div>
-					</div>
-			</div>
-		</div>
-		
-		
-		
-		<script>
-			$(document).ready(function(){
-				$("form").submit(function(e) {
-					var id = document.getElementId("uid");
-					 console.log("id"+id);
-					 $('#uid1').val('#uid'); 
-				});
-			});
-		</script> 
+						
+ 					
 		
 		<!-- content-wrapper ends -->
 		<!-- partial:partials/_footer.html -->
-		<footer class="footer">
-			<div
-				class="d-sm-flex justify-content-center justify-content-sm-between">
-				<span
-					class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright
-					© bootstrapdash.com 2020</span> <span
-					class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
-					Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap
-						dashboard templates</a> from Bootstrapdash.com
-				</span>
-			</div>
-			<span
-				class="text-muted d-block text-center text-sm-left d-sm-inline-block mt-2">Distributed
-				By: <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
-			</span>
-		</footer>
+	
 
 		<!-- partial -->
 	</div>

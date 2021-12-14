@@ -67,6 +67,9 @@ public class MemberDao {
 		RowBounds row = new RowBounds(startRow, limit);
 		return sqlSession.selectList("Member.memberAll", null, row);
 	}
+	public List<Organization> organizationAll() {
+		return sqlSession.selectList("Member.organizationAll");
+	}
 	
 	public int listCount() {
 		return sqlSession.selectOne("Member.listCount");
@@ -78,9 +81,15 @@ public class MemberDao {
 	 System.out.println("vovo"+vo);
      return sqlSession.insert("Member.memberAdd", vo);
   }
- 
+ public int organizationAdd(Organization ovo) {
+	 System.out.println("vovo"+ovo);
+     return sqlSession.insert("Member.organizationAdd", ovo);
+  }
  public int memberDelete(String uid) {
      return sqlSession.delete("Member.memberDelete", uid);
+  }
+ public int organizationDelete(String oCode) {
+     return sqlSession.delete("Member.memberDelete", oCode);
   }
  
  public int memberUpdate(Member vo) {
@@ -105,12 +114,9 @@ public class MemberDao {
      return sqlSession.update("Member.TransferUpdate", tvo);
   }
  
- public List<Family> familyUpdate(ArrayList<Family> family2) {
-	 System.out.println("dao 업테이트"+family2);
-	 for(Family family : family2) {
-		 sqlSession.update("Member.familyUpdate", family);
-	 }
-	return null;
+ public int familyUpdate(Family[] fvo) {
+	 System.out.println("dao 업테이트"+fvo);
+	 return sqlSession.update("Member.familyUpdate", fvo);
   }
  public int prizeUpdate(Prize pvo) {
 	 System.out.println("dao 업테이트"+pvo);

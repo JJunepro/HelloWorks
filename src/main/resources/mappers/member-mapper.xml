@@ -35,7 +35,9 @@
 	<resultMap type="Organization" id="OrganizationMap">
 		<result property="oCode" column="O_CODE" />
 		<result property="oName" column="O_NAME" />
-		<result property="oLevel" column="O_LEVEL" />
+		<result property="oStart" column="O_START" />
+		<result property="oEnd" column="O_END" />
+		<result property="oUse" column="O_USE" />
 	</resultMap>
 	<resultMap type="Degree" id="DegreeMap">
 		<result property="uid" column="U_ID" />
@@ -99,28 +101,37 @@
 
 
 
-	
+	<!--회원 추가 -->
 <insert id="memberAdd" parameterType="Member">
 		insert all
 			into MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY,POSITION) 
 			values(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry},#{position})
 			 <foreach collection="family" item="item" index="index">
-			into Family(U_ID,F_RELATION,F_NAME,F_BIRTH,F_PHONE,F_JOB,F_WITH)
+			into FAMILY(U_ID,F_RELATION,F_NAME,F_BIRTH,F_PHONE,F_JOB,F_WITH)
 			values (#{family.uid},#{item.family.fRelation},#{item.family.fName},#{item.family.fBirth},#{item.family.fPhone},#{item.family.fJob},#{item.family.fWith})
 			</foreach>
-			into Degree(U_ID,D_SCHOOL,D_MAJOR,D_DEGREE,D_GRADUATED,D_START,D_END) 
+			into DEGREE(U_ID,D_SCHOOL,D_MAJOR,D_DEGREE,D_GRADUATED,D_START,D_END) 
 			values(#{degree.uid},#{degree.dSchool},#{degree.dMajor},#{degree.dDegree},#{degree.dGraduated},#{degree.dStart},#{degree.dEnd})
 			<foreach collection="career" item="item" index="index">
-			into Career(U_ID,C_RECTAL,C_TASK,C_START,C_END) values
+			into CAREER(U_ID,C_RECTAL,C_TASK,C_START,C_END) values
 			(#{career.uid},#{item.career.cRectal},#{item.career.cTask},#{item.career.cStart},#{item.career.cEnd})
 			</foreach>
 			<foreach collection="certificate" item="item" index="index">
-			into Certificate(U_ID,CE_NAME,CE_ISSUER,CE_DATE) values
+			into CERTIFICATE(U_ID,CE_NAME,CE_ISSUER,CE_DATE) values
 			(#{certificate.uid},#{item.certificate.ceName},#{item.certificate.ceIssuer},#{item.certificate.ceDate})
 			</foreach>
+			into APPREAISAL (U_ID,O_CODE) values (#{appreaisal.uid},#{appreaisal.oCode})
+			into TRANSFER (U_ID,O_CODE) values (#{Transfer.uid},#{Transfer.oCode})
+			into PRIZE (U_ID) values (#{prize.uid})
 		select * from DUAL	
 	</insert>
+	
+<!--부서 추가 -->
+	<insert id="organizationAdd" parameterType="Organization">	
+		insert into Organization (O_CODE,O_NAME,O_USE) values(#{oCode},#{oName},#{oUse})
+	</insert>
 
+<!--로그인 -->
 	<select id="login" resultMap="MemberMap" parameterType="Member">
 		SELECT * FROM MEMBER a left join FAMILY b 
 		using (U_ID)
@@ -140,17 +151,20 @@
 		using (O_CODE)
 		WHERE U_ID = #{uid} AND PWD = #{pwd}
 	</select>
+	
+	<!--아이디 찾기 -->
 	<select id="idSearch" resultMap="MemberMap"
 		parameterType="Member">
 		SELECT NAME, U_ID FROM MEMBER
 		WHERE NAME = #{name} AND MAIL = #{mail}
 	</select>
+	<!--비밀번호 찾기 -->
 	<select id="pwdSearch" resultMap="MemberMap"
 		parameterType="Member">
 		SELECT NAME, PWD FROM MEMBER
 		WHERE U_ID = #{uid} AND NAME = #{name} AND MAIL = #{mail}
 	</select>
-
+<!--회원 프로필 -->
 	<select id="profile" resultMap="MemberMap"
 		parameterType="Member">
 		SELECT * FROM MEMBER a
@@ -177,18 +191,32 @@
 	<select id="listCount" resultType="int">
 		SELECT count(*) FROM MEMBER
 	</select>
-	
+	<!--회원 목록 -->
 	<select id="memberAll" resultMap="MemberMap"
 		parameterType="Member">
 		select o.O_NAME,m.* from member m left join Organization o ON m.O_CODE = o.O_CODE
 	</select>
+	<!--부서 목록 -->
+ 	 <select id="organizationAll" resultMap="OrganizationMap"
+		parameterType="Organization">
+		SELECT * FROM ORGANIZATION
+	</select>  
 	
+	 <!-- <select id="organizationAll" resultMap="OrganizationMap"
+		parameterType="Organization">
+		SELECT MIN(O_NAME) oNames
+		,COUNT(ORGANIZATION.O_CODE) count
+		FROM ORGANIZATION LEFT OUTER JOIN Member ON ORGANIZATION.O_CODE = Member.O_CODE
+		GROUP BY ORGANIZATION.O_CODE; 
+	</select>  -->
+	
+	<!--회원 부서 검색 -->
 	<select id="memberOSeach" resultMap="MemberMap"
 		parameterType="Member">
 	select o.O_NAME,m.* from member m left join Organization o ON m.O_CODE = o.O_CODE where O_NAME = #{okeyword}
 	</select>
 	
-	  
+	<!--회원 검색어 검색 -->
 	<select id="memberSeach" resultMap="MemberMap"
 		parameterType="Member" >
 		select * from MEMBER 
@@ -196,11 +224,14 @@
 		OR NAME like '%'|| #{keyword} ||'%'
 	</select>
 
-	
+	<!--회원 삭제 -->
 	<delete id="memberDelete">
 		delete from MEMBER where U_ID = #{uid}
 	</delete>
-
+	<delete id="organizationDelete">
+		delete from ORGANIZATION where O_CODE = #{oCode}
+	</delete>
+	<!--회원 정보 수정 -->
 	<update id="memberUpdate" parameterType="Member">
 		update MEMBER set NAME =
 		#{name}, DEPT = #{dept}, ADDRESS = #{address}, GENDER = #{gender},
@@ -209,6 +240,7 @@
 		 LAST = #{last}, O_CODE = #{oCode}  ,POSITION = #{position}
 		where U_ID = #{uid} and O_CODE = #{oCode}
 	</update>
+	<!--회원의 가족 정보 수정 -->
 	<update id="familyUpdate" parameterType="Family">
 		<foreach collection="family" item="item" index="index">
 		update FAMILY set
@@ -217,6 +249,7 @@
 		where U_ID = #{family.uid} and F_NAME = #{item.family.fName}
 		</foreach>
 	</update>
+	<!--회원의 포상 정보 수정 -->
 	<update id="prizeUpdate" parameterType="Prize">
 		<foreach collection="prize" item="item" index="index">
 		update PRIZE set
@@ -224,7 +257,7 @@
 		where U_ID = #{uid}
 		</foreach>
 	</update>
-	
+	<!--회원의 경력 정보 수정 -->
 	<update id="careerUpdate" parameterType="Career">
 		<foreach collection="Career" item="item" index="index">
 		update CAREER set
@@ -232,6 +265,7 @@
 		where U_ID = #{uid}
 		</foreach>
 	</update>
+	<!--회원의 자격증 정보 수정 -->
 	<update id="certificateUpdate" parameterType="Certificate">
 		<foreach collection="Certificate" item="item" index="index">
 		update CERTIFICATE set
@@ -239,22 +273,25 @@
 		where U_ID = #{uid}
 		</foreach>
 	</update>
-	
+	<!-- 부서 정보 수정 -->
 	<update id="OrganizationUpdate" parameterType="Organization">
 		update ORGANIZATION set
 		O_CODE = #{oCode},O_NAME = #{oName}
 		where O_CODE = #{oCode}	
 	</update>
+	<!--회원의 학력 정보 수정 -->
 	<update id="DegreeUpdate" parameterType="Degree">
 		update DEGREE set
 		D_SCHOOL = #{dSchool},D_MAJOR = #{dMajor},D_DEGREE = #{dDegree},D_GRADUATED = #{dGraduated},D_START = #{dStart},D_END = #{dEnd}
 		where U_ID = #{uid}	
 	</update>
+	<!--회원의 인사평가 정보 수정 -->
 	<update id="AppreaisalUpdate" parameterType="Appreaisal">
 		update APPREAISAL set
 		A_CONTENT = #{aContent},A_RATING = #{aRating},A_RATER = #{aRater},A_SCORE = #{aScore},A_START = #{aStart},A_END = #{aEnd}
 		where U_ID = #{uid}	
 	</update>
+	<!--회원의 인사발령 정보 수정 -->
 	<update id="TransferUpdate" parameterType="Transfer">
 		update TRANSFER set
 		U_TYPE = #{uType},U_RANK = #{uRank},U_START = #{uStart},U_END = #{uEnd}

@@ -119,6 +119,9 @@
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
 							<a class="dropdown-item preview-item" href="profile"> <i
 								class="icon-head"></i> Profile
+ <a class="dropdown-item preview-item" href="login">
+                  <i class="icon-inbox"></i> Login
+              </a>
 							</a> <a class="dropdown-item preview-item" href="logout"> <i
 								class="icon-inbox"></i> Logout
 							</a>
@@ -169,7 +172,7 @@
 								관리</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../../pages/icons/feather-icons.html"> <i
+						href="memberAll"> <i
 							class="icon-head menu-icon"></i> <span class="menu-title">인사
 								관리</span>
 					</a></li>

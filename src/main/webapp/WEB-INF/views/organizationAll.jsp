@@ -31,27 +31,32 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="resources/images/favicon.png" />
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <style>
-	tr, td{
-		text-align: center;
-		width: 300px;
-		height: 50px;
-	}
-	.btnn{
-		border-radius:0.5em;
-		width: 100px;
-		height: 40px;
-	}
-	#topdiv{
-		display: flex;      
-        justify-content: space-around;
-	}
-	#leftdiv{
-		width: 300px;
-		margin-left: auto;
-	}
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th, td {
+	text-align: center;
+}
+
+#btn {
+	border-radius: 0.5em;
+	width: 100px;
+	height: 40px;
+}
+
+#topdiv {
+	display: flex;
+	justify-content: space-around;
+}
+
+#leftdiv {
+	width: 400px;
+	margin-left: auto;
+}
 </style>
 <body>
 	<div class="container-scroller">
@@ -142,8 +147,8 @@
 							class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 							aria-labelledby="notificationDropdown">
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
-							<a class="dropdown-item preview-item"> <i class="icon-head"></i>
-								Profile
+							<a class="dropdown-item preview-item" href="profile"> <i
+								class="icon-head"></i> Profile
 							</a> <a class="dropdown-item preview-item" href="logout"> <i
 								class="icon-inbox"></i> Logout
 							</a>
@@ -166,9 +171,9 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<div class="user-profile">
 					<div class="user-image">
-						<img src="resources/images/faces/face1.jpg">
+						<img src="resources/images/faces/face28.png">
 					</div>
-					<div class="user-name">${memberinfo.name }</div>
+					<div class="user-name">Edward Spencer</div>
 					<div class="user-designation">Developer</div>
 				</div>
 				<ul class="nav">
@@ -234,268 +239,135 @@
 			</nav>
 			<!-- partial -->
 			<div class="main-panel">
-			
 				<div class="content-wrapper">
-
 					<div class="row">
-					<div class="col-sm-12 mb-4 mb-xl-0">
-              			<h2 class="font-weight-bold text-dark">인사관리</h2>
-           			 </div>
+						<div class="col-sm-12 mb-4 mb-xl-0">
+							<h2 class="font-weight-bold text-dark">인사관리</h2>
+
+						</div>
 					</div>
 					
+					
 					<div class="row mt-3">
-					<form action="memberAdd" method="post" name = "memAdd" id = "memAdd" >
+						
+						<script>
+     	$(function() {
+			$('form[name=listForm]').on('submit', function(e) {
+								if ($('input[name=keyword]').val() == null || $('input[name=keyword]').val() == "") {
+									alert("검색어를 입력해 주세요");
+									e.preventDefault();
+								} else {
+									return true;
+								}
+							});
+		});
+         </script>
+
 						<div class="col-xl-12 d-flex grid-margin stretch-card">
 							<div class="card">
-							
-							
-							
-								<div class="card-body" style = "width:100%;  overflow:auto">
-									<div id = "topdiv">
-									<h2 >직원 정보 등록</h2>
+								<div class="card-body">
+									<div id="topdiv">
+										<h3>부서 목록</h3>
 										
 									</div>
-									<br><br>
-									
+									<br>
 									<div class="row">
-										<div class="user-image">
-											<img src="${info.pImage }" width="200px" height= "200px">
-										</div>
-										&ensp;&ensp;&ensp;&ensp;
-										 <div >
-										 
-											<table border="0" width="1300px;">
-												<tr>
-													<td>이름</td>
-													<td><input type="text" name="name"></td>
-													<td>ID</td>
-													<td><input type="text" name="uid" id = "uid"></td>
-													<td>PWD</td>
-													<td><input type="text" name="pwd"></td>
-												</tr>
-												<tr>
-													<td>사번</td>
-													<td><input type="text" name="dept"></td>
-													<td>부서 코드</td>
-													<td><input type="text" name="oCode"></td>
-													<td>주소 </td>
-													<td><input type="text" name="address"></td>		
-												</tr>
-												<tr>
-													<td>주민 번호 </td>
-													<td><input type="text" name="resident"></td>
-													<td>메일</td>
-													<td><input type="email" name="mail"></td>
-													<td>회사 번호</td>
-													<td><input type="text" name="cPhone"></td>
-													
-												</tr>
-												<tr>
-													
-													<td>휴대 전화</td>
-													<td><input type="text" name="phone"></td>
-													<td>급여</td>
-													<td><input type="text" name="salary"></td>
-													<td>급여일</td>
-													<td><input type="text" name="salaryDate"></td>
-												</tr>
-												<tr>
-													<td>성별</td>
-													<td><input type="radio" name="gender" value="boy" />남성
-  													<input type="radio" name="gender" value="girl" />여성</td>
-													<td>생년월일</td>
-													<td><input type="text" name="birth"></td>
-													<td>입사일</td>
-													<td><input type="text" name="entry"></td>
-												</tr>
-												<tr>
-													<td>직책</td>
-													<td><input type = "text" name = "position"></td>
-												</tr>
-											</table>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-						</div>
- 					 <ul class="nav nav-tabs">
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu3">가족</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu5">학력</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu7">경력</a></li>
-     					 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu8">자격증</a></li>
-   					</ul>
-   					<div class="card-body" style = "width:100%;  overflow:auto">
-   					<div class="row">
-   						 <div class="tab-content">
-   						 
-							<div class="tab-pane container active" id = "menu3">
-										
-										
-										<table border="0" width="1570px;">
-												<th>관계</th>
-												<th>이름</th>
-												<th>생년월일</th>
-												<th>휴대전화</th>
-												<th>직업</th>
-												<th>동거여부</th>
-											
-										<!-- 	<tr>
-											<td><input type = "text" name = "family[0].uid" id = "uid1" ></td>
-											<td><input type = "text" name = "degree.uid" id = "uid3" ></td>
-											<td><input type = "text" name = "career[0].uid" id = "uid4" ></td>
-											<td><input type = "text" name = "certificate[0].uid" id = "uid6" ></td>
-											<td><input type = "text" name = "family[1].uid" id = "uid2" ></td>
-											<td><input type = "text" name = "career[1].uid" id = "uid5" ></td>
-											<td><input type = "text" name = "certificate[1].uid" id = "uid7" ></td>
-											</tr>
-											<tr>
-											<td><input type = "text" name = "Appreaisal.uid" id = "uid8" ></td>
-											<td><input type = "text" name = "Transfer.uid" id = "uid9" ></td>
-											<td><input type = "text" name = "Prize[0].uid" id = "uid10" ></td>
-											<td><input type = "text" name = "Appreaisal.oCode" id = "oCode1" ></td>
-											<td><input type = "text" name = "Transfer.oCode" id = "oCode2" ></td>
-											</tr> -->
-										
-										<tr>
-											<td><input type = "text" name = "family[0].fRelation" ></td>
-											<td><input type = "text" name = "family[0].fName" ></td>
-											<td><input type = "text"  name = "family[0].fBirth" ></td>
-											<td><input type = "text"  name = "family[0].fPhone" ></td>
-											<td><input type = "text" name = "family[0].fJob" ></td>
-											<td><input type = "text"  name = "family[0].fWith" ></td>
-										</tr>
-										<tr>
-											<td><input type = "text" name = "family[1].fRelation" ></td>
-											<td><input type = "text" name = "family[1].fName" ></td>
-											<td><input type = "text"  name = "family[1].fBirth" ></td>
-											<td><input type = "text"  name = "family[1].fPhone" ></td>
-											<td><input type = "text" name = "family[1].fJob" ></td>
-											<td><input type = "text"  name = "family[1].fWith" ></td>
-										</tr>
-									
-										</table>
-<!-- 										<td><input type = "hidden" name = "family[0].uid" id = "uid1" ></td>
-										<td><input type = "hidden" name = "family[1].uid" ></td> -->	
-									</div>
-							
-									
-									<div class="tab-pane container fade" id = "menu5">
-										<table border="0" width="1570px;">
-												<tr>
-													<td>학교명</td>
-													<td><input type = "text" name = "degree.dSchool"  ></td>
-													<td>전공</td>
-													<td><input type = "text" name = "degree.dMajor" ></td>
-													<td>학위</td>
-													<td><input type = "text"  name = "degree.dDegree" ></td>
-												</tr>
-												<tr>
-													<td>졸업여부</td>
-													<td><input type = "text" name = "degree.dGraduated"></td>
-													<td>입학일</td>
-													<td><input type = "text"  name = "degree.dStart"></td>
-													<td>졸업일</td>
-													<td><input type = "text"  name = "degree.dEnd" ></td>
-												</tr>
+
+										<div style="width: 100%; height: 580px; overflow: auto">
+											<table border="1" width="1530px;">
+												<th width="150px;">부서코드</th>
+												<th>부서명</th>
+												<th>생성일</th>
+												<th>폐쇄일</th>
+												<th width="150px;">사용여부</th>
 												
+
+												<c:forEach var="vo" items="${list2 }">
+													<tr>
+														<td>${vo.oCode }</td>
+														<td><a href="#">${vo.oName }</a></td>
+														<td>${vo.oStart }</td>
+														<td>${vo.oEnd }</td>
+														<td>${vo.oUse }</td>
+														
+													</tr>
+												</c:forEach>
+												
+												<!-- 앞 페이지 번호 처리 -->
+												<tr align="center" height="20">
+													<td colspan="5"><c:if test="${currentPage <= 1}">
+ 													[이전]&nbsp; 
+ 													</c:if> <c:if test="${currentPage > 1}">
+															<c:url var="memberlistST" value="memberAll">
+																<c:param name="page" value="${currentPage-1}" />
+															</c:url>
+															<a href="${memberlistST}">[이전]</a>
+														</c:if> <!-- 끝 페이지 번호 처리 --> <c:set var="endPage"
+															value="${maxPage}" /> <c:forEach var="p"
+															begin="${startPage+1}" end="${endPage}">
+															<c:if test="${p eq currentPage}">
+																<font color="red" size="4"><b>[${p}]</b></font>
+															</c:if>
+															<c:if test="${p ne currentPage}">
+																<c:url var="mlistchk" value="memberAll">
+																	<c:param name="page" value="${p}" />
+																</c:url>
+																<a href="${mlistchk}">${p}</a>
+															</c:if>
+														</c:forEach> <c:if test="${currentPage >= maxPage}"> 
+ 														[다음] 
+ 														</c:if> <c:if test="${currentPage < maxPage}">
+															<c:url var="memberlistEND" value="memberAll">
+																<c:param name="page" value="${currentPage+1}" />
+															</c:url>
+															<a href="${memberlistEND}">[다음]</a>
+														</c:if></td>
+												</tr>
 											</table>
-											
+										</div>
+
 									</div>
-									
-								
-									
-								<div class="tab-pane container fade" id = "menu7">
-								
-								<table border="0" width="1570px;">
-									<th>직장명</th>
-									<th>업무</th>
-									<th>시작일</th>
-									<th>종료일</th>
-									
-									<tr>
-										<td><input type = "text"  name = "career[0].cRectal" ></td>
-										<td><input type = "text" name = "career[0].cTask" ></td>
-										<td><input type = "text" name = "career[0].cStart" ></td>
-										<td><input type = "text" name = "career[0].cEnd"></td>										
-									</tr>
-										<tr>
-										<td><input type = "text"  name = "career[1].cRectal" ></td>
-										<td><input type = "text" name = "career[1].cTask" ></td>
-										<td><input type = "text" name = "career[1].cStart" ></td>
-										<td><input type = "text" name = "career[1].cEnd"></td>										
-									</tr>
-								</table>
-							
-								
+
 								</div>
-									
-								<div class="tab-pane container fade" id = "menu8">
-								
-								<table border="0" width="1570px;">
-									<th>자격증명</th>
-									<th>발행기관</th>
-									<th>취득일</th>
-									<tr>
-										<td><input type = "text" name = "certificate[0].ceName" ></td>
-										<td><input type = "text"  name = "certificate[0].ceIssuer"></td>
-										<td><input type = "text"  name = "certificate[0].ceDate" ></td>
-									</tr>
-									<tr>
-										<td><input type = "text" name = "certificate[1].ceName" ></td>
-										<td><input type = "text"  name = "certificate[1].ceIssuer" ></td>
-										<td><input type = "text"  name = "certificate[1].ceDate" ></td>
-									</tr>
-								</table>
-								</div>
-								<a href="memberAll"role="button" class="btn btn-outline-info">목록</a>
-								<input type="submit" id = "mAdd" class="btn btn-outline-info" value = "추가"  >
 							</div>
-							</div>
-							</div>
-							
-							</form>
 						</div>
 					</div>
-			</div>
-		</div>
-		
-		
-		
-		<script>
-			$(document).ready(function(){
-				$("form").submit(function(e) {
-					var id = document.getElementId("uid");
-					 console.log("id"+id);
-					 $('#uid1').val('#uid'); 
-				});
-			});
-		</script> 
-		
-		<!-- content-wrapper ends -->
-		<!-- partial:partials/_footer.html -->
-		<footer class="footer">
-			<div
-				class="d-sm-flex justify-content-center justify-content-sm-between">
-				<span
-					class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright
-					© bootstrapdash.com 2020</span> <span
-					class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
-					Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap
-						dashboard templates</a> from Bootstrapdash.com
-				</span>
-			</div>
-			<span
-				class="text-muted d-block text-center text-sm-left d-sm-inline-block mt-2">Distributed
-				By: <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
-			</span>
-		</footer>
+					<div class="col-xl-12 d-flex grid-margin stretch-card">
+						<div class="card-body">
+							<table width="103%;">
+								<td style="width: 80%;"></td>
+								<td><button id="btn" class="btn btn-outline-info"
+										onclick="location.href='organizationAdd'">부서 추가</button></td>
+							</table>
+						</div>
+					</div>
 
-		<!-- partial -->
-	</div>
-	<!-- main-panel ends -->
-	</div>
-	<!-- page-body-wrapper ends -->
+
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:partials/_footer.html -->
+				<footer class="footer">
+					<div
+						class="d-sm-flex justify-content-center justify-content-sm-between">
+						<span
+							class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright
+							© bootstrapdash.com 2020</span> <span
+							class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+							Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap
+								dashboard templates</a> from Bootstrapdash.com
+						</span>
+					</div>
+					<span
+						class="text-muted d-block text-center text-sm-left d-sm-inline-block mt-2">Distributed
+						By: <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+					</span>
+				</footer>
+
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
 	</div>
 	<!-- container-scroller -->
 
@@ -520,7 +392,3 @@
 </body>
 
 </html>
-
-						
-						
-	

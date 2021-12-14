@@ -256,18 +256,19 @@ th, td {
 								<div class="col-sm-12 stretch-card">
 									<div class="card">
 										<div class="card-body">
+											<div id = "topdiv">
 											<h3>부서</h3>
+											<button id="btn" class="btn btn-outline-info"
+										onclick="location.href='organizationAll'">목록</button>
+										</div>
 											<form action="memberOSeach" method="get" name="listForm">
 											<ui class="nav flex-column sub-menu" name="okeyword">
-												<li><a href="memberOSeach?okeyword=경영지원실">경영지원실</a></li>
-												<li><a href="memberOSeach?okeyword=기획예산실">기획예산실</a></li>
-												<li><a href="memberOSeach?okeyword=인사총무실">인사총무실</a></li>
-												<li><a href="memberOSeach?okeyword=개발팀">개발팀</a></li>
-												<li><a href="memberOSeach?okeyword=기획팀">기획팀</a></li>
+											<input type = "hidden">
+											<c:forEach var="vo2" items="${list2 }">
+												<li><a href="memberOSeach?okeyword=${vo2.oName}">${vo2.oName}</a></li>
+											</c:forEach>
 											</ui>
 											</form>
-												
-											
 										</div>
 									</div>
 								</div>
@@ -296,6 +297,7 @@ th, td {
 												<a href="memberAll"role="button" class="btn btn-outline-info">전체보기</a>
 												&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="text" style="height: 38px;" name="keyword">
+												&nbsp;&nbsp;
 												<input type="submit" class="btn btn-outline-info" value="검색">
 											</form>
 										</div>
@@ -304,7 +306,7 @@ th, td {
 									<div class="row">
 
 										<div style="width: 100%; height: 580px; overflow: auto">
-											<table border="1" width="1100px;">
+											<table border="1" width="1250px;">
 												<th>사번</th>
 												<th>직원명</th>
 												<th>부서</th>
@@ -369,7 +371,7 @@ th, td {
 							<table width="103%;">
 								<td style="width: 90%;"></td>
 								<td><button id="btn" class="btn btn-outline-info"
-										onclick="location.href='memberAdd'">추가</button></td>
+										onclick="location.href='memberAdd'">직원 추가</button></td>
 
 							</table>
 						</div>
