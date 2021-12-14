@@ -13,6 +13,12 @@
         VALUES (#{uid},#{oCode},#{workOn},#{workOff})
 	</insert>
 	
+	<select id="workDay" parameterType="String" resultType="String">
+	 <![CDATA[   
+		select work_on from attendance where work_on = curdate() and u_id=#{uid}
+	]]>
+	</select>
+	
 	<select id="workOn" resultMap="resultAtt" parameterType="Attendance">
 		SELECT WORK_ON FROM ATTENDANCE
 	</select>

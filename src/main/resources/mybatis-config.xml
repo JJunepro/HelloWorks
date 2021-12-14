@@ -25,18 +25,20 @@
 			<typeAlias
 			type="com.final05.HelloWorks.member.model.vo.Career" alias="Career" />
 			<typeAlias
-			type="com.final05.HelloWorks.member.model.vo.Certificate" alias="Certificate" />
-			
+			type="com.final05.HelloWorks.member.model.vo.Certificate" alias="Certificate" />			
 			<typeAlias
 			type="com.final05.HelloWorks.board.model.vo.Board" alias="Board" />
 			<typeAlias
 			type="com.final05.HelloWorks.board.model.vo.Comment" alias="Comment" />
 		<typeAlias type="com.final05.HelloWorks.schedule.model.vo.Schedule" alias="Schedule"/>
 		<typeAlias type="com.final05.HelloWorks.todolist.vo.Todolist" alias="Todolist"/>
+			<typeAlias
+			type="com.final05.HelloWorks.attendance.model.vo.Attendance" alias="Attendance"/>
 	</typeAliases>
 	
 	<!-- 사용하고자 하는 쿼리를 정의한 mapper.xml을 등록 -->
 	<mappers>
+		<mapper resource="mappers/attendance-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/comment-mapper.xml" />

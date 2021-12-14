@@ -6,6 +6,8 @@ import com.final05.HelloWorks.attendance.model.vo.Attendance;
 
 public interface AttendanceService {
 	
+	public String workDay(String uid);
+	
 	public Attendance workOn(Attendance vo) throws Exception;
 	
 	public List<Attendance>work(Attendance vo) throws Exception;

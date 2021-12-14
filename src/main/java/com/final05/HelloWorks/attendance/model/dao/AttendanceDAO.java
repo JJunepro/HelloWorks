@@ -14,12 +14,23 @@ public class AttendanceDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//직원근태 리스트
+	public List<Attendance> showAtt(Attendance attvo) throws Exception{
+		return sqlSession.selectList("Attendance.showAtt");
+	}	
+	
+	//출근시간
 	public Attendance workOn(Attendance vo) {
 		return sqlSession.selectOne("Attendance.workOn", vo);
 	}
 	
+	//퇴근시간
 	public List<Attendance>work(Attendance vo){
 		return sqlSession.selectList("Attendance.AttAll", vo);
+	}
+
+	public String workDay(String uid) {
+		return null;
 	}
 
 

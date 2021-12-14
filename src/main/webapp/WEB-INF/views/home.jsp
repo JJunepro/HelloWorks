@@ -533,6 +533,12 @@
 	<!-- Custom js for this page-->
 	<script src="resources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
+	
+	
+	<script type="text/javascript">
+	
+	</script>
+	
 </body>
 
 </html>

@@ -23,5 +23,9 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public List<Attendance>work(Attendance vo) throws Exception{
 		return attdao.work(vo);
 	}
+	
+	public String workDay(String uid) {
+		return attdao.workDay(uid);
+	}
 
 }
