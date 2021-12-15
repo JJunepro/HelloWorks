@@ -3,28 +3,35 @@
 <mapper namespace="Attendance">
 	<resultMap type="Attendance" id="resultAtt">
 		<id property="uid" column="U_ID" />
+		<result property="oCode" column="O_CODE" />
 		<result property="workOn" column="WORK_ON" />
 		<result property="workOff" column="WORK_OFF" />
-		
+
 	</resultMap>
-	
+
 	<insert id="AttCreate" parameterType="Attendance">
-	     INSERT INTO ATTENDANCE(U_ID,O_CODE,WORK_ON,WORK_OFF)
-        VALUES (#{uid},#{oCode},#{workOn},#{workOff})
+		INSERT INTO ATTENDANCE(U_ID,O_CODE,WORK_ON,WORK_OFF)
+		VALUES (#{uid},#{oCode},#{workOn},#{workOff})
 	</insert>
-	
+
 	<select id="workDay" parameterType="String" resultType="String">
 	 <![CDATA[   
 		select work_on from attendance where work_on = curdate() and u_id=#{uid}
 	]]>
 	</select>
-	
-	<select id="workOn" resultMap="resultAtt" parameterType="Attendance">
-		SELECT WORK_ON FROM ATTENDANCE
+
+	<insert id="workOn" parameterType="Attendance">
+		insert into ATTENDANCE(U_ID,O_CODE,WORK_ON,WORK_OFF) values(#{uid}, #{oCode}, sysdate, null)
+	</insert>
+
+	<update id="workOff" parameterType="Attendance">
+		UPDATE ATTENDANCE SET WORK_OFF = sysdate
+        WEHRE U_ID=#{uid} and work_off = null
+	</update>
+
+	<select id="AttAll" resultMap="resultAtt"
+		parameterType="Attendance">
+		SELECT * FROM ATTENDANCE
 	</select>
-		
-     <select id="AttAll" resultMap="resultAtt" parameterType="Attendance">
-     	SELECT * FROM ATTENDANCE
-    </select>
 
 </mapper>

@@ -2,6 +2,7 @@ package com.final05.HelloWorks.attendance.controller;
 
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,9 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.final05.HelloWorks.attendance.model.dao.AttendanceDAO;
 import com.final05.HelloWorks.attendance.model.service.AttendanceService;
 import com.final05.HelloWorks.attendance.model.vo.Attendance;
+import com.final05.HelloWorks.member.model.vo.Member;
 
 @Controller
-@RequestMapping("/work/")
+@RequestMapping("/work")
 public class AttendanceController {
 	
 	@Autowired
@@ -27,33 +29,56 @@ public class AttendanceController {
 	@Autowired
 	private AttendanceService attService;
 	
-/*	@RequestMapping(value = "workOn", method = RequestMethod.GET)
-	public ModelAndView showAtt(ModelAndView mv) {
-		Attendance attvo = new Attendance();
-		List<Schedule> list = new ArrayList<Schedule>();
+	@GetMapping("")
+	public String work(Principal principal, HttpSession session, Model model) {
+		//TODO: Principal
+		Member ssMember = (Member)session.getAttribute("memberinfo");
+		if(ssMember == null) {
+			return "redirect:/login";
+		}
+		Attendance vo = new Attendance();
+		vo.setoCode(ssMember.getoCode());
+		vo.setUid(ssMember.getUid());
+		
+		List<Attendance> volist = null;
 		try {
-			list = AttendanceService.showSchedule(svo);
-			mv.addObject("list", list);
-		}catch (Exception e) {
+			volist = attService.work(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mv.setViewName("work/work");
-		return mv;
-	}
-*/
-	
-	@GetMapping("workOn")
-	public String U_ID(Principal principal, HttpSession session, Model model) {
-    		// 시큐리티에서 emp_id를 Name으로 받아놓음
-		String username = principal.getName();
-		
-        	// 위에서 id = work_day로 지정해준 sql 값을 가져와 모델에 담아준다.
-		model.addAttribute("work_day", attService.workDay(username));
+		model.addAttribute("work_day", volist);
+
+		System.out.println(volist);
         
-        	// 제대로 emp_id가 넘어왔는지 보기 위해서 한번 찍어보기
-		System.out.println(username);
+		return "work";
+	}
+	
+	
+    
+	@GetMapping("/workOn")
+	public String workOn(Principal principal, HttpSession session, Model model) {
+		
+		Member ssMember = (Member)session.getAttribute("memberinfo");
+		if(ssMember == null) {
+			return "redirect:/login";
+		}
+		Attendance vo = new Attendance();
+		vo.setoCode(ssMember.getoCode());
+		vo.setUid(ssMember.getUid());
+		int result = 0;
+		try {
+			result = attService.workOn(vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/";
+			
+		}
+		model.addAttribute("work_on", result);
+		
+        	// 제대로 넘어왔는지 보기 위해서 한번 찍어보기
+		System.out.println(result);
         
 		return "home";
 	}
-    
 }

@@ -1,7 +1,5 @@
 package com.final05.HelloWorks;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;

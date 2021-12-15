@@ -16,16 +16,19 @@ public class AttendanceServiceImpl implements AttendanceService {
 	
 	@Override
 
-	public Attendance workOn(Attendance vo) throws Exception{
+	public int workOn(Attendance vo) throws Exception{
 		return attdao.workOn(vo);
 	}
 	
-	public List<Attendance>work(Attendance vo) throws Exception{
+	public int workOff(Attendance vo) throws Exception {
+		return attdao.workOff(vo);
+	}
+	
+	public List<Attendance> work(Attendance vo) throws Exception{
 		return attdao.work(vo);
 	}
 	
 	public String workDay(String uid) {
 		return attdao.workDay(uid);
 	}
-
 }
