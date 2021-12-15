@@ -65,7 +65,7 @@ public class ScheduleController {
 	
 
 	
-	@RequestMapping(value = "schedule", method = RequestMethod.GET)
+	@RequestMapping(value = "/schedule", method = RequestMethod.GET)
 	public ModelAndView showSchedule(ModelAndView mv) {
 		Schedule svo = new Schedule();
 		List<Schedule> list = new ArrayList<Schedule>();
