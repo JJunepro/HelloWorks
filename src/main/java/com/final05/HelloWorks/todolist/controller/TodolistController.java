@@ -54,10 +54,16 @@ public class TodolistController {
 	 return mv; 
 	 }
 	
+	@RequestMapping
+	public String todoAdd () {
+		return "redirect:/todolist";
+	}
+	
 	@RequestMapping(value = "todoRemove", method = RequestMethod.GET)
 	public String todoRemove (@RequestParam("todoNum") int todoNum, Model model) throws Exception {
 		System.out.println("삭제todoNum: " + todoNum);
 		todoService.todoRemove(todoNum);
 		return "redirect:/todolist";
 	}
+	
 }

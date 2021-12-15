@@ -5,7 +5,6 @@
  		<id property="todoNum" column="TODO_NUM"/>
  		<result property="uid" column="U_ID"/>
  		<result property="todoTitle" column="TODO_TITLE"/>
- 		<result property="todoMemo" column="TODO_MEMO"/>
  		<result property="todoDate" column="TODO_DATE"/>
  		<result property="todoMark" column="TODO_MARK"/>
  		<result property="todoProcess" column="TODO_PROCESS"/>
@@ -42,8 +41,8 @@
 	</select>
  	
  		
- 	<insert id="todoInsert" parameterType="Todolist">
- 	insert into todolist VALUES (todo_num_seq.nextval, #{uid}, #{todoTitle}, #{todoMemo}, SYSDATE, #{todoMark}, #{todoProcess})
+ 	<insert id="todoAdd" parameterType="Todolist">
+ 	insert into todolist VALUES (todo_num_seq.nextval, #{uid}, #{todoTitle}, SYSDATE, #{todoMark}, #{todoProcess})
  	</insert>
  	
  	<delete id="todoRemove">

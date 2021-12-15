@@ -230,34 +230,7 @@
       <!-- partial -->
       <!-- 내용 -->
    <div class="main-panel">
-   
-   	<div class="wrapper">
-	    <div class="importTodo">
-	      <h2 class="title">주요 일정</h2>
-	      <div class="content">
-	        <ul id="tasks">
-	          <li>일정1</li>
-	          <li>일정1</li>
-	        </ul>
-	      </div>
-	   </div>
-	
-	    <div class="basicTodo">
-	        <h2 class="title">내 일정</h2>
-	        <div class="inputFields">
-	          <input type="text" id="taskValue" placeholder="Enter a task.">
-	          <button type="submit" id="addBtn" class="btn"><i class="fa fa-plus"></i></button>
-	        </div>
-	        <div class="content">
-	        	<c:forEach var="list" items="${list }">
-	        		<ul id="tasks">
-	        			<li><span>${list.todoTitle }</span><button id="removeBtn">x</button></li>
-	        		</ul>
-	        	</c:forEach>
-	        </div>
-	    </div>
-	</div>
-			<!-- 앞 페이지 번호 처리 -->
+  	
 
 
 	</div>
@@ -303,44 +276,6 @@
     <!-- 여기부터 스크립트소스코드 작성 --> 
  	<script type="text/javascript">
 
-	// Add Task
-	$("#addBtn").on("click", function(e) {
-		e.preventDefault();
-
-		var task = $("#taskValue").val();
-
-		$.ajax({
-			url: "todoAdd",
-			type: "POST",
-			data: {task: task},
-			success: function(data) {
-				loadTasks();
-				$("#taskValue").val('');
-				if (data == 0) {
-					alert("Something wrong went. Please try again.");
-				}
-			}
-		});
-	});
- 	
- 	
-	// Remove Task
-	$(document).on("click", "#removeBtn", function(e) {
-		e.preventDefault();
-		var id = $(this).data('id');
-		$.ajax({
-			url: "todoRemove",
-			type: "GET",
-			data: {id: id},
-			success: function(data) {
-				loadTasks();
-				if (data == 0) {
-					alert("Something wrong went. Please try again.");
-				}
-			}
-		});
-	});
-});
 	</script>
   
 </body>
