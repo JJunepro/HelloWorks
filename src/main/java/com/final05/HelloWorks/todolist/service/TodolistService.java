@@ -6,10 +6,10 @@ import com.final05.HelloWorks.todolist.vo.Todolist;
 
 public interface TodolistService {
 
-	public List<Todolist> todolistToday(Todolist vo) throws Exception;
-	public List<Todolist> todayImport(Todolist vo) throws Exception;
-	public List<Todolist> todayDone(Todolist vo) throws Exception;
+	public List<Todolist> todolistAll(int startPage, int limit) throws Exception;
+	
+	public int todoCount() throws Exception;
 	
 	public int todoInsert(Todolist vo) throws Exception;
-	
+	public int todoRemove(int todoNum) throws Exception;
 }

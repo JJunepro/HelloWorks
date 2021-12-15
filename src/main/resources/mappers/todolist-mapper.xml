@@ -37,10 +37,18 @@
 	 	]]>
  	</select>
  	
+ 	<select id="todoCount" resultType="int">
+		SELECT count(*) FROM todolist
+	</select>
  	
  		
  	<insert id="todoInsert" parameterType="Todolist">
  	insert into todolist VALUES (todo_num_seq.nextval, #{uid}, #{todoTitle}, #{todoMemo}, SYSDATE, #{todoMark}, #{todoProcess})
  	</insert>
+ 	
+ 	<delete id="todoRemove">
+ 		delete from todolist where TODO_NUM = #{todoNum}
+ 	</delete>
+ 	
  	
 </mapper>

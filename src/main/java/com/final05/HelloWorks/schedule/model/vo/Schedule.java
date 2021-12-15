@@ -25,8 +25,6 @@ public class Schedule {
 	private boolean allDay = false;
 	
 	
-	
-	
 	@Override
 	public String toString() {
 		return "Schedule [scheduleNum=" + scheduleNum + ", uid=" + uid + ", title=" + title + ", scheduleMemo="
@@ -81,9 +79,7 @@ public class Schedule {
 		this.allDay = allDay;
 	}
 	
-	
-	
-	
+
 	
 	
 }

@@ -36,7 +36,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   
   <link rel="stylesheet" href="resources/todolist/todoMain.css">
-
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 </head>
 <body>
@@ -206,7 +208,7 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="login"> Login </a></li>
+                <li class="navd-item"> <a class="nav-link" href="login"> Login </a></li>
                 <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/login-2.html"> Login 2 </a></li>
                 <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/register.html"> Register </a></li>
                 <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/register-2.html"> Register 2 </a></li>
@@ -228,60 +230,37 @@
       <!-- partial -->
       <!-- 내용 -->
    <div class="main-panel">
-     <div class="content-wrapper">
-	    <div class="date">
-	      <h1>2021.12.01</h1>
-	    </div>
-	
-	  <div class="header__title">
-	    <span class="material-icons">checklist</span>
-	    <h1>TODOLIST</h1> 
-	  </div>
-	
-	 
-	<div class="todo__import">
-	  <h3>주요일정</h3>
-	      <c:forEach var="list" items="${list }">
-		      <table>
-		        <tr>
-		          <td>${list.todoTitle }</td>
-		        </tr>
-		      </table>
-	      </c:forEach>
-	</div>
-	
-	<div class="todo__basic">
-	  <div class="basic__title">
-	    <h3 style="margin-bottom:5px;">내 일정</h3>
-	    <form class="todo__input">
-	      <input type="text" class="input__texts" required="required" placeholder="일정을 입력해주세요">
-	      <button type="button" class="input__button"><span class="material-icons">add_circle_outline</span></button>
-	    </form>
-	  </div>
-	      <div class="item__list"></div>
-	      <c:forEach var="list" items="${list }">
-		      <table>
-		        <tr>
-		          <td>${list.todoTitle }</td>
-		        </tr>
-		      </table>
-	      </c:forEach>
-	      
-	      
-	      <!-- Modal-->
-	      <div class="modal">
-	      	<div class="modal__header"></div>
-	      	<div class="modal__body">
-	      		<form>
-	      		일정 <input type="text" class="input__txt" required="required" placeholder="일정을 입력해주세요">
-	      		<button type="button" class="input__btn">추가</button>
-	      		</form>
-	      	</div>
+   
+   	<div class="wrapper">
+	    <div class="importTodo">
+	      <h2 class="title">주요 일정</h2>
+	      <div class="content">
+	        <ul id="tasks">
+	          <li>일정1</li>
+	          <li>일정1</li>
+	        </ul>
 	      </div>
-	      
-	  </div>
-		
-       
+	   </div>
+	
+	    <div class="basicTodo">
+	        <h2 class="title">내 일정</h2>
+	        <div class="inputFields">
+	          <input type="text" id="taskValue" placeholder="Enter a task.">
+	          <button type="submit" id="addBtn" class="btn"><i class="fa fa-plus"></i></button>
+	        </div>
+	        <div class="content">
+	        	<c:forEach var="list" items="${list }">
+	        		<ul id="tasks">
+	        			<li>${list.todoTitle }</li>
+	        		</ul>
+	        	</c:forEach>
+	        </div>
+	    </div>
+	</div>
+			<!-- 앞 페이지 번호 처리 -->
+
+
+	</div>
         
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -315,7 +294,7 @@
 	<!-- Custom js for this page-->
 	 
  	<!-- 이페이지에서만 쓰는 src -->
-
+	
   	
   
 	<!-- 스크립트 src 까지 -->
@@ -323,33 +302,24 @@
 	
     <!-- 여기부터 스크립트소스코드 작성 --> 
  	<script type="text/javascript">
-    let itemList = [];
-    let inputButton = document.querySelector(".input__button");
-    inputButton.addEventListener("click", addItem);
-
-    function addItem(){
-      let item = document.querySelector(".input__texts").value;
-      if(item != null) {
-        itemList.push(item);
-        document.querySelector(".input__texts").value = "";
-        document.querySelector(".input__texts").focus();
-      }
-      showList();
-    }
-    function showList(){
-    let list = "<ul>";
-      for(let i = 0; i< itemList.length; i++) {
-        list += "<li>" + itemList[i] + "<span class='close' id=" + i+ ">" + "\u00D7" + "</span></li>";
-      }
-      list += "</ul>";
-      document.querySelector(".item__list").innerHTML = list;
-
-      let deleteButtons = document.querySelectorAll(".close");
-    for (let i = 0; i < deleteButtons.length; i++) {
-        deleteButtons[i].addEventListener("click", deleteItem);
-    }
-  }
- 	</script>
+	// Remove Task
+	$(document).on("click", "#removeBtn", function(e) {
+		e.preventDefault();
+		var id = $(this).data('id');
+		$.ajax({
+			url: "todoRemove",
+			type: "GET",
+			data: {id: id},
+			success: function(data) {
+				loadTasks();
+				if (data == 0) {
+					alert("Something wrong went. Please try again.");
+				}
+			}
+		});
+	});
+});
+	</script>
   
 </body>
 

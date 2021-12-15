@@ -14,23 +14,26 @@ public class TodolistServiceImpl implements TodolistService {
 	private TodolistDao todoDao;
 
 	@Override
-	public List<Todolist> todolistToday(Todolist vo) throws Exception {
-		return todoDao.todolistToday(vo);
+	public List<Todolist> todolistAll(int startPage, int limit) throws Exception {
+		return todoDao.todolistAll(startPage, limit);
 	}
 
 	@Override
-	public List<Todolist> todayImport(Todolist vo) throws Exception {
-		return todoDao.todayImport(vo);
+	public int todoCount() throws Exception {
+		return todoDao.todoCount();
 	}
 
-	@Override
-	public List<Todolist> todayDone(Todolist vo) throws Exception {
-		return todoDao.todayDone(vo);
-	}
-
+	
 	@Override
 	public int todoInsert(Todolist vo) throws Exception {
-		return todoDao.todoInsert(vo);
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+	@Override
+	public int todoRemove(int todoNum) throws Exception {
+		return todoDao.todoRemove(todoNum);
+	}
+
 
 }
