@@ -272,9 +272,9 @@
 												</tr>
 											 	<tr>
 												<td colspan="2" style="font-size: 30px;">
-												<input type="radio" name="use" value="use" style="width:20px;height:20px;"/>사용
+												<input type="radio" name="oUse" value="사용" style="width:20px;height:20px;"/>사용
   													&nbsp;&nbsp;&nbsp;&nbsp;
-  												<input type="radio" name="use" value="unused" style="width:20px;height:20px;" />미사용
+  												<input type="radio" name="oUse" value="미사용" style="width:20px;height:20px;" />미사용
   												</td>
 												</tr> 
 												<tr>

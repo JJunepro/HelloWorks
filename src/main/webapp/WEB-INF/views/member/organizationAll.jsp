@@ -173,7 +173,7 @@ th, td {
 					<div class="user-image">
 						<img src="resources/images/faces/face28.png">
 					</div>
-					<div class="user-name">Edward Spencer</div>
+					<div class="user-name">${memberinfo.name }</div>
 					<div class="user-designation">Developer</div>
 				</div>
 				<ul class="nav">
@@ -280,7 +280,7 @@ th, td {
 												<th>생성일</th>
 												<th>폐쇄일</th>
 												<th width="150px;">사용여부</th>
-												
+												<th width="150px;"></th>
 
 												<c:forEach var="vo" items="${list2 }">
 													<tr>
@@ -289,7 +289,7 @@ th, td {
 														<td>${vo.oStart }</td>
 														<td>${vo.oEnd }</td>
 														<td>${vo.oUse }</td>
-														
+														<td><a href="organizationDelete?oCode=${vo.oCode}"role="button" class="btn btn-outline-info">삭제</td>
 													</tr>
 												</c:forEach>
 												
@@ -338,6 +338,7 @@ th, td {
 								<td style="width: 80%;"></td>
 								<td><button id="btn" class="btn btn-outline-info"
 										onclick="location.href='organizationAdd'">부서 추가</button></td>
+										<td><a href="memberAll"role="button" class="btn btn-outline-info">목록</a></td>
 							</table>
 						</div>
 					</div>

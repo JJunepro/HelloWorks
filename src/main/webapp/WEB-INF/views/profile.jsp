@@ -44,6 +44,14 @@
 		width: 100px;
 		height: 40px;
 	}
+	#topdiv{
+		display: flex;      
+        justify-content: space-around;
+	}
+	#leftdiv{
+		width: 250px;
+		margin-left: auto;
+	}
 
 </style>
 <body>
@@ -234,7 +242,17 @@
 						<div class="col-xl-12 d-flex grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body" style = "width:100%;  overflow:auto">
+									<form id = "updateform1" action="myMemberUpdate" method="get">
+									<input type = "hidden" id = "uid" name = "uid" value = "${memberinfo.uid }">
+									<input type = "hidden" id = "oCode" name = "oCode" value = "${memberinfo.oCode }">
+							
+									<div id = "topdiv">
 									<h2>직원 정보</h2>
+									<div id= "leftdiv">	
+											<button type="submit" id = "updatesub" class="btn btn-outline-info" onclick="location.href='myMemberUpdate?uid=${memberinfo.uid }&&oCode=${memberinfo.oCode }'">수정</button>
+										</div>
+									</div>
+									<br><br>
 									<div class="row">
 										<div class="user-image">
 											<img src="${memberinfo.pImage }" width="180px" height= "180px">
@@ -242,14 +260,14 @@
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
 										 
-											<table border="0" width="1100px;">
+											<table border="0" width="1300px;">
 												<tr>
 													<td>이름</td>
 													<td><input type = "text" id = "name" name = "name" value = "${memberinfo.name }"></td>
 													<td>ID</td>
 													<td>${memberinfo.uid }</td>
 													<td>PWD</td>
-													<td></td>
+													<td><input type = "text" id = "pwd" name = "pwd" value = "${memberinfo.pwd }"></td>
 												</tr>
 												<tr>
 													<td>사번</td>
@@ -287,13 +305,14 @@
 												</tr>
 												<tr>
 													<td>직책</td>
-													<td><input type = "text" id = "position" name = "position" value = "${info.position }"></td>
+													<td><input type = "text" id = "position" name = "position" value = "${memberinfo.position }"></td>
 												</tr>
 											</table>
 										</div>
 									</div>
-								</div>
+								
 								</form>
+								</div>
 							</div>
 						</div>
 

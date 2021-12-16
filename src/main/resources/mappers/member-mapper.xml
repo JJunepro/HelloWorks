@@ -128,7 +128,7 @@
 	
 <!--부서 추가 -->
 	<insert id="organizationAdd" parameterType="Organization">	
-		insert into Organization (O_CODE,O_NAME,O_USE) values(#{oCode},#{oName},#{oUse})
+		insert into Organization (O_CODE,O_NAME,O_USE,O_START) values(#{oCode},#{oName},#{oUse},sysdate)
 	</insert>
 
 <!--로그인 -->
@@ -228,6 +228,7 @@
 	<delete id="memberDelete">
 		delete from MEMBER where U_ID = #{uid}
 	</delete>
+	<!-- 부서 삭제 -->
 	<delete id="organizationDelete">
 		delete from ORGANIZATION where O_CODE = #{oCode}
 	</delete>

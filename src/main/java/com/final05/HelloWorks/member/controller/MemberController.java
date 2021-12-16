@@ -138,6 +138,23 @@ public class MemberController {
 		}
 		return "pwdSearch";
 	}
+	  // 회원 정보 수정 
+	  @RequestMapping(value = "myMemberUpdate", method = RequestMethod.GET)
+	  public String myMemberUpdate(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model, HttpSession session){
+	        System.out.println("업데이트 id222: "+vo);
+	       
+	        int info = memberService.memberUpdate(vo);	
+	        Member login = memberService.login(vo);
+			
+	        if(info == 1) {
+	        	System.out.println("info222"+info);
+				session.setAttribute("memberinfo", login);
+				System.out.println("여기session33:"+ session.getAttribute("memberinfo"));
+	        }else {
+	        	System.out.println("실패");
+	        }
+	        return "redirect:/profile";         
+	  } 
 	// 회원 정보
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public ModelAndView profile(ModelAndView mv, HttpSession session) {
@@ -180,7 +197,7 @@ public class MemberController {
 					list2 = memberService.organizationAll();
 				System.out.println("mv"+mv);
 				mv.addObject("list2",list2);
-				mv.setViewName("memberAll");
+				mv.setViewName("member/memberAll");
 			} catch (Exception e) {
 				mv.addObject("msg", e.getMessage());
 				
@@ -193,7 +210,7 @@ public class MemberController {
 		  try {	
 				if (keyword != null && !keyword.equals(""))
 					mv.addObject("list", memberService.memberSeach(keyword));
-				mv.setViewName("memberAll");
+				mv.setViewName("member/memberAll");
 			} catch (Exception e) {
 				mv.addObject("msg", e.getMessage());
 				
@@ -216,7 +233,7 @@ public class MemberController {
 			  e.printStackTrace(); 
 		  }
 
-	  mv.setViewName("organizationAll");
+	  mv.setViewName("member/organizationAll");
 
 	 return mv; 
 	 }
@@ -241,7 +258,7 @@ public class MemberController {
 		  }
 
 	 System.out.println("d"+list);
-	  mv.setViewName("memberAll");
+	  mv.setViewName("member/memberAll");
 
 	 return mv; 
 	 }
@@ -270,7 +287,7 @@ public class MemberController {
 	  */ 
 	  @RequestMapping(value = "organizationAdd", method = RequestMethod.GET)
 		public ModelAndView organizationAdd(ModelAndView mv) {
-			mv.setViewName("organizationAdd");
+			mv.setViewName("member/organizationAdd");
 			return mv;
 		}
 	  // 부서 추가
@@ -285,9 +302,9 @@ public class MemberController {
 	      
 	         System.out.println("result"+result);
 	         if(result==1) {
-	            mv.setViewName("redirect:/organizationAll");
+	            mv.setViewName("redirect:/member/organizationAll");
 	         }else {
-	            mv.setViewName("redirect:/organizationAll");
+	            mv.setViewName("redirect:/member/organizationAll");
 	         }	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -316,11 +333,11 @@ public class MemberController {
 	         if(result==1) {
 	          //  String msg = "회원 정보가 등록되었습니다.";
 	          //  rttr.addFlashAttribute("msg", msg);
-	            mv.setViewName("redirect:/memberAll");
+	            mv.setViewName("redirect:/member/memberAll");
 	         }else {
 	          //  String msg = "회원 정보 등록에 실패하였습니다.";
 	           // rttr.addFlashAttribute("msg", msg);
-	            mv.setViewName("redirect:/memberAll");
+	            mv.setViewName("redirect:/member/memberAll");
 	         }	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -333,14 +350,14 @@ public class MemberController {
 	  public String memberDelete(@RequestParam("uid") String uid, Model model){
 	  		System.out.println("삭제 id: "+uid);
 	        memberService.memberDelete(uid);
-	        return "redirect:/memberAll";	         
+	        return "redirect:/member/memberAll";	         
 	  } 
 	  // 부서 삭제
 	  @RequestMapping(value = "organizationDelete", method = RequestMethod.GET)
-	  public String organizationDelete(@RequestParam("uid") String oCode, Model model){
+	  public String organizationDelete(@RequestParam("oCode") String oCode, Model model){
 	  		System.out.println("삭제 code: "+oCode);
 	        memberService.organizationDelete(oCode);
-	        return "redirect:/organizationAll";	         
+	        return "redirect:/member/organizationAll";	         
 	  } 
 	  
 	  // 회원 정보 수정 
@@ -350,6 +367,7 @@ public class MemberController {
 	        memberService.memberUpdate(vo);	            
 	        return "redirect:/profile2?uid="+vo.getUid()+"&&oCode="+vo.getoCode();         
 	  } 
+	
 	  // 부서 정보 수정
 	  @RequestMapping(value = "organizationUpdate", method = RequestMethod.POST)
 	  public String organizationUpdate(Organization ovo,Member vo){

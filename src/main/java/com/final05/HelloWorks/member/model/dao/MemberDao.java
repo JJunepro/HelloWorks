@@ -89,7 +89,7 @@ public class MemberDao {
      return sqlSession.delete("Member.memberDelete", uid);
   }
  public int organizationDelete(String oCode) {
-     return sqlSession.delete("Member.memberDelete", oCode);
+     return sqlSession.delete("Member.organizationDelete", oCode);
   }
  
  public int memberUpdate(Member vo) {

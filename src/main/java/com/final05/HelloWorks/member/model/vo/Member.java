@@ -17,9 +17,9 @@ public class Member {
 	private int resident;	//주민
 	private String address;	//주소
 	private String mail;	//메일
-	private int phone;	//휴대전화
+	private String phone;	//휴대전화
 	private String gender;	//성별
-	private int cPhone;	//회사전화
+	private String cPhone;	//회사전화
 	private int salary;	// 급여
 	private String pImage;  // 프로필
 	private String salaryDate;	// 급여일
@@ -38,8 +38,9 @@ public class Member {
 	private String okeyword;
 	
 	public Member() {}
+
 	public Member(String uid, int oCode, String pwd, int dept, String position, String name, int birth, int resident,
-			String address, String mail, int phone, String gender, int cPhone, int salary, String pImage,
+			String address, String mail, String phone, String gender, String cPhone, int salary, String pImage,
 			String salaryDate, String entry, String last, Organization organization, Degree degree,
 			Appreaisal appreaisal, Transfer transfer, List<Family> family, List<Prize> prize, List<Career> career,
 			List<Certificate> certificate, String keyword, String okeyword) {
@@ -74,10 +75,6 @@ public class Member {
 		this.okeyword = okeyword;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
 		return "Member [uid=" + uid + ", oCode=" + oCode + ", pwd=" + pwd + ", dept=" + dept + ", position=" + position
@@ -89,23 +86,6 @@ public class Member {
 				+ certificate + ", keyword=" + keyword + ", okeyword=" + okeyword + "]";
 	}
 
-
-
-
-
-	public String getOkeyword() {
-		return okeyword;
-	}
-	public void setOkeyword(String okeyword) {
-		this.okeyword = okeyword;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
-	}
 	public String getUid() {
 		return uid;
 	}
@@ -136,6 +116,14 @@ public class Member {
 
 	public void setDept(int dept) {
 		this.dept = dept;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public String getName() {
@@ -178,11 +166,11 @@ public class Member {
 		this.mail = mail;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -194,11 +182,11 @@ public class Member {
 		this.gender = gender;
 	}
 
-	public int getcPhone() {
+	public String getcPhone() {
 		return cPhone;
 	}
 
-	public void setcPhone(int cPhone) {
+	public void setcPhone(String cPhone) {
 		this.cPhone = cPhone;
 	}
 
@@ -314,6 +302,14 @@ public class Member {
 		this.keyword = keyword;
 	}
 
+	public String getOkeyword() {
+		return okeyword;
+	}
+
+	public void setOkeyword(String okeyword) {
+		this.okeyword = okeyword;
+	}
+	
 
 	
 	

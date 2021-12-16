@@ -57,6 +57,10 @@ th, td {
 	width: 400px;
 	margin-left: auto;
 }
+
+li, table{
+	font-size: 20px;
+}
 </style>
 <body>
 	<div class="container-scroller">
@@ -173,7 +177,7 @@ th, td {
 					<div class="user-image">
 						<img src="resources/images/faces/face28.png">
 					</div>
-					<div class="user-name">Edward Spencer</div>
+					<div class="user-name">${memberinfo.name }</div>
 					<div class="user-designation">Developer</div>
 				</div>
 				<ul class="nav">
@@ -257,15 +261,17 @@ th, td {
 									<div class="card">
 										<div class="card-body">
 											<div id = "topdiv">
-											<h3>부서</h3>
-											<button id="btn" class="btn btn-outline-info"
-										onclick="location.href='organizationAll'">목록</button>
+											<h3>부 서</h3>
+											<input type = "button" id="btn" class="btn btn-outline-info"
+										onclick="location.href='organizationAll'" value = "목 록" >
 										</div>
+										<br><br>
 											<form action="memberOSeach" method="get" name="listForm">
 											<ui class="nav flex-column sub-menu" name="okeyword">
 											<input type = "hidden">
 											<c:forEach var="vo2" items="${list2 }">
 												<li><a href="memberOSeach?okeyword=${vo2.oName}">${vo2.oName}</a></li>
+												<br>
 											</c:forEach>
 											</ui>
 											</form>
