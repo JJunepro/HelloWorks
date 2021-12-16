@@ -3,6 +3,8 @@ package com.final05.HelloWorks.todolist.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,7 @@ public class TodolistController {
 	@Autowired
 	private TodolistService todoService;
 	public static final int LIMIT = 10;
-	
+//	
 //	@RequestMapping(value = "/todolist", method = RequestMethod.GET)
 //	public String todolist() {
 //		return "todolist";
@@ -54,9 +56,14 @@ public class TodolistController {
 	 return mv; 
 	 }
 	
-	@RequestMapping
-	public String todoAdd () {
-		return "redirect:/todolist";
+	@RequestMapping(value = "todoAdd", method = RequestMethod.POST)
+	public ModelAndView todoAdd (Todolist vo, HttpServletRequest request, ModelAndView mv) {
+		try {
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;
 	}
 	
 	@RequestMapping(value = "todoRemove", method = RequestMethod.GET)

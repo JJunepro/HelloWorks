@@ -9,28 +9,35 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Regal Admin</title>
+<title>HelloWorks</title>
 <!-- base:css -->
 <link rel="stylesheet"
-	href="resources/vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="resources/vendors/feather/feather.css">
+	href="${pageContext.request.contextPath}/resources/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/feather/feather.css">
 <link rel="stylesheet"
-	href="resources/vendors/base/vendor.bundle.base.css">
+	href="${pageContext.request.contextPath}/resources/vendors/base/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <link rel="stylesheet"
-	href="resources/vendors/flag-icon-css/css/flag-icon.min.css" />
+	href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css" />
 <link rel="stylesheet"
-	href="resources/vendors/font-awesome/css/font-awesome.min.css">
+	href="${pageContext.request.contextPath}/resources/vendors/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
 <link rel="stylesheet"
-	href="resources/vendors/jquery-bar-rating/fontawesome-stars.css">
+	href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars.css">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="resources/images/favicon.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
+<style>
+/* schedule 메뉴 이미지 관련 css*/
+.icon-calendar img {
+	width: 18px;
+	height: 21.6px;
+}
+</style>
 </head>
 <body>
 	<div class="container-scroller">
@@ -38,10 +45,11 @@
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-				<a class="navbar-brand brand-logo" href="/HelloWorks"><img
-					src="resources/images/logo.svg" alt="logo" /></a> <a
-					class="navbar-brand brand-logo-mini" href="/HelloWorks"><img
-					src="images/logo-mini.svg" alt="logo" /></a>
+				<a class="navbar-brand brand-logo" href="/HelloWorks">
+				<img src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
+					class="navbar-brand brand-logo-mini" href="/HelloWorks">
+					<img src="images/logo-mini.svg" alt="logo" />
+					</a>
 			</div>
 			<div
 				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -135,44 +143,52 @@
 					<div class="user-designation">${memberinfo.position }</div>
 				</div>
 				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-mail menu-icon"></i>
+							<span class="menu-title">Mail</span>
+						</a>
+					</li>
+					
+				   	<li class="nav-item">
+				 	  	<a class="nav-link" href="${pageContext.request.contextPath}/schedule">
+					   		<i class="icon-calendar menu-icon">
+					   			<img class="menu-icon" alt="img" src="${pageContext.request.contextPath}/resources/schedule/calendar.svg">
+					   		</i>
+					   		<span class="menu-title">Schedule</span>
+				   		 </a>
+           		 	</li>
+					
 					<li class="nav-item"><a class="nav-link"
-						href="../../index.html"> <i class="icon-mail menu-icon"></i> <span
-							class="menu-title">Mail</span>
+						href="${pageContext.request.contextPath}/todolist"> <i
+							class="icon-clipboard menu-icon"></i> <span class="menu-title">ToDoList</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-						aria-controls="ui-basic"> <i class="icon-disc menu-icon"></i>
-							<span class="menu-title">Calender</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/forms/basic_elements.html"> <i
-							class="icon-clipboard menu-icon"></i> <span class="menu-title">To
-								Do List</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/charts/chartjs.html"> <i
-							class="icon-speech-bubble menu-icon"></i> <span
-							class="menu-title">Messenger</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/tables/basic-table.html"> <i
-							class="icon-watch menu-icon"></i> <span class="menu-title">근태
-								관리</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="memberAll"> <i
-							class="icon-head menu-icon"></i> <span class="menu-title">인사
-								관리</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth"> <i class="icon-square-check menu-icon"></i>
+					<li class="nav-item">
+						<a class="nav-link"href="#">
+							<i class="icon-speech-bubble menu-icon"></i>
+							<span class="menu-title">Messenger</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/work">
+							<i class="icon-watch menu-icon"></i>
+							<span class="menu-title">근태 관리</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/memberAll">
+							<i class="icon-head menu-icon"></i>
+							<span class="menu-title">인사관리</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-square-check menu-icon"></i>
 							<span class="menu-title">회의실 예약</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../docs/documentation.html"> <i
-							class="icon-book menu-icon"></i> <span class="menu-title">Documentation</span>
-					</a></li>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- partial -->
@@ -210,8 +226,8 @@
 
 										<div class="card-body">
 											<h4 class="card-title">
-												To Do List<a href="" style="float: right;"> <i
-													class="icon-square-plus"></i>
+												To Do List<a href="" style="float: right;">
+												<i class="icon-square-plus"></i>
 												</a>
 											</h4>
 
@@ -273,9 +289,9 @@
 							</div>
 						</div>
 
-						<div class="col-xl-8 d-flex grid-margin stretch-card">
+						<div class="col-xl-8 d-flex grid-margin stretch-card" style="width:40% !important;">
 							<div class="card">
-								<div class="card-body">
+								<div class="card-body" >
 									<h4 class="card-title">달력</h4>
 									<div class="row">
 										<div class="col-lg-5">
