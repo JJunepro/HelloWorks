@@ -72,18 +72,7 @@
 					<span class="icon-menu"></span>
 				</button>
 				<ul class="navbar-nav mr-lg-2">
-					<li class="nav-item nav-search d-none d-lg-block">
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="search"> <i
-									class="icon-search"></i>
-								</span>
-							</div>
-							<input type="text" class="form-control"
-								placeholder="Search Projects.." aria-label="search"
-								aria-describedby="search">
-						</div>
-					</li>
+					
 				</ul>
 				<ul class="navbar-nav navbar-nav-right">
 					<li class="nav-item dropdown d-lg-flex d-none">
@@ -167,68 +156,48 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<div class="user-profile">
 					<div class="user-image">
-						<img src="resources/images/faces/face1.jpg">
+						<img src="${memberinfo.pImage }">
 					</div>
 					<div class="user-name">${memberinfo.name }</div>
-					<div class="user-designation">Developer</div>
+					<div class="user-designation">${memberinfo.position }</div>
 				</div>
-				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="/HelloWorks">
-							<i class="icon-box menu-icon"></i> <span class="menu-title">Dashboard</span>
+					<ul class="nav">
+					<li class="nav-item"><a class="nav-link"
+						href="../../index.html"> <i class="icon-mail menu-icon"></i> <span
+							class="menu-title">Mail</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
 						aria-controls="ui-basic"> <i class="icon-disc menu-icon"></i>
-							<span class="menu-title">UI Elements</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="ui-basic">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="resources/pages/ui-features/buttons.html">Buttons</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="resources/pages/ui-features/typography.html">Typography</a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item"><a class="nav-link"
-						href="resources/pages/forms/basic_elements.html"> <i
-							class="icon-file menu-icon"></i> <span class="menu-title">Form
-								elements</span>
+							<span class="menu-title">Calender</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="resources/pages/charts/chartjs.html"> <i
-							class="icon-pie-graph menu-icon"></i> <span class="menu-title">Charts</span>
+						href="../../pages/forms/basic_elements.html"> <i
+							class="icon-clipboard menu-icon"></i> <span class="menu-title">To
+								Do List</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="resources/pages/tables/basic-table.html"> <i
-							class="icon-command menu-icon"></i> <span class="menu-title">Tables</span>
+						href="../../pages/charts/chartjs.html"> <i
+							class="icon-speech-bubble menu-icon"></i> <span
+							class="menu-title">Messenger</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="resources/pages/icons/feather-icons.html"> <i
-							class="icon-help menu-icon"></i> <span class="menu-title">Icons</span>
+						href="../../pages/tables/basic-table.html"> <i
+							class="icon-watch menu-icon"></i> <span class="menu-title">근태
+								관리</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="memberAll"> <i
+							class="icon-head menu-icon"></i> <span class="menu-title">인사
+								관리</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth"> <i class="icon-head menu-icon"></i> <span
-							class="menu-title">User Pages</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="auth">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link" href="login">
-										Login </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="resources/pages/samples/login-2.html"> Login 2 </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="resources/pages/samples/register.html"> Register </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="resources/pages/samples/register-2.html"> Register 2
-								</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="resources/pages/samples/lock-screen.html"> Lockscreen
-								</a></li>
-							</ul>
-						</div></li>
+						aria-controls="auth"> <i class="icon-square-check menu-icon"></i>
+							<span class="menu-title">회의실 예약</span>
+					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="resources/docs/documentation.html"> <i
+						href="../../docs/documentation.html"> <i
 							class="icon-book menu-icon"></i> <span class="menu-title">Documentation</span>
 					</a></li>
 				</ul>

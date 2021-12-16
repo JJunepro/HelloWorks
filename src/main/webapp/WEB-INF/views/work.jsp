@@ -98,9 +98,7 @@
 							<a class="dropdown-item preview-item" href="profile"> 
 							<i class="icon-head"></i> Profile 
 							</a>
-							<a class="dropdown-item preview-item" href="login"> 
-							<i class="icon-inbox"></i> Login
-							</a> 
+						
 							<a class="dropdown-item preview-item" href="logout"> 
 							<i class="icon-inbox"></i> Logout
 							</a>
@@ -120,10 +118,11 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<div class="user-profile">
 					<div class="user-image">
-						<img src="../../images/faces/face28.png">
+					<div class="user-image">
+						<img src="${memberinfo.pImage }">
 					</div>
-					<div class="user-name">Edward Spencer</div>
-					<div class="user-designation">Developer</div>
+					<div class="user-name">${memberinfo.name }</div>
+					<div class="user-designation">${memberinfo.position }</div>
 				</div>
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link"

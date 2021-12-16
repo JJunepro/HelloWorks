@@ -314,7 +314,7 @@ public class MemberController {
 	  
 	  @RequestMapping(value = "memberAdd", method = RequestMethod.GET)
 		public ModelAndView memberAdd(ModelAndView mv) {
-			mv.setViewName("memberAdd");
+			mv.setViewName("member/memberAdd");
 			return mv;
 		}
 	  // 회원 추가
