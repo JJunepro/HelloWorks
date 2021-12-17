@@ -324,15 +324,18 @@
 													style="width: 25%" aria-valuenow="50" aria-valuemin="0"
 													aria-valuemax="100"></div>
 											</div>
-											<div>출근시간 : 08시 20분 24초</div>
+											<div>출근시간 : ${workOn}</div>
 											<div>퇴근시간 : 18시 03분 18초</div>
-											<div>1일 평균 근무시간: 8h 20m</div>
-											<div>잔여 연차 현황 : 4일</div>
+											<div>1일 평균 근무시간: 8h 20m</div>											
 										</div>
 									</div>
 								</div>
-								<button type="submit" class="btn btn-primary mr-2"
+								<form method="get">
+								<button type="submit" id="onbtn" class="btn btn-info mr-2"
 									style="width: 100%;">출근</button>
+								<button type="submit" id="offbtn" class="btn btn-light mr-2"
+									style="width: 100%;">퇴근</button>
+								</form>	
 							</div>
 						</div>
 						<div class="col-md-6 grid-margin stretch-card">
@@ -537,9 +540,13 @@
 	<!-- Custom js for this page-->
 	<script src="resources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
+	 
+ 
 	
 	
 	<script type="text/javascript">
+	
+	
 	
 	</script>
 	

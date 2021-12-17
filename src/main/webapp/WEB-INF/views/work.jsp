@@ -9,28 +9,35 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Regal Admin</title>
+<title>HelloWorks</title>
 <!-- base:css -->
 <link rel="stylesheet"
-	href="resources/vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="resources/vendors/feather/feather.css">
+	href="${pageContext.request.contextPath}/resources/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/feather/feather.css">
 <link rel="stylesheet"
-	href="resources/vendors/base/vendor.bundle.base.css">
+	href="${pageContext.request.contextPath}/resources/vendors/base/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <link rel="stylesheet"
-	href="resources/vendors/flag-icon-css/css/flag-icon.min.css" />
+	href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css" />
 <link rel="stylesheet"
-	href="resources/vendors/font-awesome/css/font-awesome.min.css">
+	href="${pageContext.request.contextPath}/resources/vendors/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
 <link rel="stylesheet"
-	href="resources/vendors/jquery-bar-rating/fontawesome-stars.css">
+	href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars.css">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="resources/images/favicon.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
+<style>
+/* schedule 메뉴 이미지 관련 css*/
+.icon-calendar img {
+	width: 18px;
+	height: 21.6px;
+}
+</style>
 </head>
 <body>
 	<div class="container-scroller">
@@ -38,10 +45,11 @@
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-				<a class="navbar-brand brand-logo" href="/HelloWorks"><img
-					src="resources/images/logo.svg" alt="logo" /></a> <a
-					class="navbar-brand brand-logo-mini" href="/HelloWorks"><img
-					src="images/logo-mini.svg" alt="logo" /></a>
+				<a class="navbar-brand brand-logo" href="/HelloWorks">
+				<img src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
+					class="navbar-brand brand-logo-mini" href="/HelloWorks">
+					<img src="images/logo-mini.svg" alt="logo" />
+					</a>
 			</div>
 			<div
 				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -51,16 +59,7 @@
 				</button>
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item nav-search d-none d-lg-block">
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="search"> <i
-									class="icon-search"></i>
-								</span>
-							</div>
-							<input type="text" class="form-control"
-								placeholder="Search Projects.." aria-label="search"
-								aria-describedby="search">
-						</div>
+						
 					</li>
 				</ul>
 				<ul class="navbar-nav navbar-nav-right">
@@ -75,6 +74,17 @@
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 							<a class="dropdown-item preview-item">
 								<div class="preview-thumbnail">
+									<img src="../resources/images/faces/face4.jpg" alt="image"
+										class="profile-pic">
+								</div>
+								<div class="preview-item-content flex-grow">
+									<h6 class="preview-subject ellipsis font-weight-normal">David
+										Grey</h6>
+									<p class="font-weight-light small-text text-muted mb-0">
+										The meeting is cancelled</p>
+								</div>
+							</a> <a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
 									<img src="resources/images/faces/face2.jpg" alt="image"
 										class="profile-pic">
 								</div>
@@ -83,6 +93,17 @@
 										Cook</h6>
 									<p class="font-weight-light small-text text-muted mb-0">
 										New product launch</p>
+								</div>
+							</a> <a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<img src="../resources/images/faces/face3.jpg" alt="image"
+										class="profile-pic">
+								</div>
+								<div class="preview-item-content flex-grow">
+									<h6 class="preview-subject ellipsis font-weight-normal">
+										Johnson</h6>
+									<p class="font-weight-light small-text text-muted mb-0">
+										Upcoming board meeting</p>
 								</div>
 							</a>
 						</div></li>
@@ -95,12 +116,10 @@
 							class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 							aria-labelledby="notificationDropdown">
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
-							<a class="dropdown-item preview-item" href="profile"> 
-							<i class="icon-head"></i> Profile 
-							</a>
-						
-							<a class="dropdown-item preview-item" href="logout"> 
-							<i class="icon-inbox"></i> Logout
+							<a class="dropdown-item preview-item" href="profile"> <i
+								class="icon-head"></i> Profile
+							</a> <a class="dropdown-item preview-item" href="logout"> <i
+								class="icon-inbox"></i> Logout
 							</a>
 						</div></li>
 				</ul>
@@ -118,57 +137,117 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<div class="user-profile">
 					<div class="user-image">
-					<div class="user-image">
 						<img src="${memberinfo.pImage }">
 					</div>
 					<div class="user-name">${memberinfo.name }</div>
 					<div class="user-designation">${memberinfo.position }</div>
 				</div>
 				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-mail menu-icon"></i>
+							<span class="menu-title">Mail</span>
+						</a>
+					</li>
+					
+				   	<li class="nav-item">
+				 	  	<a class="nav-link" href="${pageContext.request.contextPath}/schedule">
+					   		<i class="icon-calendar menu-icon">
+					   			<img class="menu-icon" alt="img" src="${pageContext.request.contextPath}/resources/schedule/calendar.svg">
+					   		</i>
+					   		<span class="menu-title">Schedule</span>
+				   		 </a>
+           		 	</li>
+					
 					<li class="nav-item"><a class="nav-link"
-						href="../../index.html"> <i class="icon-mail menu-icon"></i> <span
-							class="menu-title">Mail</span>
+						href="${pageContext.request.contextPath}/todolist"> <i
+							class="icon-clipboard menu-icon"></i> <span class="menu-title">ToDoList</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-						aria-controls="ui-basic"> <i class="icon-disc menu-icon"></i>
-							<span class="menu-title">Calender</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/forms/basic_elements.html"> <i
-							class="icon-clipboard menu-icon"></i> <span class="menu-title">To
-								Do List</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/charts/chartjs.html"> <i
-							class="icon-speech-bubble menu-icon"></i> <span
-							class="menu-title">Messenger</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/tables/basic-table.html"> <i
-							class="icon-watch menu-icon"></i> <span class="menu-title">근태
-								관리</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="memberAll">
-							<i class="icon-head menu-icon"></i> <span class="menu-title">인사
-								관리</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth"> <i class="icon-square-check menu-icon"></i>
+					<li class="nav-item">
+						<a class="nav-link"href="#">
+							<i class="icon-speech-bubble menu-icon"></i>
+							<span class="menu-title">Messenger</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/work">
+							<i class="icon-watch menu-icon"></i>
+							<span class="menu-title">근태 관리</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/memberAll">
+							<i class="icon-head menu-icon"></i>
+							<span class="menu-title">인사관리</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-square-check menu-icon"></i>
 							<span class="menu-title">회의실 예약</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../docs/documentation.html"> <i
-							class="icon-book menu-icon"></i> <span class="menu-title">Documentation</span>
-					</a></li>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- partial -->
-			
-			
-			
-			
+					<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-sm-12 mb-4 mb-xl-0">
+							<h3>근태 관리</h3>
+						</div>
+					</div>
+					
+					<div class="row mt-3">
+						<div class="col-xl-2 flex-column d-flex grid-margin stretch-card">
+							<div class="row flex-grow">
+								<div class="col-sm-12 stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<div id = "topdiv">
+											<h4>부서</h4>
+											
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					
+					
+
+						<div class="col-xl-10 d-flex grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<div id="topdiv">
+										<h4>근태 기록</h4>
+									</div>
+									<br>
+									<div class="row">
+
+										<div style="width: 100%; height: 580px; overflow: auto">
+											<table class="table-bordered">
+												<th>사번</th>
+												<th>직원명</th>
+												<th>부서</th>
+												<th>출근시간</th>
+												<th>퇴근시간</th>
+
+											
+											</table>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
 				<footer class="footer">
 					<div
@@ -213,12 +292,12 @@
 	<!-- Custom js for this page-->
 	<script src="resources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
-
-
+	
+	
 	<script type="text/javascript">
-		
+	
 	</script>
-
+	
 </body>
 
 </html>
