@@ -101,9 +101,7 @@
 
 
 
-	<!--회원 추가 -->
-<insert id="memberAdd" parameterType="Member">
-		insert all
+	<!-- insert all
 			into MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY,POSITION) 
 			values(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry},#{position})
 			 <foreach collection="family" item="item" index="index">
@@ -123,7 +121,14 @@
 			into APPREAISAL (U_ID,O_CODE) values (#{appreaisal.uid},#{appreaisal.oCode})
 			into TRANSFER (U_ID,O_CODE) values (#{Transfer.uid},#{Transfer.oCode})
 			into PRIZE (U_ID) values (#{prize.uid})
-		select * from DUAL	
+		select * from DUAL	 -->
+
+	<!--회원 추가 -->
+<insert id="memberAdd" parameterType="Member">
+		insert
+			into MEMBER(NAME,U_ID,PWD,DEPT,O_CODE,ADDRESS,GENDER,RESIDENT,MAIL,C_PHONE,PHONE,SALARY,SALARYDATE,BIRTH,ENTRY,POSITION) 
+			values(#{name},#{uid},#{pwd},#{dept},#{oCode},#{address},#{gender},#{resident},#{mail},#{cPhone},#{phone},#{salary},#{salaryDate},#{birth},#{entry},#{position})
+			
 	</insert>
 	
 <!--부서 추가 -->

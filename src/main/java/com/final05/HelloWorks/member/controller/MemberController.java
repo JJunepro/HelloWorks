@@ -1,10 +1,7 @@
 package com.final05.HelloWorks.member.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +40,26 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	public static final int LIMIT = 10;
 	
+	
+//	 // 회원 정보 수정 
+//	  @RequestMapping(value = "myMemberUpdate", method = RequestMethod.GET)
+//	  public String myMemberUpdate(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, HttpServletRequest request,Model model, HttpSession session){
+//	        System.out.println("업데이트 id222: "+vo);
+//	       
+//	        int info = memberService.memberUpdate(vo);	
+//	        Member login = memberService.login(vo);
+//	        session = request.getSession();
+//
+//	        if(info == 1) {
+//	        	System.out.println("info222"+info);
+//				session.setAttribute("memberinfo", login);
+//				System.out.println("여기session33:"+ session.getAttribute("memberinfo"));
+//	        }else {
+//	        	System.out.println("실패");
+//	        }
+//	        return "redirect:/profile";         
+//	  } 
+	  
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv) {
 		mv.setViewName("login");
@@ -95,11 +112,10 @@ public class MemberController {
 	// 아이디 찾기
 	@RequestMapping(value = "idSearch", method = RequestMethod.POST) // 포스트 방식 매핑
 	public String idSearch(Member vo, Model model) {
-		String viewName = "";
-		logger.info("idSearch");
+		
 		Member member = memberService.idSearch(vo);
 
-		
+		try {
 			if (member == null) {
 				System.out.println(member);
 				model.addAttribute("check", 1);
@@ -111,9 +127,10 @@ public class MemberController {
 				model.addAttribute("msg", msg);
 				model.addAttribute("uid", member.getUid());
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		System.out.println(member.getUid());
-		System.out.println(member.getName());
 		return "idSearch";
 	}
 	// 비밀번호 찾기
@@ -138,37 +155,15 @@ public class MemberController {
 		}
 		return "pwdSearch";
 	}
-	  // 회원 정보 수정 
-	  @RequestMapping(value = "myMemberUpdate", method = RequestMethod.GET)
-	  public String myMemberUpdate(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model, HttpSession session){
-	        System.out.println("업데이트 id222: "+vo);
-	       
-	        int info = memberService.memberUpdate(vo);	
-	        Member login = memberService.login(vo);
-			
-	        if(info == 1) {
-	        	System.out.println("info222"+info);
-				session.setAttribute("memberinfo", login);
-				System.out.println("여기session33:"+ session.getAttribute("memberinfo"));
-	        }else {
-	        	System.out.println("실패");
-	        }
-	        return "redirect:/profile";         
-	  } 
+	 
 	// 회원 정보
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
-	public ModelAndView profile(ModelAndView mv, HttpSession session) {
-		System.out.println("여기session:"+ session.getAttribute("memberinfo"));
+	public ModelAndView profile(ModelAndView mv, HttpSession session,HttpServletRequest request) {
+		session = request.getSession();
 		mv.setViewName("profile");
 		return mv;
 	}
-	/*
-	@RequestMapping(value = "profile2", method = RequestMethod.GET)
-	public ModelAndView profile2(ModelAndView mv) {
-		mv.setViewName("profile2");
-		return mv;
-	}
-	*/
+
 	// 회원 정보
 	 @RequestMapping(value = "profile2", method = RequestMethod.GET)
 	    public String profile2(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model,HttpSession session){
@@ -182,6 +177,20 @@ public class MemberController {
 	        logger.info("아이디 : "+uid);
 	       
 	        return "profile2";
+	    }
+		// 회원 정보
+	 @RequestMapping(value = "profile3", method = RequestMethod.GET)
+	    public String profile3(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model,HttpSession session){
+		 	
+		 	Member meminfo=memberService.profile2(vo);
+		 	System.out.println("여기"+ meminfo);
+	        model.addAttribute("info", meminfo);
+	        
+	        System.out.println("아이디 확인 : "+uid);
+	        System.out.println("정보 확인 : "+meminfo);
+	        logger.info("아이디 : "+uid);
+	       
+	        return "profile3";
 	    }
 	 
 	
@@ -208,8 +217,12 @@ public class MemberController {
 	  @RequestMapping(value="memberSeach", method=RequestMethod.GET) 
 	  public ModelAndView memberSeach(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "keyword", required = false) String keyword,ModelAndView mv) { 
 		  try {	
-				if (keyword != null && !keyword.equals(""))
+				if (keyword != null && !keyword.equals("")) {
 					mv.addObject("list", memberService.memberSeach(keyword));
+				}else {
+					String msg = "존재하지 않는 회원 정보입니다.";
+					mv.addObject("msg", msg);
+				}
 				mv.setViewName("member/memberAll");
 			} catch (Exception e) {
 				mv.addObject("msg", e.getMessage());
@@ -302,9 +315,9 @@ public class MemberController {
 	      
 	         System.out.println("result"+result);
 	         if(result==1) {
-	            mv.setViewName("redirect:/member/organizationAll");
+	            mv.setViewName("redirect:/organizationAll");
 	         }else {
-	            mv.setViewName("redirect:/member/organizationAll");
+	            mv.setViewName("redirect:/organizationAll");
 	         }	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -319,7 +332,7 @@ public class MemberController {
 		}
 	  // 회원 추가
 	  @RequestMapping(value = "memberAdd", method=RequestMethod.POST)
-	  public ModelAndView memberAdd(Member vo,
+	  public ModelAndView memberAdd(Member vo,  
 		  @RequestParam("uid") String uid,
 			   HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
 	      int result=0;
@@ -333,11 +346,11 @@ public class MemberController {
 	         if(result==1) {
 	          //  String msg = "회원 정보가 등록되었습니다.";
 	          //  rttr.addFlashAttribute("msg", msg);
-	            mv.setViewName("redirect:/member/memberAll");
+	            mv.setViewName("redirect:/memberAll");
 	         }else {
 	          //  String msg = "회원 정보 등록에 실패하였습니다.";
 	           // rttr.addFlashAttribute("msg", msg);
-	            mv.setViewName("redirect:/member/memberAll");
+	            mv.setViewName("redirect:/memberAll");
 	         }	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -350,22 +363,33 @@ public class MemberController {
 	  public String memberDelete(@RequestParam("uid") String uid, Model model){
 	  		System.out.println("삭제 id: "+uid);
 	        memberService.memberDelete(uid);
-	        return "redirect:/member/memberAll";	         
+	        return "redirect:/memberAll";	         
 	  } 
 	  // 부서 삭제
 	  @RequestMapping(value = "organizationDelete", method = RequestMethod.GET)
 	  public String organizationDelete(@RequestParam("oCode") String oCode, Model model){
 	  		System.out.println("삭제 code: "+oCode);
 	        memberService.organizationDelete(oCode);
-	        return "redirect:/member/organizationAll";	         
+	        return "redirect:/organizationAll";	         
 	  } 
 	  
 	  // 회원 정보 수정 
 	  @RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
-	  public String memberUpdate(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, Model model){
+	  public String memberUpdate(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, 
+			  Model model){
 	        System.out.println("업데이트 id: "+vo);
+	        
 	        memberService.memberUpdate(vo);	            
 	        return "redirect:/profile2?uid="+vo.getUid()+"&&oCode="+vo.getoCode();         
+	  } 
+	  // 회원 정보 수정 
+	  @RequestMapping(value = "memberUpdate2", method = RequestMethod.POST)
+	  public String memberUpdate2(Member vo,@RequestParam("uid") String uid,@RequestParam("oCode") int oCode, 
+			  Model model){
+	        System.out.println("업데이트 id: "+vo);
+	        
+	        memberService.memberUpdate(vo);	            
+	        return "redirect:/profile3?uid="+vo.getUid()+"&&oCode="+vo.getoCode();         
 	  } 
 	
 	  // 부서 정보 수정
@@ -401,12 +425,6 @@ public class MemberController {
 	  @RequestMapping(value = "familyUpdate", method = RequestMethod.POST)
 	  public String familyUpdate(Family[] fvo,Member vo, HttpServletRequest request){
 	        System.out.println("업데이트 id: "+fvo);
-//	        String[] fRelation  = request.getParameterValues("fRelation");
-//	        String[] fName  = request.getParameterValues("fName");
-//	        String[] fBirth  = request.getParameterValues("fBirth");
-//	        String[] fPhone  = request.getParameterValues("fPhone");
-//	        String[] fJob  = request.getParameterValues("fJob");
-//	        String[] fWith  = request.getParameterValues("fWith");
 	        
 	        System.out.println("family"+fvo);
 	        memberService.familyUpdate(fvo);
