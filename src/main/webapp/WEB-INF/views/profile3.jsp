@@ -176,7 +176,7 @@
 							class="menu-title">Messenger</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../../pages/tables/basic-table.html"> <i
+						href="work"> <i
 							class="icon-watch menu-icon"></i> <span class="menu-title">근태
 								관리</span>
 					</a></li>

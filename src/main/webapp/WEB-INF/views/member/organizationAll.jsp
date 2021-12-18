@@ -65,7 +65,7 @@ th, td {
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 				<a class="navbar-brand brand-logo" href="/HelloWorks"><img
-					src="resources/images/logo.svg" alt="logo" /></a> <a
+					src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
 					class="navbar-brand brand-logo-mini" href="/HelloWorks"><img
 					src="images/logo-mini.svg" alt="logo" /></a>
 			</div>
@@ -139,10 +139,7 @@ th, td {
 								class="icon-inbox"></i> Logout
 							</a>
 						</div></li>
-					<li class="nav-item dropdown mr-4 d-lg-flex d-none"><a
-						class="nav-link count-indicatord-flex align-item s-center justify-content-center"
-						href="#"> <i class="icon-grid"></i>
-					</a></li>
+					
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -183,7 +180,7 @@ th, td {
 							class="menu-title">Messenger</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../../pages/tables/basic-table.html"> <i
+						href="work"> <i
 							class="icon-watch menu-icon"></i> <span class="menu-title">근태
 								관리</span>
 					</a></li>

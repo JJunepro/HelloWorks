@@ -30,6 +30,8 @@
 		<collection property="prize" resultMap="PrizeMap"></collection>
 		<collection property="career" resultMap="CareerMap"></collection>
 		<collection property="certificate" resultMap="CertificateMap"></collection>
+		<collection property="attendance" resultMap="AttendanceMap"></collection>
+	
 	</resultMap>
 	
 	<resultMap type="Organization" id="OrganizationMap">
@@ -97,7 +99,12 @@
 		<result property="ceIssuer" column="CE_ISSUER" />
 		<result property="ceDate" column="CE_DATE" />
 	</resultMap>
-
+<resultMap type="Attendance" id="AttendanceMap">
+		<result property="uid" column="U_ID" />
+		<result property="oCode" column="O_CODE" />
+		<result property="workOn" column="WORK_ON" />
+		<result property="workOff" column="WORK_OFF" />
+	</resultMap>
 
 
 
@@ -154,6 +161,8 @@
 		using (U_ID)
 		left join ORGANIZATION i
 		using (O_CODE)
+		left join ATTENDANCE j
+		using (U_ID)
 		WHERE U_ID = #{uid} AND PWD = #{pwd}
 	</select>
 	
@@ -199,6 +208,10 @@
 	<!--회원 목록 -->
 	<select id="memberAll" resultMap="MemberMap"
 		parameterType="Member">
+		select * from member m left join Organization o using (O_CODE) left join Attendance a using (U_ID)
+	</select>
+	<select id="memberAll2" resultMap="MemberMap"
+		parameterType="Member">
 		select o.O_NAME,m.* from member m left join Organization o ON m.O_CODE = o.O_CODE
 	</select>
 	<!--부서 목록 -->
@@ -206,7 +219,10 @@
 		parameterType="Organization">
 		SELECT * FROM ORGANIZATION
 	</select>  
-	
+	<!--  <select id="attendanceAll" resultMap="AttendanceMap"
+		parameterType="Organization">
+		SELECT * FROM ATTENDANCE
+	</select>   -->
 	 <!-- <select id="organizationAll" resultMap="OrganizationMap"
 		parameterType="Organization">
 		SELECT MIN(O_NAME) oNames

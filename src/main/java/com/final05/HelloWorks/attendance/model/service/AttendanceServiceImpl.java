@@ -24,11 +24,15 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attdao.workOff(vo);
 	}
 	
-	public List<Attendance> work(Attendance vo) throws Exception{
-		return attdao.work(vo);
+	public List<Attendance> work(String uid) throws Exception{
+		return attdao.work(uid);
 	}
 	
 	public String workDay(String uid) {
 		return attdao.workDay(uid);
+	}
+	
+	public int workDelete(String uid) {
+		return attdao.workDelete(uid);
 	}
 }

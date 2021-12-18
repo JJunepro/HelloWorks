@@ -1,9 +1,10 @@
 package com.final05.HelloWorks.member.model.vo;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.final05.HelloWorks.attendance.model.vo.Attendance;
 
 @Component
 public class Member {
@@ -33,6 +34,8 @@ public class Member {
 	private List<Prize> prize;
 	private List<Career> career;
 	private List<Certificate> certificate;
+	private Attendance attendance;
+	
 	
 	private String keyword;
 	private String okeyword;
@@ -43,7 +46,7 @@ public class Member {
 			String address, String mail, String phone, String gender, String cPhone, int salary, String pImage,
 			String salaryDate, String entry, String last, Organization organization, Degree degree,
 			Appreaisal appreaisal, Transfer transfer, List<Family> family, List<Prize> prize, List<Career> career,
-			List<Certificate> certificate, String keyword, String okeyword) {
+			List<Certificate> certificate, Attendance attendance, String keyword, String okeyword) {
 		super();
 		this.uid = uid;
 		this.oCode = oCode;
@@ -71,6 +74,7 @@ public class Member {
 		this.prize = prize;
 		this.career = career;
 		this.certificate = certificate;
+		this.attendance = attendance;
 		this.keyword = keyword;
 		this.okeyword = okeyword;
 	}
@@ -83,7 +87,7 @@ public class Member {
 				+ ", pImage=" + pImage + ", salaryDate=" + salaryDate + ", entry=" + entry + ", last=" + last
 				+ ", organization=" + organization + ", degree=" + degree + ", appreaisal=" + appreaisal + ", transfer="
 				+ transfer + ", family=" + family + ", prize=" + prize + ", career=" + career + ", certificate="
-				+ certificate + ", keyword=" + keyword + ", okeyword=" + okeyword + "]";
+				+ certificate + ", attendance=" + attendance + ", keyword=" + keyword + ", okeyword=" + okeyword + "]";
 	}
 
 	public String getUid() {
@@ -294,6 +298,14 @@ public class Member {
 		this.certificate = certificate;
 	}
 
+	public Attendance getAttendance() {
+		return attendance;
+	}
+
+	public void setAttendance(Attendance attendance) {
+		this.attendance = attendance;
+	}
+
 	public String getKeyword() {
 		return keyword;
 	}
@@ -309,11 +321,5 @@ public class Member {
 	public void setOkeyword(String okeyword) {
 		this.okeyword = okeyword;
 	}
-	
-
-	
-	
-	
-
 
 }

@@ -20,13 +20,21 @@
 	]]>
 	</select>
 
+	<select id="work" parameterType="String" resultType="String">  
+		select * from ATTENDANCE WHERE U_ID=#{uid}
+	</select>
+	
+	<delete id="workDelete">
+		delete from ATTENDANCE where U_ID=#{uid}
+	</delete>
+	
 	<insert id="workOn" parameterType="Attendance">
 		insert into ATTENDANCE(U_ID,O_CODE,WORK_ON,WORK_OFF) values(#{uid}, #{oCode}, sysdate, null)
 	</insert>
 
 	<update id="workOff" parameterType="Attendance">
 		UPDATE ATTENDANCE SET WORK_OFF = sysdate
-        WEHRE U_ID=#{uid} and work_off = null
+        WHERE U_ID=#{uid}
 	</update>
 
 	<select id="AttAll" resultMap="resultAtt"

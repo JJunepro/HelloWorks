@@ -9,47 +9,69 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>HelloWorks</title>
+<title>Regal Admin</title>
 <!-- base:css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/feather/feather.css">
+	href="resources/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="resources/vendors/feather/feather.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendors/base/vendor.bundle.base.css">
+	href="resources/vendors/base/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css" />
+	href="resources/vendors/flag-icon-css/css/flag-icon.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendors/font-awesome/css/font-awesome.min.css">
+	href="resources/vendors/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	href="resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars.css">
+	href="resources/vendors/jquery-bar-rating/fontawesome-stars.css">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" href="resources/css/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
+<link rel="shortcut icon" href="resources/images/favicon.png" />
+</head>
 <style>
-/* schedule 메뉴 이미지 관련 css*/
-.icon-calendar img {
-	width: 18px;
-	height: 21.6px;
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th, td {
+	text-align: center;
+}
+
+#btn {
+	border-radius: 0.5em;
+	width: 100px;
+	height: 40px;
+}
+
+#topdiv {
+	display: flex;
+	justify-content: space-around;
+}
+
+#leftdiv {
+	width: 400px;
+	margin-left: auto;
+}
+
+li, table{
+	font-size: 20px;
 }
 </style>
-</head>
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-				<a class="navbar-brand brand-logo" href="/HelloWorks">
-				<img src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
-					class="navbar-brand brand-logo-mini" href="/HelloWorks">
-					<img src="images/logo-mini.svg" alt="logo" />
-					</a>
+				<a class="navbar-brand brand-logo" href="/HelloWorks"><img
+					src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
+					class="navbar-brand brand-logo-mini" href="/HelloWorks"><img
+					src="images/logo-mini.svg" alt="logo" /></a>
 			</div>
 			<div
 				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -58,11 +80,10 @@
 					<span class="icon-menu"></span>
 				</button>
 				<ul class="navbar-nav mr-lg-2">
-					<li class="nav-item nav-search d-none d-lg-block">
-						
-					</li>
+					
 				</ul>
 				<ul class="navbar-nav navbar-nav-right">
+					
 					<li class="nav-item dropdown d-flex"><a
 						class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
 						id="messageDropdown" href="#" data-toggle="dropdown"> <i
@@ -122,6 +143,7 @@
 								class="icon-inbox"></i> Logout
 							</a>
 						</div></li>
+					
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -132,8 +154,7 @@
 		</nav>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
-
-			<!-- partial:../../partials/_sidebar.html -->
+			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<div class="user-profile">
 					<div class="user-image">
@@ -142,64 +163,60 @@
 					<div class="user-name">${memberinfo.name }</div>
 					<div class="user-designation">${memberinfo.position }</div>
 				</div>
-				<ul class="nav">
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<i class="icon-mail menu-icon"></i>
-							<span class="menu-title">Mail</span>
-						</a>
-					</li>
-					
-				   	<li class="nav-item">
-				 	  	<a class="nav-link" href="${pageContext.request.contextPath}/schedule">
-					   		<i class="icon-calendar menu-icon">
-					   			<img class="menu-icon" alt="img" src="${pageContext.request.contextPath}/resources/schedule/calendar.svg">
-					   		</i>
-					   		<span class="menu-title">Schedule</span>
-				   		 </a>
-           		 	</li>
-					
+					<ul class="nav">
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/todolist"> <i
-							class="icon-clipboard menu-icon"></i> <span class="menu-title">ToDoList</span>
+						href="../../index.html"> <i class="icon-mail menu-icon"></i> <span
+							class="menu-title">Mail</span>
 					</a></li>
-					<li class="nav-item">
-						<a class="nav-link"href="#">
-							<i class="icon-speech-bubble menu-icon"></i>
-							<span class="menu-title">Messenger</span>
-						</a>
-					</li>
-					
-					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/work">
-							<i class="icon-watch menu-icon"></i>
-							<span class="menu-title">근태 관리</span>
-						</a>
-					</li>
-					
-					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/memberAll">
-							<i class="icon-head menu-icon"></i>
-							<span class="menu-title">인사관리</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<i class="icon-square-check menu-icon"></i>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+						aria-controls="ui-basic"> <i class="icon-disc menu-icon"></i>
+							<span class="menu-title">Calender</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../../pages/forms/basic_elements.html"> <i
+							class="icon-clipboard menu-icon"></i> <span class="menu-title">To
+								Do List</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../../pages/charts/chartjs.html"> <i
+							class="icon-speech-bubble menu-icon"></i> <span
+							class="menu-title">Messenger</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="work"> <i
+							class="icon-watch menu-icon"></i> <span class="menu-title">근태
+								관리</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="memberAll"> <i
+							class="icon-head menu-icon"></i> <span class="menu-title">인사
+								관리</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="collapse" href="#auth" aria-expanded="false"
+						aria-controls="auth"> <i class="icon-square-check menu-icon"></i>
 							<span class="menu-title">회의실 예약</span>
-						</a>
-					</li>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../../docs/documentation.html"> <i
+							class="icon-book menu-icon"></i> <span class="menu-title">Documentation</span>
+					</a></li>
 				</ul>
 			</nav>
 			<!-- partial -->
-					<div class="main-panel">
+			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
 						<div class="col-sm-12 mb-4 mb-xl-0">
-							<h3>근태 관리</h3>
+							<h2 class="font-weight-bold text-dark">인사관리</h2>
+
 						</div>
 					</div>
 					
+					<script>
+				
+					</script>
 					<div class="row mt-3">
 						<div class="col-xl-2 flex-column d-flex grid-margin stretch-card">
 							<div class="row flex-grow">
@@ -207,36 +224,76 @@
 									<div class="card">
 										<div class="card-body">
 											<div id = "topdiv">
-											<h4>부서</h4>
-											
-											
+											<h3>부 서</h3>
+										</div>
+										<br><br>
+											<form action="memberOSeach" method="get" name="listForm">
+											<ui class="nav flex-column sub-menu" name="okeyword">
+											<input type = "hidden">
+											<c:forEach var="vo2" items="${list2 }">
+												<li><a href="memberOSeach2?okeyword=${vo2.oName}">${vo2.oName}</a></li>
+												<br>
+											</c:forEach>
+											</ui>
+											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						</div>
-					
-					
+						<script>
+     	$(function() {
+			$('form[name=listForm]').on('submit', function(e) {
+								if ($('input[name=keyword]').val() == null || $('input[name=keyword]').val() == "") {
+									alert("검색어를 입력해 주세요");
+									e.preventDefault();
+								} else {
+									return true;
+								}
+							});
+		});
+         </script>
 
 						<div class="col-xl-10 d-flex grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
 									<div id="topdiv">
-										<h4>근태 기록</h4>
+										<h3>직원 목록</h3>
+										<div id="leftdiv">
+											<form action="memberSeach2" method="get" name="listForm">
+												<a href="work"role="button" class="btn btn-outline-info">전체보기</a>
+												&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="text" style="height: 38px;" name="keyword">
+												&nbsp;&nbsp;
+												<input type="submit" class="btn btn-outline-info" value="검색">
+											</form>
+										</div>
 									</div>
 									<br>
 									<div class="row">
 
 										<div style="width: 100%; height: 580px; overflow: auto">
-											<table class="table-bordered">
+											<table border="1" width="1250px;">
+												<tr>
 												<th>사번</th>
 												<th>직원명</th>
 												<th>부서</th>
 												<th>출근시간</th>
 												<th>퇴근시간</th>
+												</tr>
 
-											
+												<c:forEach var="vo" items="${list }">
+													<tr>
+														<td>${vo.dept }</td>
+														<td>${vo.name }</td>
+														<td>${vo.organization.oName }</td>
+														<td>${vo.attendance.workOn }</td>
+														<td>${vo.attendance.workOff}</td>
+														
+													</tr>
+												</c:forEach>
+												
+												
 											</table>
 										</div>
 
@@ -246,6 +303,18 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-xl-12 d-flex grid-margin stretch-card">
+						<div class="card-body">
+							<table width="103%;">
+								<td style="width: 90%;"></td>
+								<td><button id="btn" class="btn btn-outline-info"
+										onclick="location.href='memberAdd'">직원 추가</button></td>
+
+							</table>
+						</div>
+					</div>
+
+
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
@@ -292,12 +361,6 @@
 	<!-- Custom js for this page-->
 	<script src="resources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
-	
-	
-	<script type="text/javascript">
-	
-	</script>
-	
 </body>
 
 </html>

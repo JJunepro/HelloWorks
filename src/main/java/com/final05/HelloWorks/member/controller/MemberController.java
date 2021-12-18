@@ -61,7 +61,7 @@ public class MemberController {
 //	  } 
 	  
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public ModelAndView login(ModelAndView mv) {
+	public ModelAndView login(ModelAndView mv, HttpSession session) {
 		mv.setViewName("login");
 		return mv;
 	}
@@ -230,6 +230,41 @@ public class MemberController {
 			}
 			return mv;
 		}
+	  // 부서 검색
+	  @RequestMapping(value="memberOSeach2", method=RequestMethod.GET) 
+	  public ModelAndView memberOSeach2(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "okeyword", required = false) String okeyword,ModelAndView mv) { 
+		  System.out.println("okeyword"+okeyword);
+		  List<Organization> list2 = new ArrayList<Organization>();
+		  try {	
+				if (okeyword != null && !okeyword.equals(""))
+					mv.addObject("list", memberService.memberOSeach(okeyword));
+					list2 = memberService.organizationAll();
+				System.out.println("mv"+mv);
+				mv.addObject("list2",list2);
+				mv.setViewName("work");
+			} catch (Exception e) {
+				mv.addObject("msg", e.getMessage());
+				
+			}
+			return mv;
+		}
+	  // 회원 검색
+	  @RequestMapping(value="memberSeach2", method=RequestMethod.GET) 
+	  public ModelAndView memberSeach2(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "keyword", required = false) String keyword,ModelAndView mv) { 
+		  try {	
+				if (keyword != null && !keyword.equals("")) {
+					mv.addObject("list", memberService.memberSeach(keyword));
+				}else {
+					String msg = "존재하지 않는 회원 정보입니다.";
+					mv.addObject("msg", msg);
+				}
+				mv.setViewName("work");
+			} catch (Exception e) {
+				mv.addObject("msg", e.getMessage());
+				
+			}
+			return mv;
+		}
 	  // 부서 목록
 	  @RequestMapping(value="organizationAll", method=RequestMethod.GET) 
 	  public ModelAndView organizationAll(@RequestParam(name = "page", defaultValue = "1") int page , ModelAndView mv) { 
@@ -275,29 +310,32 @@ public class MemberController {
 
 	 return mv; 
 	 }
-/*
-	  @RequestMapping(value="memberAll", method=RequestMethod.GET) 
-	  public ModelAndView memberSelect(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "keyword", required = false) String keyword,ModelAndView mv) { 
-		  try {
-				int currentPage = page;
-				// 한 페이지당 출력할 목록 갯수
-				int listCount = memberService.totalCount();
-				int maxPage = (int) ((double) listCount / LIMIT + 0.9);
-				if (keyword != null && !keyword.equals(""))
-					mv.addObject("list", memberService.selectSearch(keyword));
-				else
-					mv.addObject("list", memberService.selectList(currentPage, LIMIT));
-				mv.addObject("currentPage", currentPage);
-				mv.addObject("maxPage", maxPage);
-				mv.addObject("listCount", listCount);
-				mv.setViewName("memberAll");
-			} catch (Exception e) {
-				mv.addObject("msg", e.getMessage());
-				
-			}
-			return mv;
-		}
-	  */ 
+	  // 회원 목록
+	  @RequestMapping(value="work", method=RequestMethod.GET) 
+	  public ModelAndView memberWork(@RequestParam(name = "page", defaultValue = "1") int page , ModelAndView mv) { 
+		  int currentPage = page;
+		  // 한 페이지당 출력할 목록 갯수
+		  int listCount = memberService.totalCount();
+		  int maxPage = (int) ((double) listCount / LIMIT + 0.9);
+		  Member vo = new Member();
+		  List<Member> list = new ArrayList<Member>();
+		  List<Organization> list2 = new ArrayList<Organization>();
+		  try { 
+			  list = memberService.memberAll(currentPage, LIMIT);
+			  list2 = memberService.organizationAll();
+			  mv.addObject("list",list);
+			  mv.addObject("list2",list2);
+			  System.out.println("list"+list);
+		  }catch(Exception e) {
+			  e.printStackTrace(); 
+		  }
+
+	 System.out.println("d"+list);
+	  mv.setViewName("work");
+
+	 return mv; 
+	 }
+
 	  @RequestMapping(value = "organizationAdd", method = RequestMethod.GET)
 		public ModelAndView organizationAdd(ModelAndView mv) {
 			mv.setViewName("member/organizationAdd");
@@ -454,6 +492,9 @@ public class MemberController {
 	        memberService.certificateUpdate(cevo);	          
 	        return "redirect:/profile2?uid="+cevo.getUid();	          
 	  } 
+	  
+	  
+	  
 }
 	  
 		

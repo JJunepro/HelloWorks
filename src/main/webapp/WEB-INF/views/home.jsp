@@ -324,17 +324,31 @@
 													style="width: 25%" aria-valuenow="50" aria-valuemin="0"
 													aria-valuemax="100"></div>
 											</div>
-											<div>출근시간 : ${workOn}</div>
-											<div>퇴근시간 : 18시 03분 18초</div>
+											<div>출근시간 : ${memberinfo.attendance.workOn} </div>
+											<div>퇴근시간 : ${memberinfo.attendance.workOff}</div>
 											<div>1일 평균 근무시간: 8h 20m</div>											
 										</div>
 									</div>
 								</div>
-								<form method="get">
-								<button type="submit" id="onbtn" class="btn btn-info mr-2"
+								<%-- <form action="workOn" method="get">
+									<input type="hidden" value="${memberinfo.uid }">
+									<input type="hidden" value="${memberinfo.oCode }">
+									<button type="submit" id="onbtn" class="btn btn-info mr-2"
 									style="width: 100%;">출근</button>
-								<button type="submit" id="offbtn" class="btn btn-light mr-2"
-									style="width: 100%;">퇴근</button>
+								</form>	 --%>
+								
+								 <button type="submit" id="onbtn" class="btn btn-info mr-2" style="width: 100%;"
+								onclick="location.href='workOn?uid=${memberinfo.uid }&&oCode=${memberinfo.oCode }'">출근</button>
+								<button type="submit" id="onbtn" class="btn btn-light mr-2" style="width: 100%;"
+								onclick="location.href='workOff?uid=${memberinfo.uid }'">퇴근</button>
+								<button type="submit" id="onbtn" class="btn btn-warning mr-2" style="width: 100%;"
+								onclick="location.href='workDelete?uid=${memberinfo.uid }'">초기화</button>
+								
+								<%-- <form action="workOff" method="get">
+									<input type="hidden" value="${memberinfo.uid }">
+									<input type="hidden" value="${memberinfo.oCode }">
+									<button type="submit" id="offbtn" class="btn btn-light mr-2"
+									style="width: 100%;">퇴근</button> --%>
 								</form>	
 							</div>
 						</div>

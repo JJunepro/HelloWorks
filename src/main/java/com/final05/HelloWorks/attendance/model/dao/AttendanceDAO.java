@@ -29,14 +29,16 @@ public class AttendanceDAO {
 	}
 
 	// 직원근태 리스트
-	public List<Attendance> work(Attendance vo) {
-		return sqlSession.selectList("Attendance.AttAll", vo);
+	public List<Attendance> work(String uid) {
+		return sqlSession.selectList("Attendance.AttAll",uid);
 	}
 
 	public String workDay(String uid) {
 		return null;
 	}
-
+	 public int workDelete(String uid) {
+	     return sqlSession.delete("Attendance.workDelete", uid);
+	  }
 	/*
 	 * //직원근태 목록 public List<> select();
 	 * 

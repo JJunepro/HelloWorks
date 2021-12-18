@@ -12,6 +12,8 @@ public interface AttendanceService {
 	
 	public int workOff(Attendance vo) throws Exception;
 	
-	public List<Attendance>work(Attendance vo) throws Exception;
+	public List<Attendance> work(String uid) throws Exception;
+	
+	public int workDelete(String uid) throws Exception;
 
 }

@@ -60,7 +60,7 @@
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 				<a class="navbar-brand brand-logo" href="/HelloWorks"><img
-					src="resources/images/logo.svg" alt="logo" /></a> <a
+					src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
 					class="navbar-brand brand-logo-mini" href="/HelloWorks"><img
 					src="images/logo-mini.svg" alt="logo" /></a>
 			</div>
@@ -134,10 +134,7 @@
 								class="icon-inbox"></i> Logout
 							</a>
 						</div></li>
-					<li class="nav-item dropdown mr-4 d-lg-flex d-none"><a
-						class="nav-link count-indicatord-flex align-item s-center justify-content-center"
-						href="#"> <i class="icon-grid"></i>
-					</a></li>
+					
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -178,7 +175,7 @@
 							class="menu-title">Messenger</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../../pages/tables/basic-table.html"> <i
+						href="work"> <i
 							class="icon-watch menu-icon"></i> <span class="menu-title">근태
 								관리</span>
 					</a></li>
@@ -192,10 +189,7 @@
 						aria-controls="auth"> <i class="icon-square-check menu-icon"></i>
 							<span class="menu-title">회의실 예약</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../docs/documentation.html"> <i
-							class="icon-book menu-icon"></i> <span class="menu-title">Documentation</span>
-					</a></li>
+					
 				</ul>
 			</nav>
 			<!-- partial -->
@@ -224,13 +218,15 @@
 									<br><br>
 									
 									<div class="row">
-										<div class="user-image">
-											<img src="${info.pImage }" width="200px" height= "200px">
+										<div class="user-image" style="width: 15%">
+											<img src="${info.pImage }" width="200px" height= "200px">									
+										 	<input type="file">
 										</div>
+										
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
 										 
-											<table border="0" width="1300px;">
+											<table border="0" width="1250px;">
 												<tr>
 													<td>이름</td>
 													<td><input type="text" name="name"></td>

@@ -16,34 +16,50 @@ public class Attendance {
 	private String workOff;
 	
 	public Attendance() {}
-	
+
+	public Attendance(String uid, int oCode, String workOn, String workOff) {
+		super();
+		this.uid = uid;
+		this.oCode = oCode;
+		this.workOn = workOn;
+		this.workOff = workOff;
+	}
+
 	@Override
 	public String toString() {
-		return "Attendance [ uid=" + uid + ", Ocode=" +  oCode + ", wokrOn=" + workOn + ", workOff=" + workOff + "]";
+		return "Attendance [uid=" + uid + ", oCode=" + oCode + ", workOn=" + workOn + ", workOff=" + workOff + "]";
 	}
-	
+
 	public String getUid() {
 		return uid;
 	}
+
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+
 	public int getoCode() {
 		return oCode;
 	}
+
 	public void setoCode(int oCode) {
 		this.oCode = oCode;
 	}
+
 	public String getWorkOn() {
 		return workOn;
 	}
+
 	public void setWorkOn(String workOn) {
 		this.workOn = workOn;
 	}
+
 	public String getWorkOff() {
 		return workOff;
 	}
+
 	public void setWorkOff(String workOff) {
 		this.workOff = workOff;
 	}
+
 }
