@@ -61,6 +61,9 @@ th, td {
 li, table{
 	font-size: 20px;
 }
+thead{
+	background-color: #FFE4C4;
+}
 </style>
 <body>
 	<div class="container-scroller">
@@ -225,7 +228,10 @@ li, table{
 										<div class="card-body">
 											<div id = "topdiv">
 											<h3>부 서</h3>
-											<input type = "button" id="btn" class="btn btn-outline-info"
+											
+										</div>
+										<div id = "topdiv">
+										<input type = "button" id="btn" class="btn btn-outline-info"
 										onclick="location.href='organizationAll'" value = "목 록" >
 										</div>
 										<br><br>
@@ -276,6 +282,7 @@ li, table{
 
 										<div style="width: 100%; height: 580px; overflow: auto">
 											<table border="1" width="1250px;">
+												<thead><tr>
 												<th>사번</th>
 												<th>직원명</th>
 												<th>부서</th>
@@ -283,7 +290,7 @@ li, table{
 												<th>생년월일</th>
 												<th>주소</th>
 												<th>입사일</th>
-
+												<tr></thead>
 												<c:forEach var="vo" items="${list }">
 													<tr>
 														<td>${vo.dept }</td>
@@ -296,7 +303,7 @@ li, table{
 													</tr>
 												</c:forEach>
 												
-												<!-- 앞 페이지 번호 처리 -->
+											<%-- 	<!-- 앞 페이지 번호 처리 -->
 												<tr align="center" height="20">
 													<td colspan="5"><c:if test="${currentPage <= 1}">
  													[이전]&nbsp; 
@@ -325,7 +332,7 @@ li, table{
 															</c:url>
 															<a href="${memberlistEND}">[다음]</a>
 														</c:if></td>
-												</tr>
+												</tr> --%>
 											</table>
 										</div>
 

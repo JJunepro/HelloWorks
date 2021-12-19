@@ -32,8 +32,11 @@ public class HomeController {
 		Member ssMember = (Member)session.getAttribute("memberinfo");
 	      if(ssMember == null) {
 	         return "redirect:/login";
+	      }else {
+	    	  System.out.println("세션 오나?"+ssMember);
+	    	return "home";	
 	      }
-		return "home";
+	
 	}
 	
 }

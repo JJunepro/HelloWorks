@@ -8,11 +8,13 @@ public interface AttendanceService {
 	
 	public String workDay(String uid);
 	
-	public int workOn(Attendance vo) throws Exception;
+	public int workOnn(Attendance vo) throws Exception;
 	
 	public int workOff(Attendance vo) throws Exception;
 	
-	public List<Attendance> work(String uid) throws Exception;
+	public List<Attendance> work() throws Exception;
+	
+	public Attendance workTime(String uid) throws Exception;
 	
 	public int workDelete(String uid) throws Exception;
 

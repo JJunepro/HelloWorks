@@ -19,8 +19,8 @@ public class AttendanceDAO {
 		return sqlSession.selectList("Attendance.showAtt");
 	}
 	// 출근시간
-	public int workOn(Attendance vo) {
-		return sqlSession.insert("Attendance.workOn", vo);
+	public int workOnn(Attendance vo) {
+		return sqlSession.insert("Attendance.workOnn", vo);
 	}
 
 	// 퇴근시간
@@ -29,8 +29,11 @@ public class AttendanceDAO {
 	}
 
 	// 직원근태 리스트
-	public List<Attendance> work(String uid) {
-		return sqlSession.selectList("Attendance.AttAll",uid);
+	public List<Attendance> work() {
+		return sqlSession.selectList("Attendance.AttAll");
+	}
+	public Attendance workTime(String uid) {
+		return sqlSession.selectOne("Attendance.workTime",uid);
 	}
 
 	public String workDay(String uid) {

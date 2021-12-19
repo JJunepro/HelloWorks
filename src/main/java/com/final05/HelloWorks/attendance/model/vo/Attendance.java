@@ -1,5 +1,7 @@
 package com.final05.HelloWorks.attendance.model.vo;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -61,5 +63,8 @@ public class Attendance {
 	public void setWorkOff(String workOff) {
 		this.workOff = workOff;
 	}
+
+	
+
 
 }

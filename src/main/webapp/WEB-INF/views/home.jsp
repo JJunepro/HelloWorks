@@ -10,6 +10,13 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>HelloWorks</title>
+<script>
+if (self.name != 'reload') {
+    self.name = 'reload';
+    self.location.reload(true);
+}
+else self.name = ''; 
+</script>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendors/mdi/css/materialdesignicons.min.css">
@@ -324,31 +331,24 @@
 													style="width: 25%" aria-valuenow="50" aria-valuemin="0"
 													aria-valuemax="100"></div>
 											</div>
+										
 											<div>출근시간 : ${memberinfo.attendance.workOn} </div>
 											<div>퇴근시간 : ${memberinfo.attendance.workOff}</div>
-											<div>1일 평균 근무시간: 8h 20m</div>											
+											<div>1일 평균 근무시간: 8h 20m</div>	
+																					
 										</div>
 									</div>
 								</div>
-								<%-- <form action="workOn" method="get">
-									<input type="hidden" value="${memberinfo.uid }">
-									<input type="hidden" value="${memberinfo.oCode }">
-									<button type="submit" id="onbtn" class="btn btn-info mr-2"
-									style="width: 100%;">출근</button>
-								</form>	 --%>
+									${list3.attendance.workOn}
 								
-								 <button type="submit" id="onbtn" class="btn btn-info mr-2" style="width: 100%;"
+								 <button type="submit" id="onbtn1" class="btn btn-info mr-2" style="width: 100%;"
 								onclick="location.href='workOn?uid=${memberinfo.uid }&&oCode=${memberinfo.oCode }'">출근</button>
-								<button type="submit" id="onbtn" class="btn btn-light mr-2" style="width: 100%;"
+								<button type="submit" id="onbtn2" class="btn btn-light mr-2" style="width: 100%;"
 								onclick="location.href='workOff?uid=${memberinfo.uid }'">퇴근</button>
-								<button type="submit" id="onbtn" class="btn btn-warning mr-2" style="width: 100%;"
+								<button type="submit" id="onbtn3" class="btn btn-warning mr-2" style="width: 100%;"
 								onclick="location.href='workDelete?uid=${memberinfo.uid }'">초기화</button>
 								
-								<%-- <form action="workOff" method="get">
-									<input type="hidden" value="${memberinfo.uid }">
-									<input type="hidden" value="${memberinfo.oCode }">
-									<button type="submit" id="offbtn" class="btn btn-light mr-2"
-									style="width: 100%;">퇴근</button> --%>
+								
 								</form>	
 							</div>
 						</div>
@@ -555,14 +555,6 @@
 	<script src="resources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
 	 
- 
-	
-	
-	<script type="text/javascript">
-	
-	
-	
-	</script>
 	
 </body>
 

@@ -61,6 +61,9 @@ th, td {
 li, table{
 	font-size: 20px;
 }
+thead{
+	background-color: #FFE4C4;
+}
 </style>
 <body>
 	<div class="container-scroller">
@@ -209,7 +212,7 @@ li, table{
 				<div class="content-wrapper">
 					<div class="row">
 						<div class="col-sm-12 mb-4 mb-xl-0">
-							<h2 class="font-weight-bold text-dark">인사관리</h2>
+							<h2 class="font-weight-bold text-dark">근태관리</h2>
 
 						</div>
 					</div>
@@ -274,13 +277,13 @@ li, table{
 
 										<div style="width: 100%; height: 580px; overflow: auto">
 											<table border="1" width="1250px;">
-												<tr>
+												<thead><tr>
 												<th>사번</th>
 												<th>직원명</th>
 												<th>부서</th>
 												<th>출근시간</th>
 												<th>퇴근시간</th>
-												</tr>
+												</tr></thead>
 
 												<c:forEach var="vo" items="${list }">
 													<tr>

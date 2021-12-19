@@ -57,6 +57,9 @@ th, td {
 	width: 400px;
 	margin-left: auto;
 }
+thead{
+	background-color: #FFE4C4;
+}
 </style>
 <body>
 	<div class="container-scroller">
@@ -238,13 +241,14 @@ th, td {
 
 										<div style="width: 100%; height: 580px; overflow: auto">
 											<table border="1" width="1530px;">
+												<thead><tr>
 												<th width="150px;">부서코드</th>
 												<th>부서명</th>
 												<th>생성일</th>
 												<th>폐쇄일</th>
 												<th width="150px;">사용여부</th>
 												<th width="150px;"></th>
-
+												</tr></thead>
 												<c:forEach var="vo" items="${list2 }">
 													<tr>
 														<td>${vo.oCode }</td>

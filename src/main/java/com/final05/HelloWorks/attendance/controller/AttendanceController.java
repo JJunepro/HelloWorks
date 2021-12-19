@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -91,36 +92,40 @@ public class AttendanceController {
 	  @RequestMapping(value = "workOn", method=RequestMethod.GET)
 	  public ModelAndView workOn(Attendance vo,  
 		  @RequestParam(value="uid" , required=false) String uid,
-		  @RequestParam(value="oCode", required=false) String oCode,
-			   HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
-	      int result=0;
-	   //   List<Attendance> result2 = new ArrayList<Attendance>();
+		  @RequestParam(value="oCode", required=false) int oCode,
+			   HttpServletRequest request,HttpSession session,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+	      
+	     
 	      try {
-	         result =  attService.workOn(vo);
-//	         result2 = attService.work(uid);
-//	         System.out.println("result22222"+result2);
-//	         mv.addObject("attlist", result2);
+	    	  int result=0;
+	         result =  attService.workOnn(vo);
+	         System.out.println("result"+result);
+	         System.out.println("list3"+vo);
 	         if(result==1) {
-	            mv.setViewName("redirect:/");
+	        	// Attendance att = attService.workTime(uid);
+		       //  session.setAttribute("memberinfo", att);
+	        	// System.out.println("list33"+att);
+	        	// mv.addObject("list3",att);
+	        	 mv.setViewName("home");
 	         }else {
-	            mv.setViewName("redirect:/");
+	            mv.setViewName("home");
 	         }	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }	      
-	      return mv;
+	      return mv; 
 	   }
 	
 	
 	@RequestMapping(value="workOff", method=RequestMethod.GET)
 	 public ModelAndView workOff(Attendance vo,  
 			  @RequestParam(value="uid" , required=false) String uid,
-				   HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
-		      
+			  HttpSession session,HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
+			  Member ssMember = (Member)session.getAttribute("memberinfo");
 		      System.out.println("off"+vo);
 		      try {
 		         attService.workOff(vo);
-		         mv.setViewName("redirect:/");
+		         mv.setViewName("home");
 		                 
 		      } catch (Exception e) {
 		         e.printStackTrace();
@@ -133,11 +138,12 @@ public class AttendanceController {
 	  public String workDelete(@RequestParam("uid") String uid, Model model){
 	  		System.out.println("삭제 id: "+uid);
 	  		try {
+	  			
 				attService.workDelete(uid);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        return "redirect:/";	         
+	        return "home";	         
 	  } 
 }
