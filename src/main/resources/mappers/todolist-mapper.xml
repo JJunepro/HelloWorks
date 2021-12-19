@@ -39,8 +39,13 @@
  	insert into todolist VALUES (todo_num_seq.nextval, 'aa12', #{todoTitle}, SYSDATE, 0, 0)
  	</insert>
  	
+ 	<!-- 삭제 -->
  	<delete id="todoRemove">
  		delete from todolist where TODO_NUM = #{todoNum}
+ 	</delete>
+ 	
+ 	 <delete id="todoAllRemove">
+ 		delete from todolist where TODO_PROCESS = 1
  	</delete>
  	
  	<update id="todoUpdate">

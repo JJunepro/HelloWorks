@@ -39,7 +39,12 @@ public class TodolistDao {
 	public int todoRemove(int todoNum) {
 		return sqlSession.delete("Todolist.todoRemove", todoNum);
 	}
+	// 모두삭제
+	public int todoAllRemove() {
+		return sqlSession.delete("Todolist.todoAllRemove");
+	}
 	
+	// 완료된 일정 설정
 	public int todoUpdate(int todoNum) {
 		return sqlSession.update("Todolist.todoUpdate", todoNum);
 	}

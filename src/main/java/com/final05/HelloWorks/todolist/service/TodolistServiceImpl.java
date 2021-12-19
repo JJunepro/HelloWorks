@@ -44,6 +44,11 @@ public class TodolistServiceImpl implements TodolistService {
 		return todoDao.todoUpdate(todoNum);
 	}
 
+	@Override
+	public int todoAllRemove() throws Exception {
+		return todoDao.todoAllRemove();
+	}
+
 
 
 

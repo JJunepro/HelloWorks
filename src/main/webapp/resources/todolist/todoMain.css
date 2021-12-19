@@ -1,17 +1,17 @@
 
+/* common */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
 }
-
 body {
-    
-    /* min-height: 100vh; */
-    justify-content: center;
-    /* align-items: center; */
+  justify-content: center;
 }
 
+/* 전체 컨텐츠영역 */
  .wrapper {
     padding: 10px 10px;
     width: 100%;
@@ -19,11 +19,163 @@ body {
     display: flex;
 } 
 
-.wrapper .basicTodo {
-	width: 40%;
-	margin-right: 120px;
+.wrapper .content {
+	margin: auto;
+	width: 400px;
 }
 
+
+/* 일정 영역 */
+.wrapper .basicTodo {
+	margin-left: 70px;
+	width: 40%;
+  height: 500px;
+  margin-right: 100px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.wrapper .basicTodo .todo_header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #6c5ce7;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.wrapper .basicTodo .todo_header .title {
+  text-align: center;
+  line-height: 100px;
+  font-weight: 700;
+  font-size: 25px;
+	color: #fff;
+}
+.wrapper .basicTodo .inputField {
+ margin-left: 15%;
+ margin-bottom: 20px;
+}
+.wrapper .basicTodo .inputField #todoTitle {
+  width: 75%;
+  height: 40px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  padding-left: 15px;
+  transition: all 0.3s ease;
+  margin-right: 5px;
+}
+.wrapper .basicTodo .inputField #todoTitle:focus {
+  border-color: #8E49E8;
+}
+.wrapper .basicTodo .content .tasks {
+  
+}
+.wrapper .basicTodo .content .tasks li{
+  /* background-color: red; */
+  margin: 8px 0;
+  padding: 5px 0;
+  border: 1px solid rgba(179, 77, 246, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+}
+.wrapper .basicTodo .content .tasks li .todo_title{
+   
+}
+
+.wrapper .inputField button{
+    width: 40px;
+    height: 90%;
+    background: #6c5ce7;
+    color: #FFF;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: .8;
+    transition: .3s;
+}
+/* 일정 없을 때 */
+.wrapper .basicTodo .content .none{
+  
+}
+.wrapper .basicTodo .content .none li{
+  text-align: center;
+  font-size: 20px;
+  color: #696969;
+}
+
+
+/* 완료된 일정 영역 */
+.wrapper .doneTodo {
+  width: 40%;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.wrapper .doneTodo .todo_header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: #A9A9A9;
+}
+.wrapper .doneTodo .todo_header .title {
+  text-align: center;
+  line-height: 100px;
+  font-weight: 700;
+  font-size: 25px;
+}
+.wrapper .doneTodo .content {
+
+}
+.wrapper .doneTodo .content .tasks {
+
+}
+.wrapper .doneTodo .content .tasks li {
+  /* background-color: red; */
+  height: 40px;
+  margin: 8px 0;
+  padding: 5px 0;
+  border: 1px solid rgba(179, 77, 246, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.wrapper .doneTodo .content .tasks li .done_title{
+  text-align: center;
+  text-decoration: line-through;
+}
+
+/* 일정 없을 때 */
+.wrapper .doneTodo .content .none{
+  margin-bottom: 300px;
+}
+.wrapper .doneTodo .content .none li{
+  text-align: center;
+  font-size: 20px;
+  color: #696969;
+}
+.wrapper .doneTodo .clearall{
+	margin-right: 20px;
+	
+}
+.wrapper .doneTodo .clearall .btn-fw{
+	float: right;
+	
+}
+
+/*
 .wrapper .doneTodo {
 	width: 40%;
 }
@@ -78,6 +230,7 @@ body {
     transition: .3s;
 }
 
+
 .wrapper .inputField button.btn:hover {
     opacity: 1;
 }
@@ -128,3 +281,4 @@ body {
     margin-top: 20px;
     text-transform: capitalize;
 }
+*/

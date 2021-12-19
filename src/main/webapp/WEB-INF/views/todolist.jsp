@@ -44,7 +44,9 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="/HelloWorks"><img src="resources/images/logo.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="/HelloWorks">
+			<img src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" />
+		</a>
         <a class="navbar-brand brand-logo-mini" href="/HelloWorks"><img src="images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -130,15 +132,15 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <div class="user-profile">
-         <div class="user-image">
+      			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<div class="user-profile">
+					<div class="user-image">
 						<img src="${memberinfo.pImage }">
 					</div>
 					<div class="user-name">${memberinfo.name }</div>
 					<div class="user-designation">${memberinfo.position }</div>
-        </div>
-        <ul class="nav">
+				</div>
+				<ul class="nav">
 					<li class="nav-item">
 						<a class="nav-link" href="#">
 							<i class="icon-mail menu-icon"></i>
@@ -157,7 +159,7 @@
 					
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/todolist"> <i
-							class="icon-clipboard menu-icon"></i> <span class="menu-title">ToDoList</span>
+							class="icon-square-check menu-icon"></i> <span class="menu-title">ToDoList</span>
 					</a></li>
 					<li class="nav-item">
 						<a class="nav-link"href="#">
@@ -180,13 +182,13 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<i class="icon-square-check menu-icon"></i>
-							<span class="menu-title">회의실 예약</span>
+						<a class="nav-link" href="${pageContext.request.contextPath}/notice">
+							<i class="icon-clipboard menu-icon"></i>
+							<span class="menu-title">공지사항</span>
 						</a>
 					</li>
 				</ul>
-      </nav>
+			</nav>
       
       <!-- partial -->
       <!-- 내용 -->
@@ -195,7 +197,9 @@
    	<div class="wrapper">
 	
 	    <div class="basicTodo">
-	        <h2 class="title">일정</h2>
+	    	 <div class="todo_header">
+	      	  <h2 class="title">일정</h2>
+	        </div>
 	        
 	        <div class="inputField">
 		       	<form action="todoAdd" id="todoAdd" method="post" name="todoAdd">
@@ -205,8 +209,9 @@
 	        </div>
 
 	        <div class="content">
+	        <c:if test="${list != null }">
 	        	<c:forEach var="list" items="${list }">
-	        		<ul id="tasks">
+	        		<ul class="tasks">
 	        			<li>
 	        				<a href="todoUpdate?todoNum=${list.todoNum }" role="button" class="icon-check"></a>
 		        			<span>${list.todoTitle }</span>
@@ -214,25 +219,45 @@
 	        			</li>
 	        		</ul>
 	        	</c:forEach>
+	        </c:if>
+	        <c:if test="${empty list}">
+	        		<ul class="none">	
+		        		<li>
+		        			일정이 없습니다.
+		        		</li>
+		        	</ul>
+	        </c:if>
 	        </div>
 	    </div>
 	    
 	    
 	    <div class="doneTodo">
-	        <h2 class="title">완료 일정</h2>
-
+	    
+		     <div class="todo_header">
+		        <h2 class="title">완료 일정</h2>
+	 		</div>
+	 		
 	        <div class="content">
 	        	<c:forEach var="list" items="${done }">
-	        		<ul id="tasks">
+	        		<ul class="tasks">
 	        			<li>
-		        			<span style="text-decoration: line-through;">${list.todoTitle }</span>
+	        				<a href="#" role="button"></a>
+		        			<span>${list.todoTitle }</span>
 	        				<a href="todoRemove?todoNum=${list.todoNum }" role="button" class="btn btn-outline-info">X</a>
 	        			</li>
 	        		</ul>
 	        	</c:forEach>
-	        	
-	        	<button type="button" class="btn btn-light btn-rounded btn-fw">Clear All</button>
+	        <c:if test="${empty done}">
+		        	<ul class="none">	
+		        		<li>
+		        			완료된 일정이 없습니다.
+		        		</li>
+		        	</ul>
+	        </c:if>
 	        </div>
+	       <div class="clearall">
+          	 <button type="button" class="btn btn-light btn-rounded btn-fw" onclick="allRemove();">Clear All</button>
+          </div>
 	    </div>
 	    
 	    
@@ -282,7 +307,16 @@
 	
     <!-- 여기부터 스크립트소스코드 작성 --> 
  	<script type="text/javascript">
-
+ 	
+ 	function allRemove(){
+ 		if(window.confirm("모든 일정이 삭제됩니다.")){
+ 			location.href='todoAllRemove';
+ 		} else {
+ 			return;
+ 		}
+ 	}
+ 	
+ 	
  	$(function () {
 		$('#todoForm').on('submit', function (e) {
 			if($('#todoTitle').val() == "") {

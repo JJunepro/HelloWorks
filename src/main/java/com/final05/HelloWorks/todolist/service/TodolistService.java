@@ -12,6 +12,9 @@ public interface TodolistService {
 	public List<Todolist> todolistDone(int startPage, int limit) throws Exception;
 	
 	public int todoAdd(Todolist vo) throws Exception;
+	
 	public int todoRemove(int todoNum) throws Exception;
+	public int todoAllRemove() throws Exception;
+	
 	public int todoUpdate(int todoNum) throws Exception;
 }

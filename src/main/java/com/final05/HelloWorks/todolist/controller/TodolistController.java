@@ -122,6 +122,12 @@ public class TodolistController {
 		return "redirect:/todolist";
 	}
 	
+	@RequestMapping(value = "todoAllRemove", method = RequestMethod.GET)
+	public String todoAllRemove (Model model) throws Exception {
+		todoService.todoAllRemove();
+		return "redirect:/todolist";
+	}
+	
 	@RequestMapping(value = "todoUpdate", method = RequestMethod.GET)
 	public String todoUpdate (@RequestParam("todoNum") int todoNum, Model model) throws Exception {
 		todoService.todoUpdate(todoNum);
