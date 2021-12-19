@@ -1,6 +1,7 @@
 package com.final05.HelloWorks.notice.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -30,4 +31,13 @@ public class NoticeDao {
 	public Notice noticeDetail(Notice vo) {
 		return sqlSession.selectOne("Notice.noticeDetail", vo);
 	}
+	
+	public int noticeRemove(int noticeNo) {
+		return sqlSession.delete("Notice.noticeRemove", noticeNo);
+	}
+	public int noticeView(int noticeNo) {
+		return sqlSession.update("Notice.noticeView", noticeNo);
+	}
+	
+	
 }

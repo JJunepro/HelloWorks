@@ -33,9 +33,10 @@ margin-bottom: 30px;
 .row2 .article_header .writerInfo .profile_area .name {
   /* float: left; */
   margin-bottom: 6px;
+  font-size: 15px
 }
 .writerInfo .profile_area .article_info  {
-  font-size: 12px;
+  font-size: 15px;
     line-height: 13px;
     color: #989899;
 }

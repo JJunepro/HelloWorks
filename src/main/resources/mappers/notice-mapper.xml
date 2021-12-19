@@ -27,4 +27,17 @@
 	<insert id="addNotice" parameterType="Notice">
 	insert into Board_Notice VALUES (BOARD_NOTICE_NUM_SEQ.nextval, 'aa12', #{noticeTitle }, #{noticeContent}, sysdate, 0)
 	</insert>
+	
+	<delete id="noticeRemove">
+		delete from Board_Notice where BN_N = #{noticeNo}
+	</delete>
+	
+	<update id="noticeView">
+		update Board_Notice set BN_VIEW = BN_VIEW + 1 where BN_N = #{noticeNo}
+	</update>
+	
+	<update id="noticeUpdate" parameterType="hashmap">
+		update Board_Notice set BN_TITLE = #{noticeTitle}, BN_CONTENT = #{noticeContent} where BN_N = #{noticeNo}
+	</update>
+	
 </mapper>

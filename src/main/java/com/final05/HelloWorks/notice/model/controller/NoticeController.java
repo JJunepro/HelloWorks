@@ -2,7 +2,9 @@ package com.final05.HelloWorks.notice.model.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.activation.CommandMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +29,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	public static final int LIMIT = 10;
 	
+	//공지사항 글 리스트
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public ModelAndView noticeList(@RequestParam(name = "page", defaultValue = "1") int page,
 			ModelAndView mv ) throws Exception {
@@ -46,11 +49,13 @@ public class NoticeController {
 		return mv;
 	}
 	
+	//게시글 자세히 보기
 	@RequestMapping(value = "noticeDetail", method = RequestMethod.GET)
 	public String noticeDetail (Notice vo, @RequestParam("noticeNo") int  noticeNo,
 			Model model, HttpSession session) throws Exception{
 		Notice noticeDetail = noticeService.noticeDetail(vo);
-//		new noticeService.readCount(noticeNo);
+		noticeService.noticeView(noticeNo);
+
 		model.addAttribute("notice", noticeDetail);
 		return "noticedetail";
 	}
@@ -61,7 +66,6 @@ public class NoticeController {
 		mv.setViewName("noticeAdd");
 		return mv;
 	}
-
   @RequestMapping(value = "noticeAdd", method=RequestMethod.POST)
   public ModelAndView noticeAdd(Notice vo,  
 	  
@@ -84,5 +88,14 @@ public class NoticeController {
       }	      
       return mv;
    }
- 
+  
+  //게시글 삭제
+	@RequestMapping(value = "noticeRemove", method = RequestMethod.GET)
+	public String noticeRemove (@RequestParam("noticeNo") int noticeNo, Model model) throws Exception {
+		System.out.println("삭제noticeRemove: " + noticeNo);
+		noticeService.noticeRemove(noticeNo);
+		return "redirect:/notice";
+	}
+	
+
 }

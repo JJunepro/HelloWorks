@@ -221,8 +221,8 @@
                 </div>
           </div> <!-- article_content -->
 	         <div class="btnRemove" style="margin-left: 1400px;">
-				<button type="button" class="btn btn-secondary" style="margin-right: 5px;">수정</button>
-				<button type="button" class="btn btn-secondary" onclick="remove();">삭제</button>
+	        	 <button type="button" class="btn btn-secondary" onclick="noticelist();" style="margin-right: 5px;">목록</button>
+				<button type="button" class="btn btn-warning" onclick="remove();">삭제</button>
 			</div>
       </div><!--row -->
     </div> <!-- card-body -->
@@ -271,11 +271,19 @@
  	<script type="text/javascript">
  		function remove(){
  		if(window.confirm("게시글을 삭제하시겠습니까?")){
- 			location.href='noticeRemove';
+ 			location.href='noticeRemove?noticeNo=${notice.noticeNo }';
  		} else {
  			return;
  		}
  		}
+ 		
+ 		function noticelist(){
+ 	 			location.href='notice';
+ 	 		}
+ 		
+ 		function update(){
+	 			location.href='${pageContext.request.contextPath}/noticeUpdate?noticeNo=${notice.noticeNo }';
+	 		}
  	
 	</script>
   
