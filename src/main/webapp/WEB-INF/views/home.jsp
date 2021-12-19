@@ -55,9 +55,9 @@ else self.name = '';
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-				<a class="navbar-brand brand-logo" href="/HelloWorks">
+				<a class="navbar-brand brand-logo" href="/HelloWorks/">
 				<img src="${pageContext.request.contextPath}/resources/images/helloworks.png" alt="logo" /></a> <a
-					class="navbar-brand brand-logo-mini" href="/HelloWorks">
+					class="navbar-brand brand-logo-mini" href="/HelloWorks/">
 					<img src="images/logo-mini.svg" alt="logo" />
 					</a>
 			</div>

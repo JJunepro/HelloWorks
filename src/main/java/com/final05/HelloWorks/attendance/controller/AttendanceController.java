@@ -27,6 +27,7 @@ import com.final05.HelloWorks.member.model.vo.Member;
 import com.final05.HelloWorks.member.model.vo.Organization;
 
 @Controller
+@SessionAttributes("memberinfo")
 public class AttendanceController {
 	
 	@Autowired
@@ -102,14 +103,14 @@ public class AttendanceController {
 	         System.out.println("result"+result);
 	         System.out.println("list3"+vo);
 	         if(result==1) {
-	        	// Attendance att = attService.workTime(uid);
-		       //  session.setAttribute("memberinfo", att);
-	        	// System.out.println("list33"+att);
-	        	// mv.addObject("list3",att);
 	        	 mv.setViewName("home");
 	         }else {
 	            mv.setViewName("home");
-	         }	         
+	         }	          
+	        // Attendance att = attService.workTime(uid);
+		        // session.setAttribute("memberinfo", att);
+        	// System.out.println("list33"+att);
+        	// mv.addObject("list3",att);
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }	      

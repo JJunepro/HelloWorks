@@ -221,13 +221,14 @@
 									<br><br>
 									
 									<div class="row">
-										<div class="user-image">
+										<div class="user-image" style="width: 15%">
 											<img src="${info.pImage }" width="180px" height= "180px">
+											<input type="file">
 										</div>
 										&ensp;&ensp;&ensp;&ensp;
 										 <div >
 										 
-											<table border="0" width="1300px;">
+											<table border="0" width="1250px;">
 												<tr>
 													<td>이름</td>
 													<td><input type = "text" id = "name" name = "name" value = "${info.name }"></td>

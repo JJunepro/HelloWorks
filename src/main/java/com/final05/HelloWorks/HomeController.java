@@ -18,6 +18,7 @@ import com.final05.HelloWorks.member.model.vo.Member;
  * Handles requests for the application home page.
  */
 @Controller
+@SessionAttributes("memberinfo")
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -33,7 +34,7 @@ public class HomeController {
 	      if(ssMember == null) {
 	         return "redirect:/login";
 	      }else {
-	    	  System.out.println("¼¼¼Ç ¿À³ª?"+ssMember);
+	    	  System.out.println("ì„¸ì…˜ ì˜¤ë‚˜?"+ssMember);
 	    	return "home";	
 	      }
 	

@@ -21,10 +21,12 @@
 	</select>
 
 	<select id="workTime" parameterType="Attendance" resultType="Attendance">  
-		 select U_ID,O_CODE,WORK_ON,NVL(to_char(WORK_OFF),'0') WORK_OFF from ATTENDANCE a 
-		 WHERE U_ID=#{uid} and O_CODE=#{oCode}
+		 select * from ATTENDANCE
+		 WHERE U_ID=#{uid}
 	</select>
 	
+	<!--  select WORK_ON,NVL(to_char(WORK_OFF),'0') as WORK_OFF from ATTENDANCE
+		 WHERE U_ID=#{uid} and O_CODE=#{oCode} -->
 	<delete id="workDelete">
 		delete from ATTENDANCE where U_ID=#{uid}
 	</delete>
