@@ -38,6 +38,9 @@ else self.name = '';
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
+<!-- 달력 -->
+<link href='resources/schedule/packages/core/main.css' rel='stylesheet' />
+<link href='resources/schedule/packages/daygrid/main.css' rel='stylesheet' />
 <style>
 /* schedule 메뉴 이미지 관련 css*/
 .icon-calendar img {
@@ -168,7 +171,7 @@ else self.name = '';
 					
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/todolist"> <i
-							class="icon-clipboard menu-icon"></i> <span class="menu-title">ToDoList</span>
+							class="icon-square-check menu-icon"></i> <span class="menu-title">ToDoList</span>
 					</a></li>
 					<li class="nav-item">
 						<a class="nav-link"href="#">
@@ -191,9 +194,9 @@ else self.name = '';
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<i class="icon-square-check menu-icon"></i>
-							<span class="menu-title">회의실 예약</span>
+						<a class="nav-link" href="${pageContext.request.contextPath}/notice">
+							<i class="icon-clipboard menu-icon"></i>
+							<span class="menu-title">공지사항</span>
 						</a>
 					</li>
 				</ul>
@@ -213,7 +216,7 @@ else self.name = '';
 						</div>
 					</div>
 					<div class="row mt-3">
-						<div class="col-xl-4 flex-column d-flex grid-margin stretch-card">
+						<div class="col-xl-7 flex-column d-flex grid-margin stretch-card">
 							<div class="row flex-grow">
 								<div class="col-sm-12 grid-margin stretch-card">
 									<div class="card">
@@ -232,8 +235,8 @@ else self.name = '';
 									<div class="card">
 
 										<div class="card-body">
-											<h4 class="card-title">
-												To Do List<a href="" style="float: right;">
+											<h4 class="card-title" style="margin-bottom:10px;">
+												To Do List<a href="/todolist" style="float: right;">
 												<i class="icon-square-plus"></i>
 												</a>
 											</h4>
@@ -296,14 +299,11 @@ else self.name = '';
 							</div>
 						</div>
 
-						<div class="col-xl-8 d-flex grid-margin stretch-card" style="width:40% !important;">
+						<div class="col-xl-5 d-flex grid-margin stretch-card" style="width:40% !important;">
 							<div class="card">
 								<div class="card-body" >
-									<h4 class="card-title">달력</h4>
 									<div class="row">
-										<div class="col-lg-5">
-											<p>달력 화면을 넣어주세요</p>
-										</div>
+										<div id="calendar" style="width:500px; background-color: #fff;"></div>
 									</div>
 								</div>
 							</div>
@@ -554,7 +554,34 @@ else self.name = '';
 	<!-- Custom js for this page-->
 	<script src="resources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
-	 
+	
+	<!-- 달력 -->
+	<script src='resources/schedule/packages/core/main.js'></script>
+	<script src='resources/schedule/packages/interaction/main.js'></script>
+	<script src='resources/schedule/packages/daygrid/main.js'></script>
+	<script src='resources/schedule/packages/core/locales/ko.js'></script>
+	<script src='resources/schedule/packages/bundle/moment.min.js'></script>
+	
+	  <script type="text/javascript">
+		 document.addEventListener('DOMContentLoaded', function() {
+		    var calendarEl = document.getElementById('calendar');
+		
+		    var calendar = new FullCalendar.Calendar(calendarEl, {
+		      plugins: [ 'interaction', 'dayGrid' ],
+		      header: {
+	
+		      },
+		      navLinks: true, // can click day/week names to navigate views
+		      editable: true,
+		      eventLimit: true, // allow "more" link when too many events
+		      locale: 'ko'
+		   });//new FullCalendar end
+		 
+		   calendar.render();
+		   
+		  });
+
+  	</script>
 	
 </body>
 
