@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.card-body .title {
+  border-bottom: 1px solid #323232;
+}
+.card-body .title h2{
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.row2 .noticeTitle {
+	
+	width: 80%;
+  margin-top: 30px;
+  height: 40px;
+  display: block;
+    min-height: 40px;
+    padding: 11px 12px 10px;
+    border: 1px solid #d4d5d6;
+    box-sizing: border-box;
+    overflow: hidden;
+    resize: none;
+    word-break: break-all;
+    font-size: 15px;
+    letter-spacing: -.23px;
+    line-height: 17px;
+    outline: none;
+}
+.input-group .noticeContent {
+	
+	width: 80%;
+  margin-top: 5px;
+  height: 300px;
+  display: block;
+
+    min-height: 40px;
+    padding: 11px 12px 10px;
+    border: 1px solid #d4d5d6;
+    box-sizing: border-box;
+    overflow: hidden;
+    resize: none;
+    word-break: break-all;
+    font-size: 15px;
+    letter-spacing: -.23px;
+    line-height: 17px;
+    outline: none;
+}
+.row2 .submit {
+  margin-top: 50px;
+}

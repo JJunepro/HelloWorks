@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.card-body .title {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.card-body .title h2{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* 글 */
+.row2  {
+  padding: 29px 29px 0;
+  border: 1px solid #d4d5d6;
+  border-radius: 6px;
+} 
+.row2 .article_header {
+  position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d4d5d6;
+}
+/* 글 제목 */
+.row2 .article_header .notice_title {
+  font-weight: 500;
+    font-size: 26px;
+margin-bottom: 30px;
+
+}
+
+/* 프로필부분 */
+.row2 .article_header .writerInfo .profile_area .name {
+  /* float: left; */
+  margin-bottom: 6px;
+}
+.writerInfo .profile_area .article_info  {
+  font-size: 12px;
+    line-height: 13px;
+    color: #989899;
+}
+.writerInfo .profile_area .article_info .date {
+  margin-right: 8px;
+}
+
+/* 내용 */
+.article_content {
+  /* background-color: red; */
+  padding: 50px 500px 500px 10px;
+}
+.article_content .board_content {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.btnRemove {
+	margin-bottom: 15px;
+}
