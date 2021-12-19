@@ -14,21 +14,34 @@ public class TodolistDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 일정
 	public List<Todolist> todolistAll(int startPage, int limit) {
 		int startRow = (startPage - 1) * limit;
 		RowBounds row = new RowBounds(startRow, limit);
 		return sqlSession.selectList("Todolist.todolistAll", null, row);
 	}
 	
+	// 완료된 일정
+	public List<Todolist> todolistDone(int startPage, int limit) {
+		int startRow = (startPage - 1) * limit;
+		RowBounds row = new RowBounds(startRow, limit);
+		return sqlSession.selectList("Todolist.todoDone", null, row);
+	}
+	
 	public int todoCount() {
 		return sqlSession.selectOne("Todolist.todoCount");
 	}
 	
-	public int todoInsert(Todolist vo) {
-		return sqlSession.insert("Todolist.todoInsert", vo);
+	public int todoAdd(Todolist vo) {
+		return sqlSession.insert("Todolist.todoAdd", vo);
 	}
 	
 	public int todoRemove(int todoNum) {
 		return sqlSession.delete("Todolist.todoRemove", todoNum);
 	}
+	
+	public int todoUpdate(int todoNum) {
+		return sqlSession.update("Todolist.todoUpdate", todoNum);
+	}
+
 }

@@ -22,18 +22,29 @@ public class TodolistServiceImpl implements TodolistService {
 	public int todoCount() throws Exception {
 		return todoDao.todoCount();
 	}
+	
+	@Override
+	public List<Todolist> todolistDone(int startPage, int limit) throws Exception {
+		return todoDao.todolistDone(startPage, limit);
+	}
 
 	
 	@Override
-	public int todoInsert(Todolist vo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int todoAdd(Todolist vo) throws Exception {
+		return todoDao.todoAdd(vo);
 	}
 
 	@Override
 	public int todoRemove(int todoNum) throws Exception {
 		return todoDao.todoRemove(todoNum);
 	}
+
+	@Override
+	public int todoUpdate(int todoNum) throws Exception {
+		return todoDao.todoUpdate(todoNum);
+	}
+
+
 
 
 }

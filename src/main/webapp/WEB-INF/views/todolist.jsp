@@ -7,21 +7,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>HelloWorks</title>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- base:css -->
-  <link rel="stylesheet" href="resources/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="resources/vendors/feather/feather.css">
-  <link rel="stylesheet" href="resources/vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/feather/feather.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="resources/vendors/flag-icon-css/css/flag-icon.min.css"/>
-  <link rel="stylesheet" href="resources/vendors/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
-  <link rel="stylesheet" href="resources/vendors/jquery-bar-rating/fontawesome-stars.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/flag-icon-css/css/flag-icon.min.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/fontawesome-stars.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="resources/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
 	<!-- calendar icon -->
 	<style>
 		.icon-calendar img {
@@ -30,15 +32,11 @@
 		}
 	</style>
 
-
-
   <!-- todolist -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   
-  <link rel="stylesheet" href="resources/todolist/todoMain.css">
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/todolist/todoMain.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
 </head>
 <body>
@@ -141,77 +139,53 @@
 					<div class="user-designation">${memberinfo.position }</div>
         </div>
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks">
-              <i class="icon-mail menu-icon"></i>
-              <span class="menu-title">Mail</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks/schedule">
-				<i class="icon-calendar menu-icon"><img class="menu-icon" alt="img" src="resources/schedule/calendar.svg"></i>
-              <span class="menu-title">Schedule</span>
-            </a>
-                
-            
-            <!-- 
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-             -->
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks/todolist">
-              <i class="icon-square-check menu-icon"></i>
-              <span class="menu-title">ToDoList</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks/">
-              <i class="icon-clipboard menu-icon"></i>
-              <span class="menu-title">게시판/공지사항</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks/">
-              <i class="icon-speech-bubble menu-icon"></i>
-              <span class="menu-title">Messenger</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks/">
-              <i class="icon-clock menu-icon"></i>
-              <span class="menu-title">근태관리</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/HelloWorks/">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">인사관리</span>
- 
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="navd-item"> <a class="nav-link" href="login"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/login-2.html"> Login 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/register-2.html"> Register 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="resources/pages/samples/lock-screen.html"> Lockscreen </a></li>
-              </ul>
-            </div>
-          </li>
-          <!-- 
-          <li class="nav-item">
-            <a class="nav-link" href="resources/docs/documentation.html">
-              <i class="icon-book menu-icon"></i>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
-           -->
-        </ul>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-mail menu-icon"></i>
+							<span class="menu-title">Mail</span>
+						</a>
+					</li>
+					
+				   	<li class="nav-item">
+				 	  	<a class="nav-link" href="${pageContext.request.contextPath}/schedule">
+					   		<i class="icon-calendar menu-icon">
+					   			<img class="menu-icon" alt="img" src="${pageContext.request.contextPath}/resources/schedule/calendar.svg">
+					   		</i>
+					   		<span class="menu-title">Schedule</span>
+				   		 </a>
+           		 	</li>
+					
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/todolist"> <i
+							class="icon-clipboard menu-icon"></i> <span class="menu-title">ToDoList</span>
+					</a></li>
+					<li class="nav-item">
+						<a class="nav-link"href="#">
+							<i class="icon-speech-bubble menu-icon"></i>
+							<span class="menu-title">Messenger</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/work">
+							<i class="icon-watch menu-icon"></i>
+							<span class="menu-title">근태 관리</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/memberAll">
+							<i class="icon-head menu-icon"></i>
+							<span class="menu-title">인사관리</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-square-check menu-icon"></i>
+							<span class="menu-title">회의실 예약</span>
+						</a>
+					</li>
+				</ul>
       </nav>
       
       <!-- partial -->
@@ -219,34 +193,53 @@
    <div class="main-panel">
    
    	<div class="wrapper">
-	    <div class="importTodo">
-	      <h2 class="title">주요 일정</h2>
-	      <div class="content">
-	        <ul id="tasks">
-	          <li>일정1</li>
-	          <li>일정1</li>
-	        </ul>
-	      </div>
-	   </div>
 	
 	    <div class="basicTodo">
-	        <h2 class="title">내 일정</h2>
-	        <div class="inputFields">
-	          <input type="text" id="taskValue" placeholder="Enter a task.">
-	          <button type="submit" id="addBtn" class="btn"><i class="fa fa-plus"></i></button>
+	        <h2 class="title">일정</h2>
+	        
+	        <div class="inputField">
+		       	<form action="todoAdd" id="todoAdd" method="post" name="todoAdd">
+		          <input type="text" id="todoTitle" name="todoTitle" placeholder="일정을 입력해주세요.">
+				<button class="btn create">+</button>
+		        </form>
 	        </div>
+
 	        <div class="content">
 	        	<c:forEach var="list" items="${list }">
 	        		<ul id="tasks">
-	        			<li><span>${list.todoTitle }</span><button id="removeBtn">x</button></li>
+	        			<li>
+	        				<a href="todoUpdate?todoNum=${list.todoNum }" role="button" class="icon-check"></a>
+		        			<span>${list.todoTitle }</span>
+	        				<a href="todoRemove?todoNum=${list.todoNum }" role="button" class="btn btn-outline-info">X</a>
+	        			</li>
 	        		</ul>
 	        	</c:forEach>
 	        </div>
 	    </div>
-	</div>
-			<!-- 앞 페이지 번호 처리 -->
+	    
+	    
+	    <div class="doneTodo">
+	        <h2 class="title">완료 일정</h2>
 
-
+	        <div class="content">
+	        	<c:forEach var="list" items="${done }">
+	        		<ul id="tasks">
+	        			<li>
+		        			<span style="text-decoration: line-through;">${list.todoTitle }</span>
+	        				<a href="todoRemove?todoNum=${list.todoNum }" role="button" class="btn btn-outline-info">X</a>
+	        			</li>
+	        		</ul>
+	        	</c:forEach>
+	        	
+	        	<button type="button" class="btn btn-light btn-rounded btn-fw">Clear All</button>
+	        </div>
+	    </div>
+	    
+	    
+	    
+	    
+	</div> <!-- wrapper -->
+	
 	</div>
         
         <!-- content-wrapper ends -->
@@ -261,22 +254,22 @@
   <!-- container-scroller -->
 
  	<!-- 스크립트 src 여기서 부터 -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 	
 	<!-- 화면 template 관련 src -->
 	<!-- base:js -->
-	<script src="resources/vendors/base/vendor.bundle.base.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendors/base/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
-	<script src="resources/js/off-canvas.js"></script>
-	<script src="resources/js/hoverable-collapse.js"></script>
-	<script src="resources/js/template.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/off-canvas.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/hoverable-collapse.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/template.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
-	<script src="resources/vendors/chart.js/Chart.min.js"></script>
-	<script src="resources/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendors/chart.js/Chart.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
 	 
@@ -290,44 +283,27 @@
     <!-- 여기부터 스크립트소스코드 작성 --> 
  	<script type="text/javascript">
 
-	// Add Task
-	$("#addBtn").on("click", function(e) {
-		e.preventDefault();
-
-		var task = $("#taskValue").val();
-
-		$.ajax({
-			url: "todoAdd",
-			type: "POST",
-			data: {task: task},
-			success: function(data) {
-				loadTasks();
-				$("#taskValue").val('');
-				if (data == 0) {
-					alert("Something wrong went. Please try again.");
-				}
-			}
+ 	$(function () {
+		$('#todoForm').on('submit', function (e) {
+			if($('#todoTitle').val() == "") {
+				alert('내용을 입력하세요.');
+				e.preventDefault();
+			} else {
+				$('#todoTitle').val();
+				return true;
+			} // if-else
+		}); // on click
+		
+		$('#addBtn').on('click', function () {
+			if($('#todoTitle').val() == "") {
+				alert('내용을 입력하세요.');
+			  return '${pageContext.request.contextPath}/todolist';
+			} 
+			
 		});
-	});
- 	
- 	
-	// Remove Task
-	$(document).on("click", "#removeBtn", function(e) {
-		e.preventDefault();
-		var id = $(this).data('id');
-		$.ajax({
-			url: "todoRemove",
-			type: "GET",
-			data: {id: id},
-			success: function(data) {
-				loadTasks();
-				if (data == 0) {
-					alert("Something wrong went. Please try again.");
-				}
-			}
-		});
-	});
-});
+		
+	})
+
 	</script>
   
 </body>

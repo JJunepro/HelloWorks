@@ -13,14 +13,7 @@
  	
  	<!-- 리스트 -->
  	<select id="todolistAll" resultMap="todolsitMap" parameterType="Todolist"> 	
- 	select * from todolist
- 	</select>
- 	
- 	<!-- 오늘날짜 리스트 조회 -->
- 	<select id="todolistToday" resultMap="todolsitMap" parameterType="Todolist">
-	 	<![CDATA[
-	 	select * from todolist where to_char(sysdate, 'yyyy/mm/dd') = to_char(TODO_DATE, 'yyyy/mm/dd') AND TODO_PROCESS = 0
-	 	]]>
+ 	select * from todolist where TODO_PROCESS = 0
  	</select>
  	
  	<!--진행중/ 중요일정-->
@@ -29,10 +22,11 @@
 	 	select * from todolist where to_char(sysdate, 'yyyy/mm/dd') = to_char(TODO_DATE, 'yyyy/mm/dd') AND TODO_MARK = 1
 	 	]]>
  	</select>
+ 	
  	<!--완료일정-->
- 	<select id="todayDone" resultMap="todolsitMap" parameterType="Todolist">
+ 	<select id="todoDone" resultMap="todolsitMap" parameterType="Todolist">
 	 	<![CDATA[
-	 	select * from todolist where to_char(sysdate, 'yyyy/mm/dd') = to_char(TODO_DATE, 'yyyy/mm/dd') AND TODO_PROCESS = 1
+	 	select * from todolist where TODO_PROCESS = 1
 	 	]]>
  	</select>
  	
@@ -42,12 +36,15 @@
  	
  		
  	<insert id="todoAdd" parameterType="Todolist">
- 	insert into todolist VALUES (todo_num_seq.nextval, #{uid}, #{todoTitle}, SYSDATE, #{todoMark}, #{todoProcess})
+ 	insert into todolist VALUES (todo_num_seq.nextval, 'aa12', #{todoTitle}, SYSDATE, 0, 0)
  	</insert>
  	
  	<delete id="todoRemove">
  		delete from todolist where TODO_NUM = #{todoNum}
  	</delete>
  	
+ 	<update id="todoUpdate">
+ 		update todolist set TODO_PROCESS = 1 where todo_num = #{todoNum}
+ 	</update>
  	
 </mapper>
