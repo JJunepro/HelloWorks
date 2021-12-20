@@ -118,11 +118,6 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown mr-4 d-lg-flex d-none">
-            <a class="nav-link count-indicatord-flex align-item s-center justify-content-center" href="#">
-              <i class="icon-grid"></i>
-            </a>
-          </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>

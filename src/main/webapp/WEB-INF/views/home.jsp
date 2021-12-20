@@ -236,7 +236,8 @@ else self.name = '';
 
 										<div class="card-body">
 											<h4 class="card-title" style="margin-bottom:10px;">
-												To Do List<a href="/todolist" style="float: right;">
+												To Do List<a 
+						href="${pageContext.request.contextPath}/todolist" style="float: right;">
 												<i class="icon-square-plus"></i>
 												</a>
 											</h4>
@@ -247,8 +248,9 @@ else self.name = '';
 														class="d-flex pb-3 border-bottom justify-content-between">
 														<div class="mr-3">
 															<i class="mdi mdi-signal-cellular-outline icon-md"></i>
+															</a>
 														</div>
-														<div class="font-weight-bold mr-sm-4">
+											  			<div class="font-weight-bold mr-sm-4">
 															<div>Deposit has updated</div>
 														</div>
 														<div>
@@ -291,6 +293,7 @@ else self.name = '';
 															<h6 class="font-weight-bold text-info ml-sm-2">12/24</h6>
 														</div>
 													</div>
+												
 												</div>
 											</div>
 										</div>
@@ -319,9 +322,9 @@ else self.name = '';
 											<div
 												class="d-flex justify-content-between mt-2 text-dark mb-2">
 												<div>
-													<span class="font-weight-bold">이번주 근무시간 현황</span>
+													<span class="font-weight-bold">오늘 근무시간 현황</span>
 												</div>
-												<div>근무시간 : 46h 20m</div>
+												<div>근무현황</div>
 											</div>
 											<div class="progress progress-md grouped mb-2">
 												<div class="progress-bar  bg-danger" role="progressbar"
@@ -334,8 +337,7 @@ else self.name = '';
 										
 											<div>출근시간 : ${memberinfo.attendance.workOn} </div>
 											<div>퇴근시간 : ${memberinfo.attendance.workOff}</div>
-											<div>1일 평균 근무시간: 8h 20m</div>	
-																					
+																				
 										</div>
 									</div>
 								</div>
@@ -345,11 +347,10 @@ else self.name = '';
 								onclick="location.href='workOn?uid=${memberinfo.uid }&&oCode=${memberinfo.oCode }'">출근</button>
 								<button type="submit" id="onbtn2" class="btn btn-light mr-2" style="width: 100%;"
 								onclick="location.href='workOff?uid=${memberinfo.uid }'">퇴근</button>
-								<button type="submit" id="onbtn3" class="btn btn-warning mr-2" style="width: 100%;"
+							<!--	<button type="submit" id="onbtn3" class="btn btn-warning mr-2" style="width: 100%;"
 								onclick="location.href='workDelete?uid=${memberinfo.uid }'">초기화</button>
+								 -->
 								
-								
-								</form>	
 							</div>
 						</div>
 						<div class="col-md-6 grid-margin stretch-card">
@@ -365,8 +366,9 @@ else self.name = '';
 												aria-expanded="false">공지사항</button>
 											<div class="dropdown-menu"
 												aria-labelledby="dropdownMenuSizeButton3">
+												<a href="${pageContext.request.contextPath}/notice">
 												<h6 class="dropdown-header">공지사항</h6>
-												<h6 class="dropdown-header">자유게시판</h6>
+												</a>
 											</div>
 										</div>
 									</div>
@@ -375,45 +377,34 @@ else self.name = '';
 											<table class="table">
 												<thead>
 													<tr>
-														<th>Profile</th>
-														<th>VatNo.</th>
+														<th>Title</th>
+														<th>Contents</th>
 														<th>Created</th>
-														<th>Status</th>
+														
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td>Jacob</td>
+														<td>재택근무 공지사항</td>
 														<td>53275531</td>
-														<td>12 May 2017</td>
-														<td><label class="badge badge-danger">Pending</label></td>
+														<td>12 May 2021</td>
 													</tr>
 													<tr>
-														<td>Messsy</td>
+														<td>코로나 안내사항</td>
 														<td>53275532</td>
-														<td>15 May 2017</td>
-														<td><label class="badge badge-warning">In
-																progress</label></td>
+														<td>15 May 2021</td>
 													</tr>
 													<tr>
-														<td>John</td>
+														<td>재택근무 전환 안내사항</td>
 														<td>53275533</td>
-														<td>14 May 2017</td>
-														<td><label class="badge badge-info">Fixed</label></td>
+														<td>14 May 2021</td>
 													</tr>
 													<tr>
-														<td>Peter</td>
+														<td>사무실 이용 공지</td>
 														<td>53275534</td>
-														<td>16 May 2017</td>
-														<td><label class="badge badge-success">Completed</label></td>
+														<td>16 May 2021</td>
 													</tr>
-													<tr>
-														<td>Dave</td>
-														<td>53275535</td>
-														<td>20 May 2017</td>
-														<td><label class="badge badge-warning">In
-																progress</label></td>
-													</tr>
+												
 												</tbody>
 											</table>
 										</div>
