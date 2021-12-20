@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Regal Admin</title>
+<title>HelloWorks</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="resources/vendors/mdi/css/materialdesignicons.min.css">
@@ -167,44 +167,52 @@ thead{
 					<div class="user-designation">${memberinfo.position }</div>
 				</div>
 					<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="icon-mail menu-icon"></i>
+							<span class="menu-title">Mail</span>
+						</a>
+					</li>
+					
+				   	<li class="nav-item">
+				 	  	<a class="nav-link" href="${pageContext.request.contextPath}/schedule">
+					   		<i class="icon-calendar menu-icon">
+					   			<img class="menu-icon" alt="img" src="${pageContext.request.contextPath}/resources/schedule/calendar.svg">
+					   		</i>
+					   		<span class="menu-title">Schedule</span>
+				   		 </a>
+           		 	</li>
+					
 					<li class="nav-item"><a class="nav-link"
-						href="../../index.html"> <i class="icon-mail menu-icon"></i> <span
-							class="menu-title">Mail</span>
+						href="${pageContext.request.contextPath}/todolist"> <i
+							class="icon-square-check menu-icon"></i> <span class="menu-title">ToDoList</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-						aria-controls="ui-basic"> <i class="icon-disc menu-icon"></i>
-							<span class="menu-title">Calender</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/forms/basic_elements.html"> <i
-							class="icon-clipboard menu-icon"></i> <span class="menu-title">To
-								Do List</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../pages/charts/chartjs.html"> <i
-							class="icon-speech-bubble menu-icon"></i> <span
-							class="menu-title">Messenger</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="work"> <i
-							class="icon-watch menu-icon"></i> <span class="menu-title">근태
-								관리</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="memberAll"> <i
-							class="icon-head menu-icon"></i> <span class="menu-title">인사
-								관리</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth"> <i class="icon-square-check menu-icon"></i>
-							<span class="menu-title">회의실 예약</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../../docs/documentation.html"> <i
-							class="icon-book menu-icon"></i> <span class="menu-title">Documentation</span>
-					</a></li>
+					<li class="nav-item">
+						<a class="nav-link"href="#">
+							<i class="icon-speech-bubble menu-icon"></i>
+							<span class="menu-title">Messenger</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/work">
+							<i class="icon-watch menu-icon"></i>
+							<span class="menu-title">근태 관리</span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/memberAll">
+							<i class="icon-head menu-icon"></i>
+							<span class="menu-title">인사관리</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/notice">
+							<i class="icon-clipboard menu-icon"></i>
+							<span class="menu-title">공지사항</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- partial -->

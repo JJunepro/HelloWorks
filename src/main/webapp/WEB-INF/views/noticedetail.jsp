@@ -130,7 +130,7 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
-            			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<div class="user-profile">
 					<div class="user-image">
 						<img src="${memberinfo.pImage }">

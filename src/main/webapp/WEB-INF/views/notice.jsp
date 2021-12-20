@@ -193,9 +193,10 @@
   		
 		<div class="card">
 			<div class="card-body">
-				<h2>공지사항</h2>
 				<div class="row">
-					<br>
+					<div class="col-sm-12 mb-4 mb-xl-0">
+						<h2 class="font-weight-bold text-dark">공지사항</h2>
+					</div>
 
 					<div style="width: 100%; height: 580px; overflow: auto">
 						<table class="table table-hover">
